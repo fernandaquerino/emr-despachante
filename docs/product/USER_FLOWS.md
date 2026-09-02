@@ -3,6 +3,32 @@
 ## Fluxo 1 — Proprietário: primeira consulta
 
 ```text
+Landing
+  ↓
+Placa
+  ↓
+RENAVAM quando necessário
+  ↓
+Consulta
+  ↓
+Pendências
+  ↓
+Seleciona serviços
+  ↓
+Checkout
+  ↓
+Pagamento confirmado
+  ↓
+Processamento
+  ↓
+Acompanhamento
+  ↓
+Conclusão
+```
+
+## Fluxo 1A — Proprietário: conta e veículo
+
+```text
 Cadastro
   ↓
 Cadastrar veículo
@@ -14,6 +40,68 @@ Detalhe do veículo
   └── Pendência
        ↓
       Serviço
+```
+
+## Fluxo 1B — Parceiro cria solicitação
+
+```text
+Login
+  ↓
+Partner Dashboard
+  ↓
+Nova solicitação
+  ↓
+Veículo
+  ↓
+Serviço
+  ↓
+Documentos
+  ↓
+Observações
+  ↓
+Revisão
+  ↓
+Enviar
+  ↓
+ServiceRequest criado
+  ↓
+Acompanhar
+```
+
+## Fluxo 1C — Notificação de solicitação de parceiro
+
+```text
+Parceiro cria solicitação
+  ↓
+EMR cria ServiceRequest
+  ↓
+Notificação in-app
+  ↓
+WhatsApp outbound para responsável configurado
+  ↓
+Operadora abre deep link
+  ↓
+Autorização server-side
+  ↓
+Operadora trabalha solicitação
+```
+
+WhatsApp não é fonte da verdade e não envia documentos sensíveis.
+
+## Fluxo 1D — ServiceRequest vira Case somente por exceção
+
+```text
+ServiceRequest
+  ↓
+Falha persistente / divergência / timeout esgotado
+  ↓
+Case criado
+  ↓
+Fila operacional de Cases
+  ↓
+Resolução da exceção
+  ↓
+ServiceRequest continua seu lifecycle
 ```
 
 ## Fluxo 2 — Pagamento de multa
@@ -41,7 +129,7 @@ Webhook
        ↓
       DetranClient
        ├── sucesso → Concluído
-       └── falhas excedidas → Caso manual
+       └── falhas excedidas → Case manual
 ```
 
 ## Fluxo 3 — Licenciamento bloqueado
@@ -141,6 +229,22 @@ Operadora revisa
   ↓
 Confirma envio
 ```
+
+# Fluxo 8A — WhatsApp inbound futuro/discovery
+
+```text
+Parceiro envia mensagem no WhatsApp
+  ↓
+Sistema interpreta texto como draft
+  ↓
+Humano revisa placa, serviço, documentos e vínculo
+  ↓
+Confirma criação
+  ↓
+ServiceRequest criado no EMR
+```
+
+Não é requisito MVP.
 
 # Fluxo 9 — Chatbot proprietário
 

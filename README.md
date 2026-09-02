@@ -7,6 +7,7 @@
 O produto combina:
 
 - portal do proprietário;
+- portal do parceiro para intake B2B/B2B2C;
 - operação interna por fila de exceções;
 - dashboard administrativo;
 - pagamentos em sandbox;
@@ -23,9 +24,13 @@ O produto combina:
 
 Consulta o próprio veículo, pendências, serviços, pagamentos, pedidos e documentos.
 
+### PARCEIRO
+
+Cria e acompanha solicitações de serviços para veículos vinculados a uma organização parceira, como concessionária, revenda, loja de seminovos, locadora ou empresa com frota.
+
 ### OPERADORA
 
-Trabalha os casos que não foram resolvidos automaticamente, acompanha clientes e veículos e registra ações/notas.
+Trabalha solicitações normais e casos que não foram resolvidos automaticamente, acompanha clientes, parceiros e veículos e registra ações/notas.
 
 ### ADMIN
 
@@ -58,6 +63,21 @@ Checkout iniciado ≠ pagamento confirmado.
 Somente um webhook válido e idempotente do provedor
 pode confirmar o pagamento.
 ```
+
+## Regra operacional principal
+
+```text
+ServiceRequest = trabalho normal solicitado por proprietário, parceiro ou operação.
+Case = exceção/problema que exige intervenção humana especial.
+```
+
+Uma solicitação criada por parceiro não vira Case automaticamente. Case nasce apenas quando há falha persistente, divergência, timeout esgotado ou outra exceção operacional documentada.
+
+## WhatsApp no MVP
+
+WhatsApp é canal de notificação outbound, não fonte da verdade.
+
+O registro oficial da solicitação fica no EMR. Mensagens podem conter dados mínimos e deep link autenticado, mas não devem transportar documentos sensíveis.
 
 ## Regra da integração governamental
 

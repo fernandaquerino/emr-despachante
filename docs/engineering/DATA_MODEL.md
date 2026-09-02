@@ -11,6 +11,12 @@
 - status
 - created_at
 
+Roles conceituais:
+- OWNER / PROPRIETARIO
+- PARTNER / PARCEIRO
+- OPERATOR / OPERADORA
+- ADMIN
+
 ### dispatcher_profiles
 - id
 - user_id
@@ -81,6 +87,78 @@ Unique:
 Unique:
 `vehicle_id + year`.
 
+### partner_organizations
+- id
+- legal_name
+- trade_name
+- type
+- status
+- created_at
+- updated_at
+
+PartnerOrganization representa a empresa parceira atendida pelo despachante. Não modelar conceitualmente como Customer.
+
+Open question:
+o tenant será a empresa despachante e PartnerOrganization uma organização atendida por ela?
+
+### partner_memberships
+- id
+- partner_organization_id
+- user_id
+- role
+- status
+- invited_at
+- accepted_at
+- disabled_at
+
+Unique sugerida:
+`partner_organization_id + user_id` para vínculo ativo.
+
+### service_requests
+- id
+- request_number
+- source
+- partner_organization_id nullable
+- requester_user_id nullable
+- owner_id nullable
+- vehicle_id
+- service_type
+- status
+- notes_public nullable
+- created_at
+- updated_at
+- completed_at nullable
+
+ServiceRequest é trabalho normal solicitado por proprietário, parceiro ou operação. Não usar CaseStatus para ServiceRequest.
+
+### service_request_documents
+- id
+- service_request_id
+- document_id
+- requested_type
+- status
+- requested_at
+- submitted_at nullable
+
+### partner_notification_preferences
+- id
+- partner_organization_id
+- channel
+- target
+- enabled
+- created_at
+- updated_at
+
+### partner_prices futuro
+- id
+- partner_organization_id
+- service_type
+- price_snapshot_strategy
+- active_from
+- active_until nullable
+
+Preço negociado deve preservar histórico/snapshot na ServiceRequest/Order/Payment aplicável.
+
 ### payments
 - id
 - fine_id nullable
@@ -139,6 +217,7 @@ Unique:
 - id
 - dispatcher_id
 - owner_id
+- service_request_id nullable
 - vehicle_id nullable
 - payment_id nullable
 - type
@@ -168,6 +247,13 @@ Unique:
 Unique:
 `user_id + dedup_key`.
 
+Canal de notificação é diferente de ServiceRequestSource.
+
+Exemplo:
+`source = PARTNER_PORTAL`, notification channels = `IN_APP`, `WHATSAPP`.
+
+WhatsApp outbound não é fonte da verdade e não deve carregar documentos sensíveis.
+
 ### audit_log
 - id
 - actor_id
@@ -189,6 +275,10 @@ Append-only.
 - manual_cases(dispatcher_id, status, priority, opened_at)
 - dispatcher_clients(dispatcher_id, status)
 - payments(status, created_at)
+- service_requests(status, updated_at)
+- service_requests(partner_organization_id, status, updated_at)
+- partner_memberships(user_id, status)
+- partner_organizations(status, updated_at)
 
 ### busca
 - vehicles(plate_normalized)
@@ -207,6 +297,15 @@ Não logar:
 - payment token;
 - full CPF;
 - full RENAVAM quando desnecessário.
+- documentos sensíveis ou deep links completos enviados por WhatsApp.
+
+## Futuro / decisões abertas
+
+### invoices / invoice_items
+Billing B2B, faturas, descontos, ajustes, refunds e reconciliação são capacidades futuras dependentes de validação comercial.
+
+### multi-tenancy
+Não há decisão definitiva de isolamento multi-tenant neste documento.
 
 
 ---

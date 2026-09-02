@@ -2,6 +2,8 @@
 
 ## Clientes
 
+Todos os dados abaixo são fictícios e servem apenas para prototipação.
+
 ### Mariana Alves
 - Honda HR-V
 - placa ABC1D23
@@ -42,9 +44,51 @@
 ### Camila Torres
 - INVITED
 
+## Parceiros
+
+### Auto Prime Santos
+- tipo: loja de seminovos
+- status: ACTIVE
+- canal principal: Partner Portal
+- WhatsApp outbound habilitado para notificações sem documentos sensíveis
+
+Usuários fictícios:
+- Marcos Pereira — gestor
+- Julia Costa — vendas
+- Ricardo Nunes — financeiro
+
+### SR-4392
+- Partner: Auto Prime Santos
+- Solicitante: Marcos Pereira
+- Veículo: Toyota Corolla · ABC1D23
+- Serviço: Licenciamento 2026
+- Status: Em andamento
+- Origem: PARTNER_PORTAL
+- Observação: cliente retira o veículo amanhã.
+
+### SR-4393
+- Partner: Auto Prime Santos
+- Solicitante: Julia Costa
+- Veículo: Honda HR-V · DEF4G56
+- Serviço: Transferência
+- Status: Aguardando documento
+- Origem: PARTNER_PORTAL
+
+### SR-4394
+- Partner: Auto Prime Santos
+- Solicitante: Ricardo Nunes
+- Veículo: Chevrolet Onix · JKL2M34
+- Serviço: Multas
+- Status: Aguardando órgão
+- Origem: PARTNER_PORTAL
+
 ## Dashboard admin
 - Clientes ativos: 1.284
 - Veículos ativos: 1.912
+- Parceiros ativos: 18
+- Solicitações B2C no mês: 842
+- Solicitações B2B no mês: 316
+- Solicitações por parceiro: Auto Prime Santos 42
 - Valor processado mês: R$ 684.220
 - Receita por taxa: R$ 73.840
 - Casos abertos: 42

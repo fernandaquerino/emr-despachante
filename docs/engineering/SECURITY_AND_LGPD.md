@@ -26,6 +26,20 @@ Despachante só acessa:
 - veículos vinculados;
 - casos da própria carteira.
 
+Parceiro só acessa:
+- PartnerOrganization própria;
+- usuários autorizados da própria organização;
+- solicitações da própria organização;
+- documentos autorizados;
+- cliente/veículo conforme vínculo/autorização.
+
+Parceiro não acessa:
+- notas internas;
+- dados de outro parceiro;
+- stack trace;
+- detalhes técnicos desnecessários;
+- documentos fora do escopo.
+
 ADMIN:
 acesso operacional controlado e auditado.
 
@@ -35,6 +49,10 @@ Testes obrigatórios:
 - dispatcher A tenta vehicle B;
 - owner tenta vehicle alheio;
 - download de documento de terceiro.
+- partner A tenta service request do partner B;
+- partner A tenta documento do partner B;
+- partner tenta nota interna operacional;
+- deep link de WhatsApp sem login/autorização.
 
 ### Webhooks
 - validar assinatura;
@@ -54,6 +72,12 @@ Nunca armazenar:
 - presigned URL curta;
 - autorização antes de emitir URL.
 
+### WhatsApp outbound
+- não enviar documentos sensíveis;
+- evitar PII desnecessária;
+- deep links exigem login e autorização;
+- falha do provider não impede criação da solicitação.
+
 ### Secrets
 Produção:
 - Secrets Manager/SSM;
@@ -68,6 +92,11 @@ Registrar:
 - mudança manual de status;
 - vínculo/revogação;
 - abertura/resolução de case.
+- criação de ServiceRequest;
+- resposta de pendência pelo parceiro;
+- upload/download de documento;
+- alteração de membership/permissão do parceiro;
+- mudança de preferência de notificação.
 
 ## Retenção
 Definir por tipo:
@@ -88,6 +117,8 @@ Definir por tipo:
 - [ ] dependency scanning
 - [ ] SAST opcional
 - [ ] tests cross-tenant
+- [ ] tests organization isolation
+- [ ] tests organization escape / BOLA
 - [ ] logs redacted
 
 
@@ -107,6 +138,8 @@ Conteúdo recuperado via RAG não pode:
 
 ## Tool authorization
 Toda tool recebe identity/role no servidor.
+
+Tools que consultam ServiceRequests precisam aplicar organization isolation quando o usuário for parceiro.
 
 ## Logging
 Evitar armazenar conversas brutas contendo PII quando não necessário.

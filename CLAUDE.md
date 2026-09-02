@@ -8,27 +8,27 @@ Leia também obrigatoriamente:
 
 - `AGENTS.md`
 - `README.md`
-- `PRODUCT_DESCRIPTION.md`
-- `REQUIREMENTS.md`
-- `ARCHITECTURE.md`
-- `ADRS.md`
-- `STATUS_MODEL.md`
-- `SECURITY_AND_LGPD.md`
+- `docs/product/PRODUCT_DESCRIPTION.md`
+- `docs/product/REQUIREMENTS.md`
+- `docs/engineering/ARCHITECTURE.md`
+- `docs/engineering/ADRS.md`
+- `docs/product/STATUS_MODEL.md`
+- `docs/engineering/SECURITY_AND_LGPD.md`
 
 Quando a tarefa envolver UI:
 
-- `SCREEN_SPECS.md`
-- `DASHBOARD_SPEC.md`
-- `INFORMATION_ARCHITECTURE.md`
-- `FIGMA_MAKE_BRIEF.md`
+- `docs/product/SCREEN_SPECS.md`
+- `docs/product/DASHBOARD_SPEC.md`
+- `docs/product/INFORMATION_ARCHITECTURE.md`
+- `docs/product/FIGMA_MAKE_BRIEF.md`
 - documentação em `docs/design-system/`
 
 Quando envolver IA:
 
-- `AI_PRODUCT_SPEC.md`
-- `AI_ARCHITECTURE.md`
-- `AI_TOOLS_AND_GUARDRAILS.md`
-- `AI_EVALS.md`
+- `docs/ai/AI_PRODUCT_SPEC.md`
+- `docs/ai/AI_ARCHITECTURE.md`
+- `docs/ai/AI_TOOLS_AND_GUARDRAILS.md`
+- `docs/ai/AI_EVALS.md`
 
 ---
 

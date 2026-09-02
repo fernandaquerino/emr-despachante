@@ -4,7 +4,7 @@
 
 ```mermaid
 flowchart TD
-    U[Operadora/Admin/Proprietário] --> WEB[Next.js]
+    U[Operadora/Admin/Proprietário/Parceiro] --> WEB[Next.js]
     WEB --> API[NestJS API]
     API --> AIG[AI Gateway / Orchestrator]
     AIG --> LLM[LLM Provider]
@@ -41,8 +41,10 @@ O modelo recebe tools diferentes por perfil.
 - listCases
 - getCaseDetail
 - getCaseTimeline
+- listServiceRequests
 - getPaymentSummary
 - getServiceRequest
+- getPartnerSummary
 - searchInternalKnowledge
 
 ### ADMIN
@@ -60,6 +62,15 @@ Tudo da OPERADORA +
 - getMyPayment
 - searchPublicHelp
 
+### PARCEIRO
+Escopo futuro/restrito, se houver chat:
+- getMyPartnerServiceRequests
+- getMyPartnerServiceRequest
+- getMyPartnerDocuments
+- searchPartnerHelp
+
+Sem acesso a notas internas, dados de outros parceiros ou ferramentas amplas de operação.
+
 ## Read tools x Write tools
 
 ### Read
@@ -74,6 +85,9 @@ Exemplos:
 - createRefundRequest
 - resendCustomerNotification
 - sendCustomerMessage
+- sendPartnerMessage
+
+Criar ServiceRequest a partir de WhatsApp inbound com IA é discovery futuro e deve exigir validação humana de placa, serviço, documentos e vínculo.
 
 ## RAG
 
@@ -117,6 +131,8 @@ Mesmo que o modelo solicite:
 `getVehicle(vehicleId=outroUsuario)`
 
 a tool deve negar.
+
+Para parceiro, a policy também deve negar qualquer tentativa de organization escape entre PartnerOrganizations.
 
 ## Structured Outputs
 
