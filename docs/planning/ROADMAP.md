@@ -4,7 +4,7 @@
 Monorepo, Docker, Postgres, Redis, CI.
 
 ## M1 — Auth & Roles
-Proprietário, operadora, admin, convite.
+Proprietário, admin, admin, convite.
 
 Impacto B2B:
 adicionar PARCEIRO, convite de usuário parceiro e permissões por PartnerOrganization.
@@ -36,7 +36,7 @@ Cards, fila, casos antigos, clientes em atenção.
 Adicionar fila de ServiceRequests normais sem reduzir protagonismo de Cases críticos.
 
 ## M9 — Admin Panel
-Receita, volume, catálogo, operadoras, fila consolidada, reconciliação.
+Receita, volume, catálogo, usuários internos, fila consolidada, reconciliação.
 
 Adicionar gestão de parceiros em `/admin/parceiros` e `/admin/parceiros/:id`.
 

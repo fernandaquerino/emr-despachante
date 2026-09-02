@@ -4,7 +4,7 @@
 
 ```mermaid
 flowchart TD
-    U[Proprietário / Parceiro / Operadora / Admin] --> CF[CloudFront / Next.js]
+    U[Proprietário / Parceiro / Admin] --> CF[CloudFront / Next.js]
     CF --> ALB[ALB]
     ALB --> API[NestJS API / ECS]
 

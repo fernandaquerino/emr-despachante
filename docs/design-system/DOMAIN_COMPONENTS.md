@@ -525,7 +525,7 @@ Painel lateral do EMR Copilot. Anatomia detalhada em [`AI_COPILOT_UI.md §3`](./
 | Prop | Tipo |
 |---|---|
 | `open` | `boolean` |
-| `role` | `"OPERATOR"` \| `"ADMIN"` |
+| `role` | `"ADMIN"` \| `"ADMIN"` |
 | `context` | `{ page, entityId? }` — para prompts contextuais |
 | `session` | `CopilotSession` |
 | `onClose` | `() => void` |

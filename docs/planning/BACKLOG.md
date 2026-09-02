@@ -692,8 +692,8 @@ Todos os papéis acessam por login, mas recebem áreas diferentes.
 - [ ] Acesso protegido.
 
 ## Critérios de aceite
-- OPERADORA não acessa rota admin.
-- PROPRIETÁRIO não acessa /ops.
+- ADMIN não acessa rota admin.
+- PROPRIETÁRIO não acessa /admin.
 
 ## Observabilidade
 _Não se aplica._
@@ -726,7 +726,7 @@ ADR auth/session strategy.
 
 ---
 
-# [US-103] Convite e ativação de operadora
+# [US-103] Convite e ativação de admin
 
 **Milestone:** M1 — Auth & Roles
 **Track:** Security
@@ -736,10 +736,10 @@ ADR auth/session strategy.
 **Labels:** user-story, study, P0, frontend, backend, security
 
 ## Contexto
-Operadoras são criadas pelo admin.
+Usuários internos são criadas pelo admin.
 
 ## User Story
-> Como admin, quero convidar uma operadora sem definir a senha por ela.
+> Como admin, quero convidar uma admin sem definir a senha por ela.
 
 ## Regras de negócio
 - Token uso único.
@@ -758,10 +758,10 @@ Operadoras são criadas pelo admin.
 - [ ] Definir senha.
 
 ## Banco / Persistência
-- [ ] operator_invitations.
+- [ ] admin_invitations.
 
 ## Protótipo / UX
-- [ ] Modal Convidar operadora.
+- [ ] Modal Convidar admin.
 - [ ] Tela Ativar conta.
 
 ## Testes
@@ -814,7 +814,7 @@ _Não obrigatório._
 Admin e operação precisam acompanhar clientes sem depender de planilha.
 
 ## User Story
-> Como operadora, quero localizar rapidamente clientes e sua situação.
+> Como admin, quero localizar rapidamente clientes e sua situação.
 
 ## Regras de negócio
 - Somente clientes da operação.
@@ -893,7 +893,7 @@ _Não obrigatório._
 A operação precisa entender contexto completo do cliente.
 
 ## User Story
-> Como operadora, quero ver veículos, pedidos, pagamentos, casos e histórico do cliente.
+> Como admin, quero ver veículos, pedidos, pagamentos, casos e histórico do cliente.
 
 ## Regras de negócio
 - Notas internas não aparecem ao proprietário.
@@ -922,7 +922,7 @@ A operação precisa entender contexto completo do cliente.
 - [ ] Timeline.
 
 ## Critérios de aceite
-- A operadora chega do cliente ao veículo/pedido/caso em até 1 clique dentro da página.
+- A admin chega do cliente ao veículo/pedido/caso em até 1 clique dentro da página.
 
 ## Observabilidade
 _Não se aplica._
@@ -966,7 +966,7 @@ _Não obrigatório._
 Operação precisa encontrar entidade em segundos.
 
 ## User Story
-> Como operadora, quero buscar por cliente ou placa em qualquer tela interna.
+> Como admin, quero buscar por cliente ou placa em qualquer tela interna.
 
 ## Regras de negócio
 - Limite de resultados.
@@ -1039,7 +1039,7 @@ _Não obrigatório._
 Veículo é a entidade central do fluxo.
 
 ## User Story
-> Como proprietário ou operadora autorizada, quero cadastrar veículo.
+> Como proprietário ou admin autorizada, quero cadastrar veículo.
 
 ## Regras de negócio
 - Placa normalizada.
@@ -2023,14 +2023,14 @@ ADR case creation policy.
 **Labels:** user-story, study, P0, frontend, backend
 
 ## Contexto
-Operadora precisa trabalhar uma fila objetiva.
+Admin precisa trabalhar uma fila objetiva.
 
 ## User Story
-> Como operadora, quero separar meus casos dos ainda disponíveis.
+> Como admin, quero separar meus casos dos ainda disponíveis.
 
 ## Regras de negócio
 - ADMIN pode ver todos.
-- OPERADORA vê seus e não atribuídos.
+- ADMIN vê seus e não atribuídos.
 
 ## Frontend
 - [ ] Tabs.
@@ -2092,10 +2092,10 @@ _Não obrigatório._
 **Labels:** user-story, study, P0, frontend, backend, database, testing
 
 ## Contexto
-Duas operadoras podem clicar Assumir ao mesmo tempo.
+Dois usuários internos podem clicar Assumir ao mesmo tempo.
 
 ## User Story
-> Como operadora, quero assumir um caso somente se ainda estiver livre.
+> Como admin, quero assumir um caso somente se ainda estiver livre.
 
 ## Regras de negócio
 - Primeira operação vence.
@@ -2162,7 +2162,7 @@ _Não obrigatório._
 Caso precisa reunir todo o contexto para resolução.
 
 ## User Story
-> Como operadora, quero resolver sem abrir cinco telas diferentes.
+> Como admin, quero resolver sem abrir cinco telas diferentes.
 
 ## Regras de negócio
 - Notas internas.
@@ -2239,10 +2239,10 @@ _Não obrigatório._
 Dashboard não pode executar uma chamada por card.
 
 ## User Story
-> Como operadora, quero um resumo rápido da minha fila e clientes que precisam de ação.
+> Como admin, quero um resumo rápido da minha fila e clientes que precisam de ação.
 
 ## Regras de negócio
-- OPERADORA recebe métricas próprias.
+- ADMIN recebe métricas próprias.
 - ADMIN pode receber operação total em endpoint distinto.
 
 ## Frontend
@@ -2309,10 +2309,10 @@ ADR dashboard read strategy.
 **Labels:** user-story, study, P0, frontend, performance
 
 ## Contexto
-É a home de trabalho da operadora.
+É a home de trabalho da admin.
 
 ## User Story
-> Como operadora, quero enxergar imediatamente prioridades e meus casos.
+> Como admin, quero enxergar imediatamente prioridades e meus casos.
 
 ## Regras de negócio
 - Não usar ranking competitivo público.
@@ -2511,7 +2511,7 @@ _Não obrigatório._
 
 ---
 
-# [US-903] Gestão de operadoras
+# [US-903] Gestão de usuários internos
 
 **Milestone:** M9 — Admin Panel
 **Track:** Product
@@ -2524,7 +2524,7 @@ _Não obrigatório._
 Negócio precisa crescer equipe sem redesenhar permissões.
 
 ## User Story
-> Como admin, quero convidar, suspender e acompanhar operadoras.
+> Como admin, quero convidar, suspender e acompanhar usuários internos.
 
 ## Regras de negócio
 - Suspender não apaga histórico.
@@ -2536,14 +2536,14 @@ Negócio precisa crescer equipe sem redesenhar permissões.
 - [ ] Detalhe.
 
 ## Backend
-- [ ] List operators.
+- [ ] List internal-users.
 - [ ] Suspend/reactivate.
 
 ## Banco / Persistência
 _Não se aplica._
 
 ## Protótipo / UX
-- [ ] Tela Operadoras + detalhe.
+- [ ] Tela Usuários internos + detalhe.
 
 ## Testes
 - [ ] Suspended login/access.
@@ -2599,7 +2599,7 @@ Admin precisa ver todo o trabalho manual.
 
 ## Frontend
 - [ ] Tabela.
-- [ ] Filtro operadora.
+- [ ] Filtro admin.
 - [ ] Prioridade.
 - [ ] Age.
 
@@ -2858,7 +2858,7 @@ _Não obrigatório._
 Pagamento precisa ser rastreado até submissão externa.
 
 ## User Story
-> Como operadora técnica, quero investigar uma transação ponta a ponta.
+> Como admin técnica, quero investigar uma transação ponta a ponta.
 
 ## Regras de negócio
 _Não se aplica._
@@ -3425,7 +3425,7 @@ _Não se aplica._
 
 ## Critérios de aceite
 - 1 efeito financeiro por evento.
-- 1 operadora por case.
+- 1 admin por case.
 
 ## Observabilidade
 _Não se aplica._
@@ -3628,7 +3628,7 @@ _Nenhuma._
 Copilot precisa consultar dados reais sem acesso direto ao banco.
 
 ## User Story
-> Como operadora, quero que o Copilot consulte somente dados que eu poderia abrir manualmente.
+> Como admin, quero que o Copilot consulte somente dados que eu poderia abrir manualmente.
 
 ## Tasks
 - [ ] Implementar tool registry
@@ -3642,7 +3642,7 @@ Copilot precisa consultar dados reais sem acesso direto ao banco.
 - [ ] Aplicar policies server-side
 
 ## Critérios de aceite
-- Operadora sem permissão recebe deny
+- Admin sem permissão recebe deny
 - LLM nunca recebe SQL credential
 
 ## Segurança / Guardrails
@@ -3683,7 +3683,7 @@ _Nenhuma._
 Copilot precisa estar dentro do contexto operacional.
 
 ## User Story
-> Como operadora, quero perguntar sobre minha operação sem sair da tela.
+> Como admin, quero perguntar sobre minha operação sem sair da tela.
 
 ## Tasks
 - [ ] Criar botão no header
@@ -3736,7 +3736,7 @@ _Não se aplica._
 Caso manual frequentemente exige ler uma timeline longa.
 
 ## User Story
-> Como operadora, quero um resumo factual com próxima ação sugerida.
+> Como admin, quero um resumo factual com próxima ação sugerida.
 
 ## Tasks
 - [ ] Criar tool/context builder de case
@@ -3783,7 +3783,7 @@ _Não se aplica._
 **Labels:** user-story, study, ai, P0, frontend, backend, copilot
 
 ## Contexto
-Admin e operadora precisam interpretar métricas sem substituir os números brutos.
+Admin e admin precisam interpretar métricas sem substituir os números brutos.
 
 ## User Story
 > Como admin, quero um brief da operação baseado em métricas reais.
@@ -3834,7 +3834,7 @@ _Não se aplica._
 Perguntas sobre processo vêm de documentação, não de tabelas transacionais.
 
 ## User Story
-> Como operadora, quero consultar procedimentos internos pelo Copilot.
+> Como admin, quero consultar procedimentos internos pelo Copilot.
 
 ## Tasks
 - [ ] Modelar knowledge_documents/chunks
@@ -3885,10 +3885,10 @@ _Nenhuma._
 **Labels:** user-story, study, ai, P0, frontend, copilot
 
 ## Contexto
-Operadora repete mensagens parecidas para pedir documento ou explicar andamento.
+Admin repete mensagens parecidas para pedir documento ou explicar andamento.
 
 ## User Story
-> Como operadora, quero gerar um rascunho baseado no caso.
+> Como admin, quero gerar um rascunho baseado no caso.
 
 ## Tasks
 - [ ] CTA Gerar mensagem
@@ -3899,7 +3899,7 @@ Operadora repete mensagens parecidas para pedir documento ou explicar andamento.
 
 ## Critérios de aceite
 - Mensagem é draft
-- Operadora pode editar/cancelar
+- Admin pode editar/cancelar
 
 ## Segurança / Guardrails
 - Não incluir informação interna/erro técnico desnecessário

@@ -4,8 +4,6 @@
 POST /auth/register
 POST /auth/login
 POST /auth/logout
-POST /operators/invitations
-POST /operators/invitations/:token/accept
 POST /partners/invitations
 POST /partners/invitations/:token/accept
 
@@ -71,8 +69,8 @@ GET /admin/partners/:id/notification-preferences
 PATCH /admin/partners/:id/notification-preferences
 
 ## Dashboard
-GET /ops/dashboard
 GET /admin/dashboard
+GET /admin/operation-dashboard
 
 ## Reconciliation
 GET /admin/reconciliation
@@ -97,7 +95,7 @@ Tools are internal server functions/endpoints, not necessarily public HTTP route
 ServiceRequestSource:
 - PUBLIC_WEB
 - PARTNER_PORTAL
-- OPERATOR
+- ADMIN
 - WHATSAPP futuro
 - API futuro
 

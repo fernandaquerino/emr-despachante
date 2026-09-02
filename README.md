@@ -28,13 +28,9 @@ Consulta o próprio veículo, pendências, serviços, pagamentos, pedidos e docu
 
 Cria e acompanha solicitações de serviços para veículos vinculados a uma organização parceira, como concessionária, revenda, loja de seminovos, locadora ou empresa com frota.
 
-### OPERADORA
-
-Trabalha solicitações normais e casos que não foram resolvidos automaticamente, acompanha clientes, parceiros e veículos e registra ações/notas.
-
 ### ADMIN
 
-Acompanha receita, volume, operação, reconciliação, catálogo, equipe, auditoria e indicadores.
+Usuário interno do despachante. Trabalha solicitações normais, Cases de exceção, clientes, parceiros, veículos, financeiro, catálogo, auditoria e configurações.
 
 ## Catálogo
 

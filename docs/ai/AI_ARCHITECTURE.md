@@ -4,7 +4,7 @@
 
 ```mermaid
 flowchart TD
-    U[Operadora/Admin/Proprietário/Parceiro] --> WEB[Next.js]
+    U[Admin/Admin/Proprietário/Parceiro] --> WEB[Next.js]
     WEB --> API[NestJS API]
     API --> AIG[AI Gateway / Orchestrator]
     AIG --> LLM[LLM Provider]
@@ -34,7 +34,7 @@ Responsável por:
 
 O modelo recebe tools diferentes por perfil.
 
-### OPERADORA
+### ADMIN
 - searchCustomers
 - getCustomerSummary
 - getVehicleStatus
@@ -48,7 +48,7 @@ O modelo recebe tools diferentes por perfil.
 - searchInternalKnowledge
 
 ### ADMIN
-Tudo da OPERADORA +
+Tudo da ADMIN +
 - getAdminDashboardMetrics
 - getReconciliationIssues
 - getOperatorMetrics

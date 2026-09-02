@@ -29,7 +29,7 @@ Todos os dados abaixo são fictícios e servem apenas para prototipação.
 - aguardando documento do cliente
 - caso MEDIUM
 
-## Operadoras
+## Usuários internos
 
 ### Ana Ribeiro
 - ACTIVE

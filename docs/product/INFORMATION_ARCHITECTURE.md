@@ -23,7 +23,7 @@ A fonte de verdade detalhada para rotas, telas, perfis de acesso e issue FE é [
 
 `/selecionar-contexto` é usado somente quando a mesma pessoa possui mais de um contexto autorizado.
 
-Cadastro público cria somente OWNER. PARTNER, OPERATOR e ADMIN entram por convite/provisionamento.
+Cadastro público cria somente OWNER. PARTNER entra por convite. ADMIN entra por provisionamento administrativo.
 
 ### Área do proprietário
 
@@ -58,25 +58,7 @@ Cadastro público cria somente OWNER. PARTNER, OPERATOR e ADMIN entram por convi
 
 `/partner/financeiro` pode ficar como fase futura se billing B2B ainda não estiver decidido.
 
-### Operação interna
-
-```text
-/ops
-  /solicitacoes
-  /solicitacoes/:id
-  /casos
-  /casos/:id
-  /clientes
-  /clientes/:id
-  /veiculos
-  /veiculos/:id
-  /pedidos
-  /pedidos/:id
-  /pagamentos
-  /pagamentos/:id
-```
-
-### Administração
+### Administração: operação interna + gestão
 
 ```text
 /admin
@@ -90,10 +72,14 @@ Cadastro público cria somente OWNER. PARTNER, OPERATOR e ADMIN entram por convi
   /veiculos/:id
 
   /financeiro
-  /financeiro/pedidos
-  /financeiro/pedidos/:id
-  /financeiro/pagamentos
-  /financeiro/pagamentos/:id
+  /pedidos
+  /pedidos/:id
+  /pagamentos
+  /pagamentos/:id
+  /reconciliacao
+  /reconciliacao/:id
+
+  /financeiro
   /financeiro/reconciliacao
   /financeiro/reconciliacao/:id
   /financeiro/faturas
@@ -102,10 +88,9 @@ Cadastro público cria somente OWNER. PARTNER, OPERATOR e ADMIN entram por convi
   /parceiros
   /parceiros/novo
   /parceiros/:id
-  /operadoras
-  /operadoras/:id
   /servicos
   /servicos/:id
+  /usuarios
   /auditoria
   /configuracoes
 ```
@@ -121,17 +106,29 @@ Header/Popover: Notification Center
 Header/Side panel: EMR Copilot
 ```
 
-## Navegação lateral — Operadora
+## Navegação lateral — Admin
+
+Admin concentra operação diária e gestão administrativa no MVP.
 
 - Visão geral
-- Trabalho
+
+OPERAÇÃO:
 - Solicitações
-- Casos
+- Cases
 - Clientes
 - Veículos
-- Financeiro
+
+FINANCEIRO:
 - Pedidos
 - Pagamentos
+- Reconciliação
+
+GESTÃO:
+- Parceiros
+- Serviços e preços
+- Usuários
+- Auditoria
+- Configurações
 
 Quando existem exceções críticas, Cases devem manter grande protagonismo visual.
 
@@ -146,20 +143,6 @@ Quando existem exceções críticas, Cases devem manter grande protagonismo visu
 
 CTA principal:
 **+ Nova solicitação**
-
-## Navegação lateral — Admin
-
-- Dashboard
-- Clientes
-- Parceiros
-- Veículos
-- Casos
-- Pagamentos
-- Reconciliação
-- Serviços e preços
-- Operadoras
-- Auditoria
-- Configurações
 
 ## Hierarquia operacional
 
@@ -199,13 +182,13 @@ A pessoa deve conseguir chegar a qualquer problema por três caminhos:
 
 ## IA na arquitetura de informação
 
-### Operação interna
+### Admin
 Copilot é transversal e não precisa virar item principal da sidebar.
 
 Acesso:
 - botão no header;
 - ações contextuais;
-- possível rota `/ops/copilot` futura para histórico.
+- possível rota futura para histórico.
 
 ### Proprietário
 Chatbot acessível dentro de `/owner`.
@@ -213,8 +196,4 @@ Chatbot acessível dentro de `/owner`.
 ### Parceiro
 Sem chat amplo no escopo inicial. Ações futuras devem respeitar PartnerOrganization e esconder notas internas.
 
-### Admin
-Resumo inteligente disponível em:
-- dashboard;
-- reconciliação;
-- casos.
+Resumo inteligente disponível em dashboard, reconciliação, solicitações e Cases.

@@ -58,7 +58,7 @@ Exemplos:
 # 2. Tela — Login
 
 ## Objetivo
-Autenticar proprietário, parceiro, operadora ou admin através de login único.
+Autenticar proprietário, parceiro, admin ou admin através de login único.
 
 ## Conteúdo
 - logo EMR Despachante;
@@ -74,13 +74,13 @@ Autenticar proprietário, parceiro, operadora ou admin através de login único.
 - usuário não escolhe role no login;
 - backend resolve memberships/permissões;
 - cadastro público cria somente OWNER;
-- PARTNER, OPERATOR e ADMIN entram por convite/provisionamento.
+- PARTNER, ADMIN entram por convite/provisionamento.
 
 ## Estados
 - loading;
 - credenciais inválidas;
 - conta suspensa;
-- convite de operadora ainda não ativado.
+- convite de admin ainda não ativado.
 - convite de parceiro ainda não ativado.
 
 ---
@@ -495,9 +495,9 @@ Evento:
 # 11. Tela — Dashboard Operacional
 
 ## Usuários
-OPERADORA e ADMIN.
+ADMIN.
 Admin vê operação inteira.
-Operadora pode ver seus próprios indicadores e fila.
+Admin pode ver seus próprios indicadores e fila.
 
 ## Objetivo
 Responder:
@@ -546,7 +546,7 @@ Destacar casos ainda não assumidos.
 5 casos com maior tempo aberto.
 
 ## Performance pessoal
-Para operadora:
+Para admin:
 - resolvidos hoje;
 - resolvidos na semana;
 - tempo médio;
@@ -556,7 +556,7 @@ Evitar ranking público entre funcionárias no MVP.
 
 ---
 
-# 11A. Tela — Solicitações da Operadora
+# 11A. Tela — Solicitações da Admin
 
 ## Objetivo
 Trabalhar ServiceRequests normais antes que virem exceção.
@@ -589,7 +589,7 @@ Trabalhar ServiceRequests normais antes que virem exceção.
 # 11B. Tela — Detalhe da Solicitação Operacional
 
 ## Objetivo
-Dar contexto completo para a operadora executar o trabalho normal ou escalar exceção.
+Dar contexto completo para a admin executar o trabalho normal ou escalar exceção.
 
 ## Conteúdo
 - request id;
@@ -614,7 +614,7 @@ Notas internas não aparecem para parceiro.
 - partial failure;
 - stale;
 - permission state;
-- conflict quando outra operadora alterar o mesmo item;
+- conflict quando outra admin alterar o mesmo item;
 - responsive behavior.
 
 ---
@@ -961,7 +961,7 @@ Desativar serviço impede novos pedidos, não cancela existentes.
 
 ---
 
-# 19. Tela — Operadoras
+# 19. Tela — Usuários internos
 
 ## Cards
 - ativas;
@@ -986,7 +986,7 @@ Desativar serviço impede novos pedidos, não cancela existentes.
 
 ---
 
-# 20. Tela — Detalhe da operadora
+# 20. Tela — Detalhe do usuário interno
 
 ## Resumo
 - status;
@@ -1129,17 +1129,17 @@ Fluxos que precisam estar clicáveis no Figma:
 ### Fluxo A — Proprietário paga multa
 Login → Meus veículos → Veículo → Multa → Checkout → Pedido processando.
 
-### Fluxo B — Operadora resolve exceção
+### Fluxo B — Admin resolve exceção
 Dashboard operacional → Caso → Assumir → Nota → Resolver.
 
-### Fluxo C — Operadora acompanha cliente
+### Fluxo C — Admin acompanha cliente
 Clientes → Detalhe cliente → Veículo → Pedido.
 
 ### Fluxo D — Admin investiga financeiro
 Dashboard Admin → Reconciliação → Pagamento divergente → Caso.
 
 ### Fluxo E — Admin gerencia equipe
-Operadoras → Convidar → Operadora pendente → Ativa.
+Usuários internos → Convidar → Admin pendente → Ativa.
 
 
 ---

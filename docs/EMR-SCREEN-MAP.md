@@ -4,12 +4,11 @@
 
 ## 1. Princípios de navegação
 
-O EMR possui uma única marca e uma única autenticação, mas quatro contextos autenticados:
+O EMR possui uma única marca e uma única autenticação, mas três contextos autenticados no MVP:
 
 ```text
 OWNER
 PARTNER
-OPERATOR
 ADMIN
 ```
 
@@ -24,7 +23,6 @@ backend resolve memberships / permissões
   ↓
 OWNER    → /owner
 PARTNER  → /partner
-OPERATOR → /ops
 ADMIN    → /admin
 ```
 
@@ -40,7 +38,7 @@ Caso um mesmo usuário possua mais de um contexto autorizado:
 
 Cadastro público cria somente `OWNER`.
 
-`PARTNER`, `OPERATOR` e `ADMIN` entram através de convite/provisionamento.
+`PARTNER` entra através de convite. `ADMIN` entra por provisionamento administrativo.
 
 ---
 
@@ -280,7 +278,7 @@ Lead comercial, não `PartnerOrganization` ativa.
 
 **Acesso**
 
-OWNER, PARTNER, OPERATOR e ADMIN.
+OWNER, PARTNER, ADMIN.
 
 **Tela**
 
@@ -399,7 +397,7 @@ Usada por Partner e Operator.
 
 **Status**
 
-`COBERTA para Partner e Operadora`
+`COBERTA para Partner e Admin`
 
 ---
 
@@ -1128,12 +1126,12 @@ Comprovantes
 
 ---
 
-# 6. OPERATOR — Operação
+# 6. ADMIN — Operação
 
 Prefixo:
 
 ```text
-/ops
+/admin
 ```
 
 ## Navegação recomendada
@@ -1159,16 +1157,16 @@ Financeiro
 **Rota**
 
 ```text
-/ops
+/admin
 ```
 
 ou:
 
 ```text
-/ops/dashboard
+/admin/dashboard
 ```
 
-Recomendação: `/ops`.
+Recomendação: `/admin`.
 
 **Tela**
 
@@ -1196,7 +1194,7 @@ Recomendação: `/ops`.
 **Rota**
 
 ```text
-/ops/solicitacoes
+/admin/solicitacoes
 ```
 
 **Tela**
@@ -1232,7 +1230,7 @@ Recomendação: `/ops`.
 **Rota**
 
 ```text
-/ops/solicitacoes/:id
+/admin/solicitacoes/:id
 ```
 
 **Tela**
@@ -1263,7 +1261,7 @@ Recomendação: `/ops`.
 **Rota**
 
 ```text
-/ops/casos
+/admin/casos
 ```
 
 **Tela**
@@ -1295,7 +1293,7 @@ Recomendação: `/ops`.
 **Rota**
 
 ```text
-/ops/casos/:id
+/admin/casos/:id
 ```
 
 **Tela**
@@ -1332,7 +1330,7 @@ Recomendação: `/ops`.
 **Rota**
 
 ```text
-/ops/clientes
+/admin/clientes
 ```
 
 **Tela**
@@ -1359,7 +1357,7 @@ Recomendação: `/ops`.
 **Rota**
 
 ```text
-/ops/clientes/:id
+/admin/clientes/:id
 ```
 
 **Tela**
@@ -1392,7 +1390,7 @@ Recomendação: atualizar `Pedidos` para refletir também `Solicitações`, sem 
 **Rota**
 
 ```text
-/ops/veiculos
+/admin/veiculos
 ```
 
 **Tela**
@@ -1410,7 +1408,7 @@ Recomendação: atualizar `Pedidos` para refletir também `Solicitações`, sem 
 **Rota**
 
 ```text
-/ops/veiculos/:id
+/admin/veiculos/:id
 ```
 
 **Tela**
@@ -1442,7 +1440,7 @@ Recomendação: atualizar `Pedidos` para refletir também `Solicitações`, sem 
 **Rota**
 
 ```text
-/ops/pedidos
+/admin/pedidos
 ```
 
 **Tela**
@@ -1471,7 +1469,7 @@ Recomendação: atualizar `Pedidos` para refletir também `Solicitações`, sem 
 **Rota recomendada**
 
 ```text
-/ops/pedidos/:id
+/admin/pedidos/:id
 ```
 
 **Status**
@@ -1485,7 +1483,7 @@ Recomendação: atualizar `Pedidos` para refletir também `Solicitações`, sem 
 **Rota**
 
 ```text
-/ops/pagamentos
+/admin/pagamentos
 ```
 
 **Tela**
@@ -1514,7 +1512,7 @@ Recomendação: atualizar `Pedidos` para refletir também `Solicitações`, sem 
 **Rota recomendada**
 
 ```text
-/ops/pagamentos/:id
+/admin/pagamentos/:id
 ```
 
 **Conteúdo**
@@ -1562,7 +1560,7 @@ Financeiro
 Gestão
 - Parceiros
 - Serviços e preços
-- Operadoras
+- Usuários internos
 - Auditoria
 - Configurações
 ```
@@ -1937,19 +1935,19 @@ ou Drawer.
 
 ---
 
-# 11. ADMIN — Operadoras
+# 11. ADMIN — Usuários internos
 
-## 11.1 Operadoras
+## 11.1 Usuários internos
 
 **Rota**
 
 ```text
-/admin/operadoras
+/admin/usuarios
 ```
 
 **Tela**
 
-`Operadoras`
+`Usuários internos`
 
 **Conteúdo**
 
@@ -1965,12 +1963,12 @@ ou Drawer.
 
 ---
 
-## 11.2 Detalhe da operadora
+## 11.2 Detalhe do usuário interno
 
 **Rota**
 
 ```text
-/admin/operadoras/:id
+/admin/usuarios/:id
 ```
 
 **Status**
@@ -1979,11 +1977,11 @@ ou Drawer.
 
 ---
 
-## 11.3 Convidar operadora
+## 11.3 Provisionar admin interno
 
 Preferência:
 
-Modal dentro de `/admin/operadoras`.
+Modal dentro de `/admin/usuarios`.
 
 **Status**
 
@@ -2321,22 +2319,6 @@ PARTNER
     └── /faturas/:id
 
 
-OPERATION
-/ops
-├── /solicitacoes
-│   └── /:id
-├── /casos
-│   └── /:id
-├── /clientes
-│   └── /:id
-├── /veiculos
-│   └── /:id
-├── /pedidos
-│   └── /:id
-└── /pagamentos
-    └── /:id
-
-
 ADMIN
 /admin
 ├── /solicitacoes
@@ -2363,7 +2345,7 @@ ADMIN
 │   └── /:id
 ├── /servicos
 │   └── /:id
-├── /operadoras
+├── /usuarios
 │   └── /:id
 ├── /auditoria
 └── /configuracoes
@@ -2413,7 +2395,7 @@ Equipe
 Convite/primeiro acesso
 ```
 
-## OPERATOR
+## ADMIN
 
 ```text
 Dashboard
@@ -2440,7 +2422,7 @@ Reconciliação
 Parceiros
 Detalhe do parceiro
 Serviços e preços
-Operadoras
+Usuários internos
 Auditoria
 Configurações
 ```
@@ -2510,23 +2492,23 @@ Esta matriz é a fonte de verdade para produto, protótipo e implementação fro
 | `/partner/financeiro/faturas` | Faturas | PARTNER financeiro | Futuro, depende de billing B2B | Não |
 | `/partner/financeiro/faturas/:id` | Detalhe da fatura | PARTNER financeiro | Futuro, depende de billing B2B | Não |
 
-## OPERATOR
+## ADMIN
 
 | Rota | Tela | Acesso | Issue FE | MVP |
 | --- | --- | --- | --- | --- |
-| `/ops` | Dashboard Operacional | OPERATOR, ADMIN | `FE-OPS-001` | Sim |
-| `/ops/solicitacoes` | Solicitações | OPERATOR, ADMIN | `FE-OPS-002` | Sim |
-| `/ops/solicitacoes/:id` | Detalhe da solicitação | OPERATOR, ADMIN | `FE-OPS-002` | Sim |
-| `/ops/casos` | Casos | OPERATOR, ADMIN | `FE-OPS-003` | Sim |
-| `/ops/casos/:id` | Detalhe do Case | OPERATOR, ADMIN | `FE-OPS-003` | Sim |
-| `/ops/clientes` | Clientes | OPERATOR, ADMIN | `FE-OPS-004` | Sim |
-| `/ops/clientes/:id` | Detalhe do cliente | OPERATOR, ADMIN | `FE-OPS-004` | Sim |
-| `/ops/veiculos` | Veículos | OPERATOR, ADMIN | `FE-OPS-005` | Sim |
-| `/ops/veiculos/:id` | Detalhe do veículo | OPERATOR, ADMIN | `FE-OPS-005` | Sim |
-| `/ops/pedidos` | Pedidos | OPERATOR, ADMIN | `FE-OPS-006` | P1 |
-| `/ops/pedidos/:id` | Detalhe do pedido | OPERATOR, ADMIN | `FE-OPS-006` | P1 |
-| `/ops/pagamentos` | Pagamentos | OPERATOR, ADMIN | `FE-OPS-007` | P1 |
-| `/ops/pagamentos/:id` | Detalhe do pagamento | OPERATOR, ADMIN | `FE-OPS-007` | P1 |
+| `/admin` | Dashboard Operacional | ADMIN | `FE-OPS-001` | Sim |
+| `/admin/solicitacoes` | Solicitações | ADMIN | `FE-OPS-002` | Sim |
+| `/admin/solicitacoes/:id` | Detalhe da solicitação | ADMIN | `FE-OPS-002` | Sim |
+| `/admin/casos` | Casos | ADMIN | `FE-OPS-003` | Sim |
+| `/admin/casos/:id` | Detalhe do Case | ADMIN | `FE-OPS-003` | Sim |
+| `/admin/clientes` | Clientes | ADMIN | `FE-OPS-004` | Sim |
+| `/admin/clientes/:id` | Detalhe do cliente | ADMIN | `FE-OPS-004` | Sim |
+| `/admin/veiculos` | Veículos | ADMIN | `FE-OPS-005` | Sim |
+| `/admin/veiculos/:id` | Detalhe do veículo | ADMIN | `FE-OPS-005` | Sim |
+| `/admin/pedidos` | Pedidos | ADMIN | `FE-OPS-006` | P1 |
+| `/admin/pedidos/:id` | Detalhe do pedido | ADMIN | `FE-OPS-006` | P1 |
+| `/admin/pagamentos` | Pagamentos | ADMIN | `FE-OPS-007` | P1 |
+| `/admin/pagamentos/:id` | Detalhe do pagamento | ADMIN | `FE-OPS-007` | P1 |
 
 ## ADMIN
 
@@ -2547,8 +2529,8 @@ Esta matriz é a fonte de verdade para produto, protótipo e implementação fro
 | `/admin/parceiros/:id` | Detalhe do parceiro | ADMIN | `FE-ADM-005` | Sim |
 | `/admin/servicos` | Serviços e preços | ADMIN | `FE-ADM-006` | P1 |
 | `/admin/servicos/:id` | Detalhe/editar serviço | ADMIN | `FE-ADM-006` | Opcional/drawer |
-| `/admin/operadoras` | Operadoras | ADMIN | `FE-ADM-007` | P1 |
-| `/admin/operadoras/:id` | Detalhe da operadora | ADMIN | `FE-ADM-007` | P1 |
+| `/admin/usuarios` | Usuários internos | ADMIN | `FE-ADM-007` | P1 |
+| `/admin/usuarios/:id` | Detalhe do usuário interno | ADMIN | `FE-ADM-007` | P1 |
 | `/admin/auditoria` | Auditoria | ADMIN | `FE-ADM-008` | P1 |
 | `/admin/configuracoes` | Configurações administrativas | ADMIN | `FE-ADM-009` | P1 |
 
@@ -2559,13 +2541,13 @@ Esta matriz é a fonte de verdade para produto, protótipo e implementação fro
 | `/conta` | Minha conta | Usuário autenticado | `FE-SHARED-002` | P1 |
 | `/configuracoes` | Configurações pessoais | Usuário autenticado | `FE-SHARED-002` | P1 |
 | Header/Popover | Notification Center | Usuário autenticado | `FE-SHARED-003` | P1 |
-| Header/Side panel | EMR Copilot | OPERATOR, ADMIN; OWNER restrito quando habilitado | `FE-AI-001` | P1 |
+| Header/Side panel | EMR Copilot | ADMIN; OWNER restrito quando habilitado | `FE-AI-001` | P1 |
 
 ## Regras de acesso
 
 - Cadastro público cria somente `OWNER`.
 - Login é único; o backend resolve memberships e contexto autorizado.
-- `PARTNER` e `OPERATOR` entram por convite/provisionamento.
+- `PARTNER` e `ADMIN` entram por convite/provisionamento.
 - `ADMIN` entra por provisionamento controlado.
 - Menu/sidebar é UX; autorização verdadeira fica no backend.
 - `ServiceRequest` e `Case` são conceitos diferentes.
@@ -2651,7 +2633,7 @@ Atualizar a issue final de Design QA para conectar:
 Público
 OWNER
 PARTNER
-OPERATOR
+ADMIN
 ADMIN
 ```
 

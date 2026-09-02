@@ -301,7 +301,7 @@ Mobile:
 
 # IA no dashboard
 
-## Operadora — Resumo inteligente
+## Admin — Resumo inteligente
 CTA discreto:
 **✨ Resumir minha fila**
 

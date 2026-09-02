@@ -150,10 +150,10 @@ Toda superfície que carrega dado externo prevê 6 estados:
 
 ## 11. Navegação
 
-- Sidebar por perfil (`/app` sem sidebar, `/ops` operadora, `/admin` completa).
+- Sidebar por perfil (`/app` sem sidebar, `/admin` admin, `/admin` completa).
 - Item ativo sempre destacado; nunca mais de 1 ativo.
 - Copilot **não é item de sidebar** — acessível pelo header.
-- Breadcrumb obrigatório em rotas profundas (`/ops/clientes/:id/veiculos/:vid`).
+- Breadcrumb obrigatório em rotas profundas (`/admin/clientes/:id/veiculos/:vid`).
 - Voltar navegador respeita histórico (nunca `window.location.replace` em navegação normal).
 - Deep-linking obrigatório: cada tela tem URL própria; filtros e paginação refletem em query string.
 
@@ -199,7 +199,7 @@ Ver `DESIGN_SYSTEM.md` §24 para a lista completa dos 18 anti-patterns específi
 - **Nunca renderizar `PAID` antes do webhook** — usar `Payment Processing` até confirmação idempotente.
 - **Nunca esconder dado stale** — sempre mostrar timestamp + [Atualizar].
 - **Nunca dashboard só de gráficos** — fila prioritária primeiro.
-- **Nunca ranking público de operadoras** — métricas pessoais são privadas no MVP.
+- **Nunca ranking público de usuários internos** — métricas pessoais são privadas no MVP.
 - **Nunca AI purple gradient** — Copilot herda a paleta do produto.
 - **Nunca `PAID` verde e `CLEARED` verde iguais sem distinção** — `PAID` = success-bg verde; `CLEARED` = success-bg verde + label distinto + ícone `FileCheck`.
 - **Nunca métricas cognitivamente pesadas sem contexto** — cada KPI vem com delta + link para lista filtrada.

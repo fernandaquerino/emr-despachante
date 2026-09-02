@@ -80,7 +80,7 @@ Output:
 Admin only.
 
 ### searchPartnerServiceRequests
-OPERADORA/ADMIN only.
+ADMIN only.
 
 Input:
 - partnerOrganizationId opcional

@@ -79,11 +79,11 @@ Notificação in-app
   ↓
 WhatsApp outbound para responsável configurado
   ↓
-Operadora abre deep link
+Admin abre deep link
   ↓
 Autorização server-side
   ↓
-Operadora trabalha solicitação
+Admin trabalha solicitação
 ```
 
 WhatsApp não é fonte da verdade e não envia documentos sensíveis.
@@ -148,10 +148,10 @@ Existem multas?
   └── Não → pagamento/licenciamento
 ```
 
-## Fluxo 4 — Operadora assume caso
+## Fluxo 4 — Admin assume Case
 
 ```text
-Casos não atribuídos
+Cases não atribuídos
   ↓
 Abrir caso
   ↓
@@ -177,7 +177,7 @@ Indicador ruim
   ├── pagamentos → Reconciliação
   ├── casos → Fila consolidada
   ├── integração → Incidentes/casos
-  └── operadoras → Gestão de equipe
+  └── usuários internos → Gestão de usuários
 ```
 
 ## Fluxo 6 — Acompanhar cliente
@@ -201,7 +201,7 @@ Detalhe cliente
 # Fluxo 7 — Copilot prioriza casos
 
 ```text
-Operadora abre Copilot
+Admin abre Copilot
   ↓
 “Quais casos devo priorizar?”
   ↓
@@ -225,7 +225,7 @@ RAG procedimento + dados do caso
   ↓
 Draft
   ↓
-Operadora revisa
+Admin revisa
   ↓
 Confirma envio
 ```
