@@ -3,6 +3,8 @@
 ## Objetivo
 
 Responder rapidamente:
+- uma solicitação foi criada?
+- qual é a origem da solicitação?
 - um pagamento foi confirmado?
 - webhook chegou?
 - evento outbox foi publicado?
@@ -10,6 +12,7 @@ Responder rapidamente:
 - DetranClient respondeu?
 - baixa foi reconhecida?
 - caso manual foi aberto?
+- notificação WhatsApp falhou sem bloquear o fluxo?
 
 ## Trace principal
 
@@ -37,6 +40,26 @@ Propagar:
 - paymentId;
 - vehicleId quando seguro;
 - providerEventId.
+- serviceRequestId;
+- partnerOrganizationId quando seguro.
+
+## Trace de ServiceRequest
+
+```text
+Partner/Public/Ops intake
+  ↓
+ServiceRequestService
+  ↓
+Authorization
+  ↓
+Transaction
+  ↓
+NotificationOutbox
+  ↓
+In-app notification
+  ↓
+WhatsApp provider quando configurado
+```
 
 ## Métricas
 
@@ -69,6 +92,9 @@ Propagar:
 
 ### Dashboard
 - critical_cases_count
+- service_requests_open_count
+- service_requests_waiting_partner_count
+- service_requests_waiting_external_count
 - stale_vehicles_count
 - manual_cases_open
 - payment_processing_count
@@ -81,6 +107,8 @@ Propagar:
 4. backlog de casos críticos crescendo
 5. p95 dashboard acima da meta
 6. oldest message age alto
+7. falha de notificação WhatsApp acima do baseline
+8. solicitações aguardando parceiro acima do baseline
 
 ## Logs
 
@@ -100,6 +128,7 @@ Exemplo:
 ```
 
 Nunca logar payload financeiro bruto.
+Nunca logar documentos, CPF/RENAVAM completos ou conteúdo sensível em notificação WhatsApp.
 
 
 ---

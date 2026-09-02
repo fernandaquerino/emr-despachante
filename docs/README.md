@@ -7,6 +7,7 @@ Documentação de produto, engenharia, design, inteligência artificial e planej
 - [Visão e catálogo do produto](../README.md)
 - [Descrição do produto](product/PRODUCT_DESCRIPTION.md)
 - [Requisitos](product/REQUIREMENTS.md)
+- [Partner Portal, ServiceRequest e B2B Intake](product/PRODUCT_DESCRIPTION.md)
 - [Arquitetura](engineering/ARCHITECTURE.md)
 - [Roadmap](planning/ROADMAP.md)
 
@@ -17,11 +18,17 @@ Documentação de produto, engenharia, design, inteligência artificial e planej
 - [Requisitos](product/REQUIREMENTS.md)
 - [Dashboard](product/DASHBOARD_SPEC.md)
 - [Arquitetura da informação](product/INFORMATION_ARCHITECTURE.md)
+- [Mapa completo de telas, rotas e issues FE](EMR-SCREEN-MAP.md)
 - [Especificações de telas](product/SCREEN_SPECS.md)
 - [Fluxos de usuário](product/USER_FLOWS.md)
 - [Brief do protótipo no Figma](product/FIGMA_MAKE_BRIEF.md)
 - [Dados do protótipo](product/PROTOTYPE_DATA.md)
 - [Modelos de status](product/STATUS_MODEL.md)
+
+Conceitos importantes:
+- ServiceRequest é trabalho normal solicitado por proprietário, parceiro ou operação.
+- Case é exceção/problema que exige intervenção humana especial.
+- WhatsApp é canal outbound no MVP, não fonte da verdade.
 
 ## Design system
 
@@ -56,6 +63,7 @@ Documentação de produto, engenharia, design, inteligência artificial e planej
 ## Automação
 
 - [Script de criação de issues](automation/create-emr-issues.sh)
+- [Cobertura de telas por issues](automation/SCREEN_TASK_COVERAGE.md)
 - [Payload das issues](automation/emr-despachante-issues.json)
 
 ## Convenções

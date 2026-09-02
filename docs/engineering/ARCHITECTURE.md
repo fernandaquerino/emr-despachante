@@ -4,7 +4,7 @@
 
 ```mermaid
 flowchart TD
-    U[Proprietário / Despachante / Admin] --> CF[CloudFront / Next.js]
+    U[Proprietário / Parceiro / Operadora / Admin] --> CF[CloudFront / Next.js]
     CF --> ALB[ALB]
     ALB --> API[NestJS API / ECS]
 
@@ -25,6 +25,26 @@ flowchart TD
     API --> OTEL[OpenTelemetry]
     WORKER --> OTEL
 ```
+
+## Fluxo 0 — Partner Portal intake
+
+```text
+Parceiro cria solicitação
+        ↓
+API valida PartnerOrganization, membership e veículo
+        ↓
+ServiceRequest = NEW
+        ↓
+Notificação in-app
+        +
+WhatsApp outbound quando configurado
+        ↓
+Operação trabalha solicitação
+        ↓
+Case somente se houver exceção
+```
+
+WhatsApp não é fonte da verdade e falha de notificação não bloqueia a criação da ServiceRequest.
 
 ## Fluxo 1 — Consulta
 
@@ -111,6 +131,8 @@ Redis curto opcional
 - licensing;
 - payments;
 - dashboard;
+- service requests;
+- partners;
 - cases;
 - documents;
 - audit.
@@ -162,13 +184,27 @@ Não começar com CQRS pesado sem necessidade.
 - webhook processado único;
 - transições financeiras;
 - vínculo despachante-cliente;
+- membership de parceiro;
+- isolamento de PartnerOrganization;
+- ServiceRequestSource persistido;
 - isolamento de carteira.
 
 ### Eventual
 - status reconhecido pelo Detran mock;
 - dashboard agregado;
 - notificações;
+- WhatsApp outbound;
 - atualização periódica.
+
+## ServiceRequest vs Case
+
+```text
+ServiceRequest = trabalho normal solicitado por proprietário, parceiro ou operação.
+Case = exceção/problema que exige intervenção humana especial.
+```
+
+Não reutilizar CaseStatus para ServiceRequest.
+Não decidir aqui se PartnerOrganization é Tenant; essa pergunta pertence ao System Design.
 
 ## Status model
 

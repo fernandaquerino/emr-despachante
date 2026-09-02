@@ -10,12 +10,19 @@ Ele precisa responder:
 
 > “Quem precisa de mim agora?”
 
+A operação possui duas filas:
+- ServiceRequests normais, solicitadas por proprietário, parceiro ou operação;
+- Cases, criados apenas para exceções/problemas.
+
+Quando existem exceções críticas, a fila de Cases precisa ter grande protagonismo.
+
 ## Estrutura sugerida
 
 ### 1. Header
 - busca global;
 - filtro de período;
 - botão “Adicionar cliente”;
+- botão “+ Nova solicitação”;
 - botão “Consultar veículo”;
 - notificações;
 - perfil.
@@ -26,9 +33,12 @@ Ele precisa responder:
 3. Pendências críticas
 4. Multas em aberto
 5. Licenciamentos pendentes
-6. Pagamentos processando
-7. Casos manuais
-8. Comissão estimada
+6. Solicitações em andamento
+7. Aguardando parceiro
+8. Aguardando órgão
+9. Pagamentos processando
+10. Casos manuais
+11. Comissão estimada
 
 Cada card:
 - valor atual;
@@ -40,7 +50,9 @@ Lista prioritária.
 
 Colunas:
 - prioridade;
+- request id quando for ServiceRequest;
 - cliente;
+- parceiro quando aplicável;
 - veículo;
 - motivo;
 - status;
@@ -55,6 +67,21 @@ Exemplos:
 - “DetranClient falhou 3 vezes”
 - “Cliente ainda não aceitou vínculo”
 - “Documento não gerado”
+- “Parceiro precisa enviar documento”
+
+### 3A. Solicitações recentes
+Lista operacional de ServiceRequests.
+
+Colunas:
+- request id;
+- origem;
+- cliente/parceiro;
+- veículo;
+- serviço;
+- status;
+- última atualização;
+- próxima ação;
+- responsável.
 
 ### 4. Próximos vencimentos
 Agrupar:
@@ -69,6 +96,7 @@ Feed:
 - veículo emr-despachantedo;
 - licenciamento liberado;
 - documento disponível;
+- nova solicitação de parceiro;
 - caso manual criado.
 
 ### 6. Saúde da carteira
@@ -206,6 +234,44 @@ Possíveis estados de UI:
 - processando baixa;
 - emr-despachantedo;
 - precisa de atenção.
+
+## Dashboard do Parceiro
+
+## Objetivo
+Responder:
+
+> “O que está acontecendo com as solicitações da minha empresa e existe algo que preciso fazer?”
+
+## Estrutura
+- CTA “+ Nova solicitação”;
+- indicadores de em andamento, aguardando ação do parceiro, concluídos recentemente e com pendência;
+- solicitações recentes;
+- pendências/documentos necessários.
+
+Não usar gráficos decorativos.
+
+## Tabela principal
+- request id;
+- veículo;
+- serviço;
+- status;
+- solicitante;
+- última atualização;
+- próxima ação quando necessária.
+
+## Dashboard Admin e B2B
+
+O dashboard admin pode reconhecer:
+- volume B2C;
+- volume B2B;
+- solicitações por parceiro;
+- receita/taxa por canal;
+- valor processado;
+- receita de serviço.
+
+Não confundir `valor processado` com faturamento/receita do despachante.
+
+Modelo comercial B2B ainda depende de validação.
 
 ## Performance
 

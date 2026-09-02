@@ -33,6 +33,38 @@
 - REFUND_PENDING
 - REFUNDED
 
+## ServiceRequestStatus
+- NEW
+- IN_PROGRESS
+- WAITING_CUSTOMER
+- WAITING_PARTNER
+- WAITING_EXTERNAL
+- COMPLETED
+- CANCELLED
+
+ServiceRequestStatus representa o lifecycle do trabalho solicitado. Não reutilizar CaseStatus para solicitações normais.
+
+## ServiceRequestSource
+- PUBLIC_WEB
+- PARTNER_PORTAL
+- OPERATOR
+- WHATSAPP
+- API
+
+MVP:
+- PUBLIC_WEB
+- PARTNER_PORTAL
+- OPERATOR
+
+WHATSAPP fica reservado para evolução futura/inbound discovery. A origem da solicitação é diferente do canal de notificação.
+
+Exemplo:
+
+```text
+source = PARTNER_PORTAL
+notification channels = IN_APP, WHATSAPP
+```
+
 ## GovernmentSubmissionStatus
 - NOT_REQUESTED
 - QUEUED
@@ -67,3 +99,14 @@
 
 ## Regra
 Display status pode ser composto, mas source-of-truth statuses devem permanecer explícitos.
+
+Separar explicitamente:
+- status da solicitação;
+- status do pagamento;
+- status da submissão externa;
+- status do Case.
+
+```text
+ServiceRequest = trabalho normal solicitado por proprietário, parceiro ou operação.
+Case = exceção/problema que exige intervenção humana especial.
+```

@@ -2,6 +2,8 @@
 
 Este documento descreve o protótipo funcional do EMR Despachante.
 
+A fonte de verdade para rotas, perfis de acesso e issue FE é [`../EMR-SCREEN-MAP.md`](../EMR-SCREEN-MAP.md). Este arquivo detalha conteúdo, estados e comportamento esperado das telas.
+
 ---
 
 # 1. Direção visual
@@ -56,7 +58,7 @@ Exemplos:
 # 2. Tela — Login
 
 ## Objetivo
-Autenticar proprietário, operadora ou admin.
+Autenticar proprietário, parceiro, operadora ou admin através de login único.
 
 ## Conteúdo
 - logo EMR Despachante;
@@ -68,11 +70,18 @@ Autenticar proprietário, operadora ou admin.
 - botão entrar;
 - link cadastro para proprietário.
 
+## Regras
+- usuário não escolhe role no login;
+- backend resolve memberships/permissões;
+- cadastro público cria somente OWNER;
+- PARTNER, OPERATOR e ADMIN entram por convite/provisionamento.
+
 ## Estados
 - loading;
 - credenciais inválidas;
 - conta suspensa;
 - convite de operadora ainda não ativado.
+- convite de parceiro ainda não ativado.
 
 ---
 
@@ -139,6 +148,168 @@ CTA:
 
 ## Resultado
 redirecionar para detalhe.
+
+---
+
+# 5A. Tela — Dashboard do Parceiro
+
+## Usuários
+PARCEIRO.
+
+## Objetivo
+Responder:
+**“O que está acontecendo com as solicitações da minha empresa e existe algo que preciso fazer?”**
+
+## Conteúdo
+- organização parceira;
+- CTA “+ Nova solicitação”;
+- indicadores: em andamento, aguardando ação do parceiro, concluídas recentemente, com pendência;
+- solicitações recentes.
+
+## Tabela principal
+- request id;
+- veículo;
+- serviço;
+- status;
+- solicitante;
+- última atualização;
+- próxima ação quando necessária.
+
+Não criar gráficos decorativos.
+
+## Estados
+- loading;
+- empty;
+- error;
+- partial failure;
+- stale;
+- permission state;
+- responsive behavior.
+
+# 5B. Tela — Lista de Solicitações do Parceiro
+
+## Objetivo
+Encontrar e acompanhar ServiceRequests da PartnerOrganization.
+
+## Conteúdo
+- busca por placa ou request id;
+- filtros por status, serviço, solicitante e período;
+- lista paginada;
+- CTA “+ Nova solicitação”.
+
+## Colunas
+- request id;
+- veículo;
+- serviço;
+- status;
+- solicitante;
+- última atualização;
+- ação pendente.
+
+## Estados
+- loading;
+- empty;
+- error;
+- stale;
+- permission state;
+- responsive behavior.
+
+# 5C. Tela — Nova Solicitação
+
+## Objetivo
+Criar uma ServiceRequest sem depender de WhatsApp.
+
+## Fluxo
+1. Veículo
+2. Serviço
+3. Documentos
+4. Observações
+5. Revisão
+6. Enviar
+
+## Campos
+- placa;
+- RENAVAM apenas quando necessário;
+- serviço: Multas, Licenciamento, IPVA, Transferência, Dívida ativa;
+- documentos pertinentes ao serviço quando a regra estiver disponível;
+- observação livre.
+
+Exemplo de observação:
+“Cliente retira o veículo amanhã.”
+
+## Revisão
+Antes do envio, mostrar resumo completo.
+
+## Pós criação
+Mostrar request id, por exemplo `SR-4392`, e direcionar para acompanhamento.
+
+## Estados
+- loading;
+- erro de validação;
+- documento pendente;
+- permission state;
+- responsive behavior.
+
+# 5D. Tela — Detalhe/Acompanhamento da Solicitação
+
+## Objetivo
+Dar tracking claro da ServiceRequest para parceiro.
+
+## Conteúdo
+- request id;
+- organização parceira;
+- veículo;
+- serviço;
+- status;
+- solicitante;
+- origem;
+- timeline;
+- documentos;
+- ação pendente do parceiro;
+- histórico.
+
+## Timeline do parceiro não mostra
+- stack trace;
+- notas internas;
+- detalhes técnicos desnecessários;
+- dados de outros clientes;
+- dados de outros parceiros.
+
+## Estados
+- loading;
+- empty parcial;
+- error;
+- stale;
+- forbidden;
+- responsive behavior.
+
+# 5E. Tela — Documentos/Pendências do Parceiro
+
+## Objetivo
+Centralizar documentos e ações pendentes.
+
+## Conteúdo
+- solicitações com pendência;
+- documentos solicitados;
+- status de envio/análise;
+- upload;
+- histórico de ações.
+
+Documentos permanecem privados e downloads exigem autorização.
+
+# 5F. Tela — Equipe do Parceiro
+
+## Objetivo
+Permitir gestão básica de usuários quando o papel do usuário permitir.
+
+## Conteúdo
+- usuários da PartnerOrganization;
+- papel/permissão;
+- status do convite;
+- último acesso;
+- convidar usuário.
+
+Financeiro do parceiro pode ser fase futura quando billing B2B estiver definido.
 
 ---
 
@@ -334,11 +505,14 @@ Responder:
 
 ## Linha 1 — cards
 
+- Solicitações novas
+- Solicitações em processamento
+- Aguardando parceiro
+- Aguardando órgão
 - Casos abertos
 - Meus casos
 - Casos críticos
 - Aguardando cliente
-- Aguardando órgão
 - Pagamentos em análise
 - Clientes com pendência
 
@@ -346,8 +520,9 @@ Responder:
 
 Tabela:
 - prioridade;
-- caso;
+- solicitação/case;
 - cliente;
+- parceiro quando aplicável;
 - veículo;
 - tipo;
 - motivo;
@@ -358,6 +533,8 @@ Tabela:
 
 Primeira coluna:
 indicador de prioridade.
+
+Quando há exceções críticas, a fila de Cases deve permanecer mais proeminente que análises decorativas.
 
 CTA:
 **Abrir caso**
@@ -376,6 +553,69 @@ Para operadora:
 - casos atuais.
 
 Evitar ranking público entre funcionárias no MVP.
+
+---
+
+# 11A. Tela — Solicitações da Operadora
+
+## Objetivo
+Trabalhar ServiceRequests normais antes que virem exceção.
+
+## Conteúdo
+- busca por placa, request id, cliente ou parceiro;
+- filtros por status, serviço, origem, responsável e idade;
+- abas ou filtros: novas, em processamento, aguardando parceiro, aguardando órgão.
+
+## Colunas
+- request id;
+- origem;
+- parceiro/cliente;
+- veículo;
+- serviço;
+- status;
+- última atualização;
+- próxima ação;
+- responsável.
+
+## Estados
+- loading;
+- empty;
+- error;
+- partial failure;
+- stale;
+- permission state;
+- responsive behavior.
+
+# 11B. Tela — Detalhe da Solicitação Operacional
+
+## Objetivo
+Dar contexto completo para a operadora executar o trabalho normal ou escalar exceção.
+
+## Conteúdo
+- request id;
+- source;
+- parceiro/cliente;
+- solicitante;
+- veículo;
+- serviço;
+- status;
+- documentos;
+- timeline operacional;
+- notas internas;
+- ações permitidas;
+- botão/fluxo para criar Case quando houver exceção.
+
+Notas internas não aparecem para parceiro.
+
+## Estados
+- loading;
+- empty parcial;
+- error;
+- partial failure;
+- stale;
+- permission state;
+- conflict quando outra operadora alterar o mesmo item;
+- responsive behavior.
 
 ---
 
@@ -642,6 +882,57 @@ abertos x resolvidos.
 
 ### Atividade recente
 feed operacional.
+
+---
+
+# 17A. Tela — Admin — Parceiros
+
+## Objetivo
+Gerenciar organizações parceiras.
+
+## Conteúdo
+- busca;
+- filtros por status, volume e pendências;
+- lista de PartnerOrganizations;
+- CTA “Adicionar parceiro”.
+
+## Colunas
+- organização;
+- status;
+- usuários;
+- solicitações abertas;
+- pendências;
+- última atividade;
+- configurações de notificação.
+
+## Estados
+- loading;
+- empty;
+- error;
+- partial failure;
+- stale;
+- permission state;
+- responsive behavior.
+
+# 17B. Tela — Admin — Partner Detail
+
+## Objetivo
+Concentrar a operação e configuração de uma PartnerOrganization.
+
+## Conteúdo futuro
+- dados da organização;
+- status;
+- usuários;
+- solicitações;
+- volume;
+- pendências;
+- configurações de notificação;
+- catálogo habilitado;
+- preços específicos quando aplicável;
+- billing/faturas quando habilitado;
+- auditoria.
+
+Billing e financeiro B2B dependem de validação comercial.
 
 ---
 

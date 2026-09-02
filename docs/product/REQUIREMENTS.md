@@ -4,58 +4,64 @@
 
 ### Epic 1 — Autenticação e perfis
 
-**RF-001 Cadastro de proprietário**  
+**RF-001 Cadastro de proprietário**
 Criar conta com nome, CPF, email, telefone e senha.
 
-**RF-002 Login e sessão**  
+**RF-002 Login e sessão**
 Sessão segura, expiração e logout.
 
-**RF-003 Convite de operadora**  
+**RF-003 Convite de operadora**
 Admin convida por email.
 
-**RF-004 Ativação de operadora**  
+**RF-004 Ativação de operadora**
 Convite possui expiração e uso único.
 
-**RF-005 RBAC**  
-PROPRIETÁRIO, OPERADORA e ADMIN.
+**RF-005 RBAC**
+PROPRIETÁRIO, PARCEIRO, OPERADORA e ADMIN.
+
+**RF-005A Convite/ativação de usuário parceiro**
+Gestor ou admin convida usuário parceiro para uma PartnerOrganization com expiração e uso único.
+
+**RF-005B Permissões de parceiro**
+Usuário parceiro acessa apenas dados, solicitações, veículos, documentos e equipe vinculados à própria PartnerOrganization.
 
 ### Epic 2 — Clientes
 
-**RF-006 Cadastro/gestão de cliente pela operação**  
+**RF-006 Cadastro/gestão de cliente pela operação**
 Operação pode criar registro mínimo, convidar cliente e acompanhar status do cadastro.
 
-**RF-007 Lista de clientes**  
+**RF-007 Lista de clientes**
 Busca, filtros, paginação e indicadores.
 
-**RF-008 Detalhe do cliente**  
+**RF-008 Detalhe do cliente**
 Veículos, pedidos, pagamentos, casos, histórico, documentos e notas internas.
 
-**RF-009 Busca global**  
+**RF-009 Busca global**
 Cliente, placa e demais identificadores permitidos.
 
 ### Epic 3 — Veículos
 
-**RF-010 Cadastro de veículo**  
+**RF-010 Cadastro de veículo**
 Placa, RENAVAM, proprietário.
 
-**RF-011 Consulta de situação**  
+**RF-011 Consulta de situação**
 Multas, licenciamento e status geral via DetranClient.
 
-**RF-012 Cache de consulta**  
+**RF-012 Cache de consulta**
 TTL + lastUpdatedAt.
 
-**RF-013 Atualização periódica**  
+**RF-013 Atualização periódica**
 Scheduler + fila + worker.
 
-**RF-014 Detecção de mudança**  
+**RF-014 Detecção de mudança**
 Só gerar evento quando estado normalizado mudar.
 
 ### Epic 4 — Multas
 
-**RF-015 Listagem de multas**  
+**RF-015 Listagem de multas**
 Por veículo, status e vencimento.
 
-**RF-016 Detalhe de multa**  
+**RF-016 Detalhe de multa**
 Valor, desconto, órgão, vencimento, histórico.
 
 **RF-017 Pagamento de multa**
@@ -112,6 +118,53 @@ LOW, MEDIUM, HIGH, CRITICAL.
 
 **RF-039 Métricas da operadora**
 
+### Epic 7A — Partner Portal & B2B Intake
+
+**RF-039A Organização parceira**
+Admin cadastra PartnerOrganization para concessionárias, revendas, lojas de seminovos, locadoras, empresas com frota e outros parceiros comerciais.
+
+**RF-039B Usuário parceiro e membership**
+Usuários parceiros pertencem a uma PartnerOrganization e possuem permissões como gestor, vendas/solicitante ou financeiro.
+
+**RF-039C Dashboard do parceiro**
+Parceiro visualiza solicitações em andamento, aguardando ação do parceiro, concluídas recentemente e com pendência.
+
+**RF-039D Criar solicitação**
+Parceiro cria ServiceRequest informando veículo, serviço, documentos pertinentes, observações e revisão final.
+
+**RF-039E Lista de solicitações do parceiro**
+Busca por placa/request id, filtros por status/serviço/solicitante e paginação.
+
+**RF-039F Detalhe/acompanhamento da solicitação**
+Parceiro visualiza status, timeline pública, documentos, histórico e próxima ação quando necessária.
+
+**RF-039G Pendência do parceiro**
+Sistema destaca documentos ou informações faltantes e registra resposta auditável.
+
+**RF-039H Origem da solicitação**
+ServiceRequest registra source separado dos canais de notificação.
+
+**RF-039I Notificação in-app**
+Criação e mudanças relevantes geram notificação in-app para responsáveis autorizados.
+
+**RF-039J WhatsApp outbound**
+Quando configurado, o EMR envia notificação WhatsApp com organização parceira, placa mascarada quando necessário, serviço, solicitante, request id e deep link autenticado.
+
+**RF-039K WhatsApp inbound futuro**
+Mensagem recebida pelo WhatsApp para criar draft de solicitação fica como discovery/evolução futura, não requisito MVP.
+
+**RF-039L Solicitações da operadora**
+Operadora possui fila de ServiceRequests normais além da fila de Cases.
+
+**RF-039M Gestão admin de parceiros**
+Admin lista parceiros, acessa detalhe e gerencia status, usuários, solicitações, preferências de notificação e catálogo habilitado.
+
+**RF-039N Preços por parceiro**
+Preço específico por parceiro é capacidade futura/importante e deve preservar snapshot histórico quando aplicado.
+
+**RF-039O Billing B2B futuro**
+Faturamento mensal/postpaid, invoices, invoice items, descontos, ajustes, refunds e reconciliação são capacidades futuras dependentes de validação comercial.
+
 ### Epic 8 — Dashboard operacional
 
 **RF-040 Dashboard da operadora**
@@ -152,6 +205,9 @@ LOW, MEDIUM, HIGH, CRITICAL.
 
 **RF-056 Caso manual**
 
+**RF-056A Notificação de ServiceRequest**
+Nova solicitação e alteração de status relevante notificam os responsáveis autorizados.
+
 ### Epic 11 — Histórico e documentos
 
 **RF-057 Histórico por veículo**
@@ -164,52 +220,73 @@ LOW, MEDIUM, HIGH, CRITICAL.
 
 ## Requisitos Não Funcionais
 
-**RNF-001 Segurança e LGPD**  
+**RNF-001 Segurança e LGPD**
 PII minimizada, mascarada e protegida.
 
-**RNF-002 Consistência financeira**  
+**RNF-002 Consistência financeira**
 Pagamento não duplica e só é confirmado por evento confiável.
 
-**RNF-003 Resiliência**  
+**RNF-003 Resiliência**
 Falha de integração externa não reverte pagamento confirmado.
 
-**RNF-004 Observabilidade**  
+**RNF-004 Observabilidade**
 Trace webhook → payment → outbox → worker → DetranClient.
 
-**RNF-005 Performance**  
+**RNF-005 Performance**
 Dashboard operacional e administrativo precisam suportar milhares de veículos.
 
-**RNF-006 Escalabilidade**  
+**RNF-006 Escalabilidade**
 Checagem periódica via fila.
 
-**RNF-007 Testabilidade**  
+**RNF-007 Testabilidade**
 Concorrência, idempotência e RBAC possuem testes.
 
-**RNF-008 Auditabilidade**  
+**RNF-008 Auditabilidade**
 Financeiro e ações operacionais rastreáveis.
 
-**RNF-009 Acessibilidade**  
+**RNF-009 Acessibilidade**
 Telas internas e cliente navegáveis por teclado.
 
-**RNF-010 Paginação**  
+**RNF-010 Paginação**
 Listas grandes nunca carregam tudo.
 
-**RNF-011 Degradação parcial**  
+**RNF-011 Degradação parcial**
 Falha de feed ou integração não derruba dashboard inteiro.
 
-**RNF-012 Staleness explícita**  
+**RNF-012 Staleness explícita**
 Última atualização sempre disponível.
 
-**RNF-013 Reprodutibilidade**  
+**RNF-013 Reprodutibilidade**
 Infra as code + CI/CD.
 
-**RNF-014 Segurança de documentos**  
+**RNF-014 Segurança de documentos**
 S3 privado e presigned URLs.
 
 **RNF-015 Performance target inicial**
 - busca global < 300 ms no cenário de teste;
 - dashboard < 500 ms para aggregate endpoint em dataset-alvo;
 - tabelas paginadas.
+
+**RNF-016 Isolamento por organização**
+PartnerOrganization deve impedir organization escape: parceiro não acessa dados de outro parceiro.
+
+**RNF-017 Autorização B2B**
+Deep links, documentos, veículos, solicitações e ações de parceiro exigem login e autorização server-side.
+
+**RNF-018 Auditabilidade B2B**
+Criação de solicitação, mudança de status, resposta de pendência, upload/download de documento e mudanças de permissão devem ser auditáveis.
+
+**RNF-019 Resiliência de notificações**
+Falha do provider de WhatsApp ou notificação não bloqueia a criação da ServiceRequest.
+
+**RNF-020 Privacidade em notificações**
+WhatsApp não transporta documentos sensíveis nem PII desnecessária.
+
+**RNF-021 Rastreabilidade de origem**
+ServiceRequestSource deve ser persistido e não confundido com canal de notificação.
+
+**RNF-022 Idempotência operacional**
+Criações vindas de canais automatizados futuros, retries de notificação e eventos assíncronos devem ser idempotentes quando aplicável.
 
 
 ---
@@ -230,6 +307,9 @@ Por cliente, placa ou ID autorizado.
 
 ## RF-AI-005 — Consultar caso
 Retornar status, motivo, responsável, timeline e entidades relacionadas.
+
+## RF-AI-005A — Consultar solicitação
+OPERADORA/ADMIN podem consultar ServiceRequest autorizado, incluindo status, parceiro quando aplicável, veículo, serviço, solicitante, pendências e timeline pública/interna conforme perfil.
 
 ## RF-AI-006 — Consultar pagamento
 Retornar timeline financeira e status local/provider quando autorizado.
@@ -265,6 +345,9 @@ Pesquisar:
 
 ## RF-AI-011 — Rascunho de mensagem ao cliente
 Gerar texto, mas exigir revisão humana antes do envio.
+
+## RF-AI-011A — Rascunho de mensagem ao parceiro
+Gerar mensagem para parceiro a partir de uma solicitação autorizada, sem expor notas internas ou PII desnecessária, e exigir revisão humana antes do envio.
 
 ## RF-AI-012 — Chatbot do proprietário
 Só acessa:
@@ -304,6 +387,9 @@ Se LLM estiver indisponível:
 - busca normal funciona;
 - regras continuam;
 - IA mostra indisponibilidade sem quebrar operação.
+
+## RF-AI-017 — Limites para parceiro
+Não há chat amplo para parceiro no escopo inicial. Qualquer evolução futura deve restringir tools à própria PartnerOrganization.
 
 ## RNF-AI-001 — Autorização
 A IA herda exatamente as permissões do usuário.

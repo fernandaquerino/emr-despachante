@@ -1,17 +1,17 @@
 # EMR Despachante — Backlog Completo
 
-**Épicos:** 16  
-**User Stories:** 58  
+**Épicos:** 17
+**User Stories:** 58
 
 
 ---
 
 # [E0] Foundation
 
-**Milestone:** M0 — Foundation  
-**Track:** Foundation  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M0 — Foundation
+**Track:** Foundation
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -29,10 +29,10 @@ Entregar **Foundation** com regras, UX, testes e documentação suficientes para
 
 # [E1] Authentication & Roles
 
-**Milestone:** M1 — Auth & Roles  
-**Track:** Security  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M1 — Auth & Roles
+**Track:** Security
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -50,10 +50,10 @@ Entregar **Authentication & Roles** com regras, UX, testes e documentação sufi
 
 # [E2] Customers
 
-**Milestone:** M2 — Customers  
-**Track:** Product  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M2 — Customers
+**Track:** Product
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -71,10 +71,10 @@ Entregar **Customers** com regras, UX, testes e documentação suficientes para 
 
 # [E3] Vehicles & Detran Adapter
 
-**Milestone:** M3 — Vehicles & Detran Adapter  
-**Track:** Backend  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M3 — Vehicles & Detran Adapter
+**Track:** Backend
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -92,10 +92,10 @@ Entregar **Vehicles & Detran Adapter** com regras, UX, testes e documentação s
 
 # [E4] Fines
 
-**Milestone:** M4 — Fines  
-**Track:** Backend  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M4 — Fines
+**Track:** Backend
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -113,10 +113,10 @@ Entregar **Fines** com regras, UX, testes e documentação suficientes para demo
 
 # [E5] Licensing
 
-**Milestone:** M5 — Licensing  
-**Track:** Backend  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M5 — Licensing
+**Track:** Backend
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -134,10 +134,10 @@ Entregar **Licensing** com regras, UX, testes e documentação suficientes para 
 
 # [E6] Payments & Webhooks
 
-**Milestone:** M6 — Payments & Webhooks  
-**Track:** Payments  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M6 — Payments & Webhooks
+**Track:** Payments
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -155,10 +155,10 @@ Entregar **Payments & Webhooks** com regras, UX, testes e documentação suficie
 
 # [E7] Operator Cases
 
-**Milestone:** M7 — Operator Cases  
-**Track:** Operations  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M7 — Operator Cases
+**Track:** Operations
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -176,10 +176,10 @@ Entregar **Operator Cases** com regras, UX, testes e documentação suficientes 
 
 # [E8] Operational Dashboard
 
-**Milestone:** M8 — Operational Dashboard  
-**Track:** Frontend  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M8 — Operational Dashboard
+**Track:** Frontend
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -197,10 +197,10 @@ Entregar **Operational Dashboard** com regras, UX, testes e documentação sufic
 
 # [E9] Admin Panel
 
-**Milestone:** M9 — Admin Panel  
-**Track:** Frontend  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M9 — Admin Panel
+**Track:** Frontend
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -218,10 +218,10 @@ Entregar **Admin Panel** com regras, UX, testes e documentação suficientes par
 
 # [E10] Notifications, History & Documents
 
-**Milestone:** M10 — Notifications, History & Documents  
-**Track:** Backend  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M10 — Notifications, History & Documents
+**Track:** Backend
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -239,10 +239,10 @@ Entregar **Notifications, History & Documents** com regras, UX, testes e documen
 
 # [E11] Observability & Security
 
-**Milestone:** M11 — Observability & Security  
-**Track:** Observability  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M11 — Observability & Security
+**Track:** Observability
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -260,10 +260,10 @@ Entregar **Observability & Security** com regras, UX, testes e documentação su
 
 # [E12] AWS & Delivery
 
-**Milestone:** M14 — AWS & Delivery  
-**Track:** AWS  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M14 — AWS & Delivery
+**Track:** AWS
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -281,10 +281,10 @@ Entregar **AWS & Delivery** com regras, UX, testes e documentação suficientes 
 
 # [E13] Scale & System Design
 
-**Milestone:** M15 — Scale & System Design  
-**Track:** System Design  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M15 — Scale & System Design
+**Track:** System Design
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, P0
 
 ## Objetivo do épico
@@ -300,13 +300,69 @@ Entregar **Scale & System Design** com regras, UX, testes e documentação sufic
 
 ---
 
+# [EPIC-PRT] Partner Portal & B2B Intake
+
+**Milestone:** M16 — Partner Portal & B2B Intake
+**Track:** Product / Operations
+**Difficulty:** Mixed
+**Priority:** P0
+**Labels:** epic, partner-portal, b2b, operations, P0
+
+## Objetivo do épico
+Estruturar o canal B2B/B2B2C para que parceiros criem e acompanhem ServiceRequests no EMR, reduzindo demandas soltas por WhatsApp.
+
+## Escopo conceitual
+- PartnerOrganization;
+- usuários parceiros e memberships;
+- convite/ativação;
+- permissões por organização;
+- Partner Dashboard;
+- nova solicitação;
+- lista e detalhe de solicitações;
+- documentos e pendências;
+- notificações in-app;
+- WhatsApp outbound como canal de notificação;
+- operação de ServiceRequests;
+- admin de parceiros.
+
+## Fora do MVP / futuro
+- WhatsApp inbound criando draft com IA;
+- billing B2B definitivo;
+- invoices/postpaid;
+- PartnerOrganization como Tenant decidido definitivamente.
+
+## Impactos em outros épicos
+- Auth & Roles: adicionar PARCEIRO e permissões por organização.
+- Customers: separar Customer de PartnerOrganization.
+- Vehicles: permitir vínculo/autorização por parceiro quando aplicável.
+- Notifications: separar source de canal de notificação.
+- Admin: gestão de parceiros.
+- Billing: preço por parceiro e faturamento futuro.
+- System Design: multi-tenancy e organization isolation.
+
+## Definition of Done
+- [ ] User Stories P0 concluídas
+- [ ] Fluxo Partner Portal demonstrável
+- [ ] ServiceRequestStatus separado de CaseStatus
+- [ ] Organization isolation validado
+- [ ] WhatsApp outbound resiliente
+- [ ] Documentação atualizada
+
+## Perguntas técnicas
+- O tenant será a empresa despachante e PartnerOrganization uma organização atendida por ela?
+- Como representar preço negociado com snapshot histórico?
+- Quais eventos de solicitação geram WhatsApp outbound?
+- Quais permissões existem para gestor, vendas e financeiro do parceiro?
+
+---
+
 # [US-001] Inicializar monorepo
 
-**Milestone:** M0 — Foundation  
-**Track:** Foundation  
-**Difficulty:** Easy  
-**Priority:** P0  
-**Parent:** E0  
+**Milestone:** M0 — Foundation
+**Track:** Foundation
+**Difficulty:** Easy
+**Priority:** P0
+**Parent:** E0
 **Labels:** user-story, study, P0, frontend, backend, devops
 
 ## Contexto
@@ -375,11 +431,11 @@ ADR-000 monorepo.
 
 # [US-002] Ambiente local com Postgres e Redis
 
-**Milestone:** M0 — Foundation  
-**Track:** DevOps  
-**Difficulty:** Easy  
-**Priority:** P0  
-**Parent:** E0  
+**Milestone:** M0 — Foundation
+**Track:** DevOps
+**Difficulty:** Easy
+**Priority:** P0
+**Parent:** E0
 **Labels:** user-story, study, P0, database, devops
 
 ## Contexto
@@ -444,11 +500,11 @@ _Não obrigatório._
 
 # [US-003] CI e quality gates
 
-**Milestone:** M0 — Foundation  
-**Track:** DevOps  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E0  
+**Milestone:** M0 — Foundation
+**Track:** DevOps
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E0
 **Labels:** user-story, study, P0, devops, testing
 
 ## Contexto
@@ -514,11 +570,11 @@ _Não obrigatório._
 
 # [US-101] Cadastro do proprietário
 
-**Milestone:** M1 — Auth & Roles  
-**Track:** Security  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E1  
+**Milestone:** M1 — Auth & Roles
+**Track:** Security
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E1
 **Labels:** user-story, study, P0, frontend, backend, security
 
 ## Contexto
@@ -593,11 +649,11 @@ _Não obrigatório._
 
 # [US-102] Login, sessão e logout
 
-**Milestone:** M1 — Auth & Roles  
-**Track:** Security  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E1  
+**Milestone:** M1 — Auth & Roles
+**Track:** Security
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E1
 **Labels:** user-story, study, P0, frontend, backend, security
 
 ## Contexto
@@ -672,11 +728,11 @@ ADR auth/session strategy.
 
 # [US-103] Convite e ativação de operadora
 
-**Milestone:** M1 — Auth & Roles  
-**Track:** Security  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E1  
+**Milestone:** M1 — Auth & Roles
+**Track:** Security
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E1
 **Labels:** user-story, study, P0, frontend, backend, security
 
 ## Contexto
@@ -747,11 +803,11 @@ _Não obrigatório._
 
 # [US-201] Lista de clientes da operação
 
-**Milestone:** M2 — Customers  
-**Track:** Product  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E2  
+**Milestone:** M2 — Customers
+**Track:** Product
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E2
 **Labels:** user-story, study, P0, frontend, backend, database
 
 ## Contexto
@@ -826,11 +882,11 @@ _Não obrigatório._
 
 # [US-202] Detalhe do cliente
 
-**Milestone:** M2 — Customers  
-**Track:** Product  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E2  
+**Milestone:** M2 — Customers
+**Track:** Product
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E2
 **Labels:** user-story, study, P0, frontend, backend
 
 ## Contexto
@@ -899,11 +955,11 @@ _Não obrigatório._
 
 # [US-203] Busca global
 
-**Milestone:** M2 — Customers  
-**Track:** Product  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E2  
+**Milestone:** M2 — Customers
+**Track:** Product
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E2
 **Labels:** user-story, study, P0, frontend, backend, database, performance
 
 ## Contexto
@@ -972,11 +1028,11 @@ _Não obrigatório._
 
 # [US-301] Cadastro de veículo
 
-**Milestone:** M3 — Vehicles & Detran Adapter  
-**Track:** Backend  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E3  
+**Milestone:** M3 — Vehicles & Detran Adapter
+**Track:** Backend
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E3
 **Labels:** user-story, study, P0, frontend, backend, database
 
 ## Contexto
@@ -1044,11 +1100,11 @@ _Não obrigatório._
 
 # [US-302] DetranClient adapter mock resiliente
 
-**Milestone:** M3 — Vehicles & Detran Adapter  
-**Track:** System Design  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E3  
+**Milestone:** M3 — Vehicles & Detran Adapter
+**Track:** System Design
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E3
 **Labels:** user-story, study, P0, backend, architecture, testing
 
 ## Contexto
@@ -1116,11 +1172,11 @@ ADR-004 DetranClient.
 
 # [US-303] Consulta com cache e stale state
 
-**Milestone:** M3 — Vehicles & Detran Adapter  
-**Track:** Backend  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E3  
+**Milestone:** M3 — Vehicles & Detran Adapter
+**Track:** Backend
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E3
 **Labels:** user-story, study, P0, frontend, backend, database, performance
 
 ## Contexto
@@ -1190,11 +1246,11 @@ ADR cache/staleness.
 
 # [US-304] Checagem periódica em fila
 
-**Milestone:** M3 — Vehicles & Detran Adapter  
-**Track:** System Design  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E3  
+**Milestone:** M3 — Vehicles & Detran Adapter
+**Track:** System Design
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E3
 **Labels:** user-story, study, P0, async, backend, performance
 
 ## Contexto
@@ -1263,11 +1319,11 @@ _Não obrigatório._
 
 # [US-401] Lista de multas por veículo
 
-**Milestone:** M4 — Fines  
-**Track:** Backend  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E4  
+**Milestone:** M4 — Fines
+**Track:** Backend
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E4
 **Labels:** user-story, study, P0, frontend, backend, database
 
 ## Contexto
@@ -1333,11 +1389,11 @@ _Não obrigatório._
 
 # [US-402] Detalhe e timeline da multa
 
-**Milestone:** M4 — Fines  
-**Track:** Product  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E4  
+**Milestone:** M4 — Fines
+**Track:** Product
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E4
 **Labels:** user-story, study, P0, frontend, backend
 
 ## Contexto
@@ -1400,11 +1456,11 @@ _Não obrigatório._
 
 # [US-501] Solicitação de licenciamento
 
-**Milestone:** M5 — Licensing  
-**Track:** Backend  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E5  
+**Milestone:** M5 — Licensing
+**Track:** Backend
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E5
 **Labels:** user-story, study, P0, frontend, backend, testing
 
 ## Contexto
@@ -1469,11 +1525,11 @@ _Não obrigatório._
 
 # [US-502] Pagamento e processamento de licenciamento
 
-**Milestone:** M5 — Licensing  
-**Track:** System Design  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E5  
+**Milestone:** M5 — Licensing
+**Track:** System Design
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E5
 **Labels:** user-story, study, P0, frontend, backend, payments, async
 
 ## Contexto
@@ -1538,11 +1594,11 @@ _Não obrigatório._
 
 # [US-601] Criar checkout sandbox
 
-**Milestone:** M6 — Payments & Webhooks  
-**Track:** Payments  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E6  
+**Milestone:** M6 — Payments & Webhooks
+**Track:** Payments
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E6
 **Labels:** user-story, study, P0, frontend, backend, security
 
 ## Contexto
@@ -1611,11 +1667,11 @@ _Não obrigatório._
 
 # [US-602] Prevenir pagamento duplicado
 
-**Milestone:** M6 — Payments & Webhooks  
-**Track:** Database  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E6  
+**Milestone:** M6 — Payments & Webhooks
+**Track:** Database
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E6
 **Labels:** user-story, study, P0, database, testing, architecture
 
 ## Contexto
@@ -1677,11 +1733,11 @@ ADR-001 duplicate payment.
 
 # [US-603] Webhook assinado e idempotente
 
-**Milestone:** M6 — Payments & Webhooks  
-**Track:** Payments  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E6  
+**Milestone:** M6 — Payments & Webhooks
+**Track:** Payments
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E6
 **Labels:** user-story, study, P0, backend, security, database, testing
 
 ## Contexto
@@ -1749,11 +1805,11 @@ ADR-002 webhook idempotency.
 
 # [US-604] Transactional outbox para submissão
 
-**Milestone:** M6 — Payments & Webhooks  
-**Track:** System Design  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E6  
+**Milestone:** M6 — Payments & Webhooks
+**Track:** System Design
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E6
 **Labels:** user-story, study, P0, backend, database, async
 
 ## Contexto
@@ -1818,11 +1874,11 @@ ADR-003 outbox.
 
 # [US-605] Reconciliação financeira
 
-**Milestone:** M6 — Payments & Webhooks  
-**Track:** Payments  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E6  
+**Milestone:** M6 — Payments & Webhooks
+**Track:** Payments
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E6
 **Labels:** user-story, study, P0, frontend, backend, observability
 
 ## Contexto
@@ -1890,11 +1946,11 @@ _Não obrigatório._
 
 # [US-701] Criar caso manual automaticamente
 
-**Milestone:** M7 — Operator Cases  
-**Track:** Operations  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E7  
+**Milestone:** M7 — Operator Cases
+**Track:** Operations
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E7
 **Labels:** user-story, study, P0, backend, async, observability
 
 ## Contexto
@@ -1959,11 +2015,11 @@ ADR case creation policy.
 
 # [US-702] Fila Meus casos / Não atribuídos
 
-**Milestone:** M7 — Operator Cases  
-**Track:** Operations  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E7  
+**Milestone:** M7 — Operator Cases
+**Track:** Operations
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E7
 **Labels:** user-story, study, P0, frontend, backend
 
 ## Contexto
@@ -2028,11 +2084,11 @@ _Não obrigatório._
 
 # [US-703] Assumir caso com concorrência
 
-**Milestone:** M7 — Operator Cases  
-**Track:** Database  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E7  
+**Milestone:** M7 — Operator Cases
+**Track:** Database
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E7
 **Labels:** user-story, study, P0, frontend, backend, database, testing
 
 ## Contexto
@@ -2095,11 +2151,11 @@ _Não obrigatório._
 
 # [US-704] Detalhe do caso e notas
 
-**Milestone:** M7 — Operator Cases  
-**Track:** Operations  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E7  
+**Milestone:** M7 — Operator Cases
+**Track:** Operations
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E7
 **Labels:** user-story, study, P0, frontend, backend
 
 ## Contexto
@@ -2172,11 +2228,11 @@ _Não obrigatório._
 
 # [US-801] Dashboard operacional agregado
 
-**Milestone:** M8 — Operational Dashboard  
-**Track:** Backend  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E8  
+**Milestone:** M8 — Operational Dashboard
+**Track:** Backend
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E8
 **Labels:** user-story, study, P0, backend, database, performance
 
 ## Contexto
@@ -2245,11 +2301,11 @@ ADR dashboard read strategy.
 
 # [US-802] Tela Dashboard operacional
 
-**Milestone:** M8 — Operational Dashboard  
-**Track:** Frontend  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E8  
+**Milestone:** M8 — Operational Dashboard
+**Track:** Frontend
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E8
 **Labels:** user-story, study, P0, frontend, performance
 
 ## Contexto
@@ -2318,11 +2374,11 @@ _Não obrigatório._
 
 # [US-901] Dashboard admin
 
-**Milestone:** M9 — Admin Panel  
-**Track:** Frontend  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E9  
+**Milestone:** M9 — Admin Panel
+**Track:** Frontend
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E9
 **Labels:** user-story, study, P0, frontend, backend, database, performance
 
 ## Contexto
@@ -2390,11 +2446,11 @@ _Não obrigatório._
 
 # [US-902] Gestão do catálogo e preços
 
-**Milestone:** M9 — Admin Panel  
-**Track:** Product  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E9  
+**Milestone:** M9 — Admin Panel
+**Track:** Product
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E9
 **Labels:** user-story, study, P0, frontend, backend
 
 ## Contexto
@@ -2457,11 +2513,11 @@ _Não obrigatório._
 
 # [US-903] Gestão de operadoras
 
-**Milestone:** M9 — Admin Panel  
-**Track:** Product  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E9  
+**Milestone:** M9 — Admin Panel
+**Track:** Product
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E9
 **Labels:** user-story, study, P0, frontend, backend, security
 
 ## Contexto
@@ -2525,11 +2581,11 @@ _Não obrigatório._
 
 # [US-904] Fila consolidada admin
 
-**Milestone:** M9 — Admin Panel  
-**Track:** Operations  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E9  
+**Milestone:** M9 — Admin Panel
+**Track:** Operations
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E9
 **Labels:** user-story, study, P0, frontend, backend
 
 ## Contexto
@@ -2592,11 +2648,11 @@ _Não obrigatório._
 
 # [US-1001] Notificações deduplicadas
 
-**Milestone:** M10 — Notifications, History & Documents  
-**Track:** Backend  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E10  
+**Milestone:** M10 — Notifications, History & Documents
+**Track:** Backend
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E10
 **Labels:** user-story, study, P0, async, backend
 
 ## Contexto
@@ -2657,11 +2713,11 @@ _Não obrigatório._
 
 # [US-1002] Histórico por veículo e cliente
 
-**Milestone:** M10 — Notifications, History & Documents  
-**Track:** Product  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E10  
+**Milestone:** M10 — Notifications, History & Documents
+**Track:** Product
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E10
 **Labels:** user-story, study, P0, frontend, backend, database
 
 ## Contexto
@@ -2723,11 +2779,11 @@ _Não obrigatório._
 
 # [US-1003] Documentos privados em S3
 
-**Milestone:** M10 — Notifications, History & Documents  
-**Track:** AWS  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E10  
+**Milestone:** M10 — Notifications, History & Documents
+**Track:** AWS
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E10
 **Labels:** user-story, study, P0, backend, aws, security
 
 ## Contexto
@@ -2791,11 +2847,11 @@ _Não obrigatório._
 
 # [US-1101] OpenTelemetry ponta a ponta
 
-**Milestone:** M11 — Observability & Security  
-**Track:** Observability  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E11  
+**Milestone:** M11 — Observability & Security
+**Track:** Observability
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E11
 **Labels:** user-story, study, P0, observability, backend, async
 
 ## Contexto
@@ -2859,11 +2915,11 @@ _Não obrigatório._
 
 # [US-1102] Métricas e alertas
 
-**Milestone:** M11 — Observability & Security  
-**Track:** Observability  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E11  
+**Milestone:** M11 — Observability & Security
+**Track:** Observability
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E11
 **Labels:** user-story, study, P0, observability, performance
 
 ## Contexto
@@ -2927,11 +2983,11 @@ _Não obrigatório._
 
 # [US-1103] LGPD, IDOR e hardening
 
-**Milestone:** M11 — Observability & Security  
-**Track:** Security  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E11  
+**Milestone:** M11 — Observability & Security
+**Track:** Security
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E11
 **Labels:** user-story, study, P0, security, testing
 
 ## Contexto
@@ -2998,11 +3054,11 @@ _Não obrigatório._
 
 # [US-1201] Arquitetura AWS e IAM
 
-**Milestone:** M14 — AWS & Delivery  
-**Track:** AWS  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E12  
+**Milestone:** M14 — AWS & Delivery
+**Track:** AWS
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E12
 **Labels:** user-story, study, P0, aws, architecture, security
 
 ## Contexto
@@ -3066,11 +3122,11 @@ ADR target AWS.
 
 # [US-1202] Deploy ECS/RDS/Redis/SQS/S3
 
-**Milestone:** M14 — AWS & Delivery  
-**Track:** AWS  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E12  
+**Milestone:** M14 — AWS & Delivery
+**Track:** AWS
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E12
 **Labels:** user-story, study, P0, aws, devops
 
 ## Contexto
@@ -3134,11 +3190,11 @@ _Não obrigatório._
 
 # [US-1203] CI/CD OIDC + Terraform
 
-**Milestone:** M14 — AWS & Delivery  
-**Track:** DevOps  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E12  
+**Milestone:** M14 — AWS & Delivery
+**Track:** DevOps
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E12
 **Labels:** user-story, study, P0, aws, devops, security
 
 ## Contexto
@@ -3201,11 +3257,11 @@ _Não obrigatório._
 
 # [US-1301] Load test dashboard e busca
 
-**Milestone:** M15 — Scale & System Design  
-**Track:** System Design  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E13  
+**Milestone:** M15 — Scale & System Design
+**Track:** System Design
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E13
 **Labels:** user-story, study, P0, performance, testing
 
 ## Contexto
@@ -3268,11 +3324,11 @@ _Não obrigatório._
 
 # [US-1302] Incident drill DetranClient indisponível
 
-**Milestone:** M15 — Scale & System Design  
-**Track:** System Design  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E13  
+**Milestone:** M15 — Scale & System Design
+**Track:** System Design
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E13
 **Labels:** user-story, study, P0, architecture, observability
 
 ## Contexto
@@ -3335,11 +3391,11 @@ _Não obrigatório._
 
 # [US-1303] Incident drill webhook duplicado e case race
 
-**Milestone:** M15 — Scale & System Design  
-**Track:** System Design  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E13  
+**Milestone:** M15 — Scale & System Design
+**Track:** System Design
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E13
 **Labels:** user-story, study, P0, payments, testing, database
 
 ## Contexto
@@ -3402,11 +3458,11 @@ _Não obrigatório._
 
 # [US-1304] Final architecture review
 
-**Milestone:** M15 — Scale & System Design  
-**Track:** System Design  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E13  
+**Milestone:** M15 — Scale & System Design
+**Track:** System Design
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E13
 **Labels:** user-story, study, P0, architecture
 
 ## Contexto
@@ -3468,10 +3524,10 @@ _Não obrigatório._
 
 # [E14] AI Copilot
 
-**Milestone:** M12 — AI Copilot  
-**Track:** System Design  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M12 — AI Copilot
+**Track:** System Design
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, ai, copilot, P0
 
 ## Objetivo
@@ -3489,10 +3545,10 @@ Adicionar inteligência útil à operação sem transformar o LLM em fonte da ve
 
 # [E15] AI Quality & Safety
 
-**Milestone:** M13 — AI Quality  
-**Track:** Observability  
-**Difficulty:** Mixed  
-**Priority:** P0  
+**Milestone:** M13 — AI Quality
+**Track:** Observability
+**Difficulty:** Mixed
+**Priority:** P0
 **Labels:** epic, architecture, ai, evals, security, P0
 
 ## Objetivo
@@ -3510,11 +3566,11 @@ Garantir factualidade, autorização, custo controlado, evals e fallback.
 
 # [US-1401] Criar AI Gateway e orchestrator
 
-**Milestone:** M12 — AI Copilot  
-**Track:** Backend  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E14  
+**Milestone:** M12 — AI Copilot
+**Track:** Backend
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E14
 **Labels:** user-story, study, ai, P0, backend, architecture, copilot
 
 ## Contexto
@@ -3561,11 +3617,11 @@ _Nenhuma._
 
 # [US-1402] Implementar tools read-only com autorização
 
-**Milestone:** M12 — AI Copilot  
-**Track:** Security  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E14  
+**Milestone:** M12 — AI Copilot
+**Track:** Security
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E14
 **Labels:** user-story, study, ai, P0, backend, security, copilot
 
 ## Contexto
@@ -3616,11 +3672,11 @@ _Nenhuma._
 
 # [US-1403] Criar painel de chat EMR Copilot
 
-**Milestone:** M12 — AI Copilot  
-**Track:** Frontend  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E14  
+**Milestone:** M12 — AI Copilot
+**Track:** Frontend
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E14
 **Labels:** user-story, study, ai, P0, frontend, copilot
 
 ## Contexto
@@ -3669,11 +3725,11 @@ _Não se aplica._
 
 # [US-1404] Resumo inteligente do caso
 
-**Milestone:** M12 — AI Copilot  
-**Track:** Product  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E14  
+**Milestone:** M12 — AI Copilot
+**Track:** Product
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E14
 **Labels:** user-story, study, ai, P0, frontend, backend, copilot
 
 ## Contexto
@@ -3719,11 +3775,11 @@ _Não se aplica._
 
 # [US-1405] Resumo da operação no dashboard
 
-**Milestone:** M12 — AI Copilot  
-**Track:** Product  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E14  
+**Milestone:** M12 — AI Copilot
+**Track:** Product
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E14
 **Labels:** user-story, study, ai, P0, frontend, backend, copilot
 
 ## Contexto
@@ -3767,11 +3823,11 @@ _Não se aplica._
 
 # [US-1406] RAG de procedimentos internos
 
-**Milestone:** M12 — AI Copilot  
-**Track:** Backend  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E14  
+**Milestone:** M12 — AI Copilot
+**Track:** Backend
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E14
 **Labels:** user-story, study, ai, P0, rag, backend, database
 
 ## Contexto
@@ -3821,11 +3877,11 @@ _Nenhuma._
 
 # [US-1407] Gerar rascunho de mensagem ao cliente
 
-**Milestone:** M12 — AI Copilot  
-**Track:** Product  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E14  
+**Milestone:** M12 — AI Copilot
+**Track:** Product
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E14
 **Labels:** user-story, study, ai, P0, frontend, copilot
 
 ## Contexto
@@ -3869,11 +3925,11 @@ _Nenhuma._
 
 # [US-1408] Chatbot do proprietário
 
-**Milestone:** M12 — AI Copilot  
-**Track:** Frontend  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E14  
+**Milestone:** M12 — AI Copilot
+**Track:** Frontend
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E14
 **Labels:** user-story, study, ai, P0, frontend, backend, security, copilot
 
 ## Contexto
@@ -3920,11 +3976,11 @@ _Nenhuma._
 
 # [US-1409] Write tools com confirmação humana
 
-**Milestone:** M12 — AI Copilot  
-**Track:** Security  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E14  
+**Milestone:** M12 — AI Copilot
+**Track:** Security
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E14
 **Labels:** user-story, study, ai, P0, backend, frontend, security, copilot
 
 ## Contexto
@@ -3971,11 +4027,11 @@ Algumas ações podem futuramente ser iniciadas pelo Copilot.
 
 # [US-1501] AI telemetry e cost control
 
-**Milestone:** M13 — AI Quality  
-**Track:** Observability  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E15  
+**Milestone:** M13 — AI Quality
+**Track:** Observability
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E15
 **Labels:** user-story, study, ai, P0, observability, copilot
 
 ## Contexto
@@ -4020,11 +4076,11 @@ _Nenhuma._
 
 # [US-1502] Criar evals de tool selection e factualidade
 
-**Milestone:** M13 — AI Quality  
-**Track:** Testing  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E15  
+**Milestone:** M13 — AI Quality
+**Track:** Testing
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E15
 **Labels:** user-story, study, ai, P0, testing, evals, copilot
 
 ## Contexto
@@ -4071,11 +4127,11 @@ _Nenhuma._
 
 # [US-1503] Testar prompt injection e tool abuse
 
-**Milestone:** M13 — AI Quality  
-**Track:** Security  
-**Difficulty:** Hard  
-**Priority:** P0  
-**Parent:** E15  
+**Milestone:** M13 — AI Quality
+**Track:** Security
+**Difficulty:** Hard
+**Priority:** P0
+**Parent:** E15
 **Labels:** user-story, study, ai, P0, security, testing, rag
 
 ## Contexto
@@ -4118,11 +4174,11 @@ _Nenhuma._
 
 # [US-1504] AI outage drill e fallback
 
-**Milestone:** M13 — AI Quality  
-**Track:** System Design  
-**Difficulty:** Medium  
-**Priority:** P0  
-**Parent:** E15  
+**Milestone:** M13 — AI Quality
+**Track:** System Design
+**Difficulty:** Medium
+**Priority:** P0
+**Parent:** E15
 **Labels:** user-story, study, ai, P0, testing, observability
 
 ## Contexto

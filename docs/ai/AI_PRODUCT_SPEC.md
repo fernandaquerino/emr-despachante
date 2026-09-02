@@ -10,6 +10,8 @@ A operação já possui dados suficientes para resolver muitos casos, mas uma op
 
 A IA deve reduzir esse tempo.
 
+Com Partner Portal, a IA também pode ajudar a operação a entender ServiceRequests de parceiros, mas sem transformar WhatsApp em fonte da verdade.
+
 ## 3. Casos de uso prioritários
 
 ### UC-AI-01 — Perguntar sobre a operação
@@ -36,6 +38,12 @@ A IA deve reduzir esse tempo.
 ### UC-AI-08 — Proprietário
 “Por que meu licenciamento está bloqueado?”
 
+### UC-AI-09 — Solicitação de parceiro
+“Resuma esta solicitação e explique o que falta para avançar.”
+
+### UC-AI-10 — Solicitações paradas
+“Quais solicitações de parceiros estão aguardando ação há mais tempo?”
+
 ## 4. Fora do escopo inicial
 
 - IA alterar banco via SQL;
@@ -44,6 +52,11 @@ A IA deve reduzir esse tempo.
 - IA confirmar pagamento;
 - IA mudar status financeiro;
 - IA diagnosticar fraude automaticamente.
+- IA criar solicitação silenciosamente a partir de texto ambíguo;
+- IA inventar placa ou serviço;
+- IA atravessar PartnerOrganization;
+- IA revelar notas internas para parceiro;
+- WhatsApp inbound com IA como requisito MVP.
 
 ## 5. UX
 
@@ -59,6 +72,11 @@ No caso:
 - ✨ Sugerir próxima ação
 - ✨ Gerar mensagem
 
+Na solicitação:
+- Resumir solicitação
+- Explicar pendência
+- Gerar mensagem para parceiro
+
 No dashboard:
 - ✨ Resumir operação
 
@@ -68,6 +86,9 @@ No cliente:
 ### Proprietário
 Chatbot separado, visualmente mais simples e com escopo reduzido.
 
+### Parceiro
+Não adicionar chat com acesso amplo sem requisito explícito. Qualquer evolução deve expor apenas dados autorizados da própria PartnerOrganization.
+
 ## 6. Métricas
 
 - AI weekly active operators;
@@ -75,6 +96,7 @@ Chatbot separado, visualmente mais simples e com escopo reduzido.
 - recommendation acceptance;
 - time-to-understand-case;
 - message draft usage;
+- partner request summary usage;
 - tool error rate;
 - AI fallback rate;
 - hallucination/factuality failures em evals;

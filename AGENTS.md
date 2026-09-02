@@ -24,12 +24,14 @@ EMR Despachante é uma plataforma para operação de serviços veiculares.
 Perfis principais:
 
 - `OWNER` / `PROPRIETARIO`
+- `PARTNER` / `PARCEIRO`
 - `OPERATOR` / `OPERADORA`
 - `ADMIN`
 
 O sistema centraliza:
 
 - clientes;
+- organizações parceiras;
 - veículos;
 - multas;
 - licenciamento;
@@ -37,6 +39,7 @@ O sistema centraliza:
 - pedidos;
 - documentos;
 - casos manuais;
+- solicitações de serviço;
 - reconciliação;
 - auditoria;
 - IA operacional através do EMR Copilot.
@@ -511,6 +514,12 @@ Não retry:
 Caso manual existe para representar exceções.
 
 Não abrir caso para todo erro.
+
+ServiceRequest representa trabalho normal solicitado por proprietário, parceiro ou operação.
+
+Case representa exceção/problema que exige intervenção humana especial.
+
+Uma solicitação de parceiro não cria Case automaticamente.
 
 Case creation deve seguir política explícita.
 
