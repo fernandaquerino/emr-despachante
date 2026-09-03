@@ -188,8 +188,9 @@ para a convenção de commits.
 
 Pré-requisito adicional: Docker e Docker Compose.
 
-Copie `.env.example` para `.env` na raiz e `apps/api/.env.example` para `apps/api/.env`,
-ajustando se necessário. O Postgres do compose expõe a porta `5434` no host por padrão
+Copie `.env.example` para `.env` na raiz e os exemplos das aplicações que deseja executar,
+ajustando se necessário. Consulte a documentação de
+[configuração de ambiente e secrets](docs/engineering/ENVIRONMENT_CONFIGURATION.md). O Postgres do compose expõe a porta `5434` no host por padrão
 (evita colidir com um PostgreSQL local ou outro projeto já usando `5432`/`5433`); ajuste
 `POSTGRES_PORT` e `DATABASE_URL` se preferir outra porta.
 
