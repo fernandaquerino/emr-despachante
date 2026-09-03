@@ -1,0 +1,10 @@
+node_modules
+dist
+.next
+pnpm-lock.yaml
+*.tsbuildinfo
+
+# Documentação em prosa é mantida fora do escopo desta padronização
+# (foco é código: apps/**, packages/**, configs de root).
+*.md
+.vscode/
