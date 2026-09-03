@@ -1,0 +1,19 @@
+{
+  "name": "emr-despachante",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter=\"./apps/*\" run dev",
+    "build": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run build",
+    "typecheck": "pnpm -r run typecheck",
+    "lint": "echo \"lint: not configured yet\"",
+    "start": "pnpm -r --parallel --filter=\"./apps/*\" run start"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

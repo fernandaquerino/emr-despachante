@@ -154,6 +154,32 @@ Terraform
 LLM provider via AI Gateway
 ```
 
+## Estrutura do repositório
+
+```text
+apps/
+  web/      # Next.js — portal proprietário/parceiro/admin
+  api/      # NestJS — API e regras de domínio
+  worker/   # jobs assíncronos, consumers de fila
+
+packages/
+  ui/       # componentes compartilhados (Design System, ainda vazio)
+  types/    # tipos compartilhados entre apps
+  config/   # tsconfig base compartilhado
+```
+
+## Como rodar
+
+Pré-requisitos: Node 20+, pnpm via corepack.
+
+```bash
+corepack enable
+pnpm install
+pnpm dev        # sobe web, api e worker em paralelo
+pnpm typecheck  # cobre todo o workspace
+pnpm build
+```
+
 ## Documentação
 
 Consulte o [índice da documentação](docs/README.md).

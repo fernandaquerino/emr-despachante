@@ -1,5 +1,18 @@
 # EMR Despachante — Architecture Decision Records
 
+## ADR-000 — Monorepo pnpm com apps e packages compartilhados
+
+### Contexto
+O produto terá web (Next.js), API (NestJS) e worker assíncrono, além de código compartilhado (tipos, UI, configuração). Times pequenos e um único ciclo de release inicial não justificam múltiplos repositórios.
+
+### Decisão
+Usar um monorepo gerenciado por pnpm workspaces, com `apps/web`, `apps/api`, `apps/worker` e `packages/ui`, `packages/types`, `packages/config`. Dependências internas usam `workspace:*`. Apps não dependem uns dos outros; packages podem ser consumidos por qualquer app.
+
+### Por que
+Um único `pnpm install` e `pnpm typecheck` cobrem todo o workspace, com compartilhamento de tipos e UI sem publicar pacotes em registry. Deploy de cada app permanece independente (build por `--filter`). Separação em repositórios distintos só deve ocorrer com necessidade operacional demonstrada (times separados, ciclos de release incompatíveis).
+
+---
+
 ## ADR-001 — Prevenção de pagamento duplicado
 
 ### Contexto
