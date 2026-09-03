@@ -14,8 +14,9 @@
 Roles conceituais:
 - OWNER / PROPRIETARIO
 - PARTNER / PARCEIRO
-- OPERATOR / OPERADORA
 - ADMIN
+
+No MVP, ADMIN é o usuário interno do despachante. Permissões internas granulares podem surgir no futuro sem alterar os boundaries de domínio.
 
 ### dispatcher_profiles
 - id

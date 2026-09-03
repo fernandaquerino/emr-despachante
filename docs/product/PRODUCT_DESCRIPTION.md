@@ -28,7 +28,7 @@ O produto tem três lados principais:
    - trabalha solicitações normais;
    - trabalha apenas os casos que exigem ação humana;
    - monitora pagamentos, falhas e pendências;
-   - gerencia operadoras;
+   - gerencia usuários internos quando essa capacidade estiver habilitada;
    - gerencia catálogo e preços;
    - acompanha receita e performance.
 
@@ -64,7 +64,7 @@ Isso gera:
 
 > Resolver pendências do veículo sem entender a burocracia por trás de cada órgão.
 
-### Para a operadora
+### Para o admin operacional
 
 > Receber uma fila clara do que precisa de ação humana, em vez de consultar tudo manualmente.
 
@@ -74,7 +74,7 @@ Isso gera:
 
 ### Para o admin
 
-> Enxergar clientes, veículos, serviços, receita, pagamentos, falhas e produtividade da operação inteira.
+> Enxergar e executar a operação diária, além de acompanhar clientes, veículos, serviços, receita, pagamentos, falhas e produtividade.
 
 ## 4. Personas
 
@@ -90,32 +90,23 @@ Objetivos:
 - acompanhar status;
 - obter documento.
 
-### OPERADORA
-
-Pessoa da equipe que processa solicitações e exceções.
-
-Objetivos:
-- acompanhar novas solicitações;
-- trabalhar solicitações em andamento;
-- identificar solicitações aguardando parceiro ou órgão;
-- saber quais casos são seus;
-- pegar caso não atribuído;
-- entender o histórico;
-- executar ação manual;
-- deixar nota;
-- resolver;
-- identificar cliente que precisa de contato.
-
 ### ADMIN
 
-Dona/gestora do negócio.
+Usuário interno do despachante no MVP. Concentra operação diária e gestão administrativa.
 
 Objetivos:
 - acompanhar carteira de clientes;
 - acompanhar receita e volume;
 - acompanhar operação;
+- acompanhar novas solicitações;
+- trabalhar solicitações em andamento;
+- identificar solicitações aguardando cliente, parceiro ou órgão;
+- trabalhar Cases de exceção;
+- entender histórico;
+- executar ação manual;
+- deixar nota interna;
 - identificar gargalos;
-- gerenciar operadoras;
+- gerenciar usuários internos quando essa capacidade estiver habilitada;
 - configurar catálogo;
 - acompanhar reconciliação;
 - resolver escalonamentos.
@@ -269,16 +260,15 @@ Perguntas que deve responder:
 
 ## Valor por persona
 
-### Operadora
+### Papel operacional separado
+Removida como papel ativo do MVP. As capacidades operacionais pertencem ao ADMIN.
+
+### Admin
 - resumo de caso;
 - resumo de solicitação;
 - explicação de timeline;
 - recomendação de próxima ação;
-- rascunho de mensagem para parceiro;
-- busca conversacional na carteira;
-- rascunho de mensagem para cliente.
-
-### Admin
+- rascunho de mensagem para parceiro/cliente;
 - resumo diário;
 - interpretação de indicadores;
 - busca de divergências;

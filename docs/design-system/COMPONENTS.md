@@ -73,7 +73,7 @@ Elementos: label acima (obrigatório), hint opcional abaixo, error inline abaixo
 ### Select / Combobox
 
 - `Select` para listas fechadas curtas.
-- `Combobox` (input+dropdown filtrável) para listas ≥10 opções ou entidades (cliente, veículo, operadora, serviço).
+- `Combobox` (input+dropdown filtrável) para listas ≥10 opções ou entidades (cliente, veículo, admin, serviço).
 - Highlight opção sob foco por teclado (`aria-activedescendant`).
 - Empty state: "Nenhum resultado para '{query}'".
 
@@ -372,8 +372,8 @@ Radius `--radius-md`, elev-2. Item: h 36px, padding `8px 12px`. Ícone 16 opcion
 
 Sub-tipo de Modal com estrutura fixa:
 
-- Título curto ("Suspender operadora Ana Ribeiro?")
-- Descrição objetiva do impacto ("A operadora perde acesso imediatamente. Casos abertos podem ser reatribuídos.")
+- Título curto ("Suspender admin Ana Ribeiro?")
+- Descrição objetiva do impacto ("A admin perde acesso imediatamente. Casos abertos podem ser reatribuídos.")
 - Se destrutivo: input de confirmação opcional (digite o nome).
 - Ações: `[Cancelar]` `[Confirmar]` (primary ou destructive conforme ação).
 

@@ -10,14 +10,14 @@ Criar conta com nome, CPF, email, telefone e senha.
 **RF-002 Login e sessão**
 Sessão segura, expiração e logout.
 
-**RF-003 Convite de operadora**
-Admin convida por email.
+**RF-003 Provisionamento de admin interno**
+Usuário interno ADMIN é criado/provisionado administrativamente.
 
-**RF-004 Ativação de operadora**
-Convite possui expiração e uso único.
+**RF-004 Ativação por convite**
+Convite de PARTNER e acessos internos provisionados possuem expiração e uso único quando aplicável.
 
 **RF-005 RBAC**
-PROPRIETÁRIO, PARCEIRO, OPERADORA e ADMIN.
+PROPRIETÁRIO, PARCEIRO e ADMIN no MVP.
 
 **RF-005A Convite/ativação de usuário parceiro**
 Gestor ou admin convida usuário parceiro para uma PartnerOrganization com expiração e uso único.
@@ -116,7 +116,7 @@ LOW, MEDIUM, HIGH, CRITICAL.
 
 **RF-038 Histórico do caso**
 
-**RF-039 Métricas da operadora**
+**RF-039 Métricas operacionais do admin**
 
 ### Epic 7A — Partner Portal & B2B Intake
 
@@ -153,8 +153,8 @@ Quando configurado, o EMR envia notificação WhatsApp com organização parceir
 **RF-039K WhatsApp inbound futuro**
 Mensagem recebida pelo WhatsApp para criar draft de solicitação fica como discovery/evolução futura, não requisito MVP.
 
-**RF-039L Solicitações da operadora**
-Operadora possui fila de ServiceRequests normais além da fila de Cases.
+**RF-039L Solicitações administrativas**
+ADMIN possui fila de ServiceRequests normais além da fila de Cases.
 
 **RF-039M Gestão admin de parceiros**
 Admin lista parceiros, acessa detalhe e gerencia status, usuários, solicitações, preferências de notificação e catálogo habilitado.
@@ -167,7 +167,7 @@ Faturamento mensal/postpaid, invoices, invoice items, descontos, ajustes, refund
 
 ### Epic 8 — Dashboard operacional
 
-**RF-040 Dashboard da operadora**
+**RF-040 Dashboard operacional/admin**
 
 **RF-041 Clientes com pendência**
 
@@ -187,7 +187,7 @@ Faturamento mensal/postpaid, invoices, invoice items, descontos, ajustes, refund
 
 **RF-048 Gestão de preços/taxa**
 
-**RF-049 Gestão de operadoras**
+**RF-049 Gestão de usuários internos futura**
 
 **RF-050 Fila consolidada**
 
@@ -294,7 +294,7 @@ Criações vindas de canais automatizados futuros, retries de notificação e ev
 # Requisitos de IA
 
 ## RF-AI-001 — Chat da operação
-OPERADORA e ADMIN podem abrir o EMR Copilot no ambiente interno.
+ADMIN pode abrir o EMR Copilot no ambiente interno.
 
 ## RF-AI-002 — Tool calling somente por API autorizada
 O modelo não acessa SQL nem credenciais diretamente.
@@ -309,7 +309,7 @@ Por cliente, placa ou ID autorizado.
 Retornar status, motivo, responsável, timeline e entidades relacionadas.
 
 ## RF-AI-005A — Consultar solicitação
-OPERADORA/ADMIN podem consultar ServiceRequest autorizado, incluindo status, parceiro quando aplicável, veículo, serviço, solicitante, pendências e timeline pública/interna conforme perfil.
+ADMIN pode consultar ServiceRequest autorizado, incluindo status, parceiro quando aplicável, veículo, serviço, solicitante, pendências e timeline pública/interna conforme perfil.
 
 ## RF-AI-006 — Consultar pagamento
 Retornar timeline financeira e status local/provider quando autorizado.
@@ -326,7 +326,7 @@ No detalhe de um caso, gerar:
 - próxima ação sugerida.
 
 ## RF-AI-009 — Resumo da operação
-ADMIN/OPERADORA podem gerar um brief do período:
+ADMIN pode gerar um brief do período:
 - casos novos;
 - casos críticos;
 - casos resolvidos;

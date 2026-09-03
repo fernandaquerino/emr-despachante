@@ -25,8 +25,9 @@ Perfis principais:
 
 - `OWNER` / `PROPRIETARIO`
 - `PARTNER` / `PARCEIRO`
-- `OPERATOR` / `OPERADORA`
 - `ADMIN`
+
+No MVP, `ADMIN` representa o usuário interno do despachante e concentra operação diária + gestão administrativa. Permissões internas mais granulares são evolução futura.
 
 O sistema centraliza:
 
@@ -837,7 +838,7 @@ Toda query de entidade deve validar ownership/scope.
 Testes obrigatórios:
 
 - owner A → vehicle B;
-- operator → admin endpoint;
+- owner/partner → admin endpoint;
 - usuário → documento de terceiro;
 - tool AI → entidade fora do escopo.
 

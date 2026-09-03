@@ -47,14 +47,14 @@ ServiceRequestStatus representa o lifecycle do trabalho solicitado. Não reutili
 ## ServiceRequestSource
 - PUBLIC_WEB
 - PARTNER_PORTAL
-- OPERATOR
+- ADMIN
 - WHATSAPP
 - API
 
 MVP:
 - PUBLIC_WEB
 - PARTNER_PORTAL
-- OPERATOR
+- ADMIN
 
 WHATSAPP fica reservado para evolução futura/inbound discovery. A origem da solicitação é diferente do canal de notificação.
 

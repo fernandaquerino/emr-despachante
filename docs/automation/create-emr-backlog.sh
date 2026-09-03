@@ -223,8 +223,7 @@ create_label 'layer:architecture' '8250df' 'Layer Architecture'
 create_label 'surface:public' 'fbca04' 'Superfície pública'
 create_label 'surface:owner' '0e8a16' 'Área do proprietário'
 create_label 'surface:partner' '1d76db' 'Portal do parceiro'
-create_label 'surface:operator' '6f42c1' 'Operação'
-create_label 'surface:admin' '5319e7' 'Admin'
+create_label 'surface:admin' '5319e7' 'Admin / operação interna'
 create_label 'surface:shared' 'cfd3d7' 'Transversal'
 create_label 'priority:P0' 'b60205' 'Prioridade P0'
 create_label 'priority:P1' 'fbca04' 'Prioridade P1'
@@ -251,7 +250,7 @@ create_label 'domain:navigation' 'ededed' 'Domínio navigation'
 create_label 'domain:notifications' 'ededed' 'Domínio notifications'
 create_label 'domain:observability' 'ededed' 'Domínio observability'
 create_label 'domain:operations' 'ededed' 'Domínio operations'
-create_label 'domain:operators' 'ededed' 'Domínio operators'
+create_label 'domain:internal-users' 'ededed' 'Domínio internal-users'
 create_label 'domain:orders' 'ededed' 'Domínio orders'
 create_label 'domain:owner' 'ededed' 'Domínio owner'
 create_label 'domain:partners' 'ededed' 'Domínio partners'
@@ -290,7 +289,7 @@ create_issue '[PROD-001] Fechar mapa de telas, rotas, papéis e jornadas' 'type:
 Transformar o mapa de telas em fonte de verdade para produto, protótipo e implementação.
 
 ## Responsabilidade desta issue
-- consolidar PUBLIC, OWNER, PARTNER, OPERATOR e ADMIN;
+- consolidar PUBLIC, OWNER, PARTNER, ADMIN;
 - definir rota de cada tela;
 - definir quem pode acessar cada rota;
 - registrar fluxo de entrada/login/cadastro/convites;
@@ -306,7 +305,7 @@ Transformar o mapa de telas em fonte de verdade para produto, protótipo e imple
 ## Decisões já esperadas
 - cadastro público cria somente OWNER;
 - login é único e o backend resolve o contexto;
-- PARTNER/OPERATOR entram por convite/provisionamento;
+- PARTNER/ADMIN entram por convite/provisionamento;
 - ADMIN entra por provisionamento controlado;
 - ServiceRequest e Case são conceitos diferentes.
 
@@ -421,19 +420,19 @@ Substituir WhatsApp como fila/document store/status system, sem remover o canal 
 ISSUE_BODY
 
 # [PT-004] Protótipo — Operação
-create_issue '[PT-004] Protótipo — Operação' 'type:prototype,layer:prototype,surface:operator,priority:P0' 'M0 — Product & Prototype' <<'ISSUE_BODY'
+create_issue '[PT-004] Protótipo — Operação' 'type:prototype,layer:prototype,surface:admin,priority:P0' 'M0 — Product & Prototype' <<'ISSUE_BODY'
 ## Telas
-- `/ops`
-- `/ops/solicitacoes`
-- `/ops/solicitacoes/:id`
-- `/ops/casos`
-- `/ops/casos/:id`
-- `/ops/clientes`
-- `/ops/clientes/:id`
-- `/ops/veiculos`
-- `/ops/veiculos/:id`
-- `/ops/pedidos`
-- `/ops/pagamentos`
+- `/admin`
+- `/admin/solicitacoes`
+- `/admin/solicitacoes/:id`
+- `/admin/casos`
+- `/admin/casos/:id`
+- `/admin/clientes`
+- `/admin/clientes/:id`
+- `/admin/veiculos`
+- `/admin/veiculos/:id`
+- `/admin/pedidos`
+- `/admin/pagamentos`
 
 ## Objetivo
 Separar trabalho normal de exceções e tornar a próxima ação evidente.
@@ -454,7 +453,7 @@ create_issue '[PT-005] Protótipo — Administração e Financeiro' 'type:protot
 - reconciliação
 - parceiros
 - serviços e preços
-- operadoras
+- usuários internos
 - auditoria
 - configurações
 
@@ -834,7 +833,6 @@ Implementar somente a casca autenticada e navegação.
 ## Contextos
 - OWNER
 - PARTNER
-- OPERATOR
 - ADMIN
 
 ## Escopo
@@ -943,7 +941,7 @@ Implementar uma única tela de login para todos os papéis.
 - redirect para contexto autorizado.
 
 ## Regra
-Não existe seletor Cliente/Partner/Operator/Admin.
+Não existe seletor Cliente/Partner/Admin.
 ISSUE_BODY
 
 # [FE-AUTH-002] Cadastro público do OWNER
@@ -963,7 +961,7 @@ Implementar self-signup exclusivamente para OWNER.
 
 ## Fora de escopo
 - Partner self-signup;
-- criação de Operator/Admin.
+- criação de Partner/Admin.
 ISSUE_BODY
 
 # [FE-AUTH-003] Recuperação e redefinição de senha
@@ -990,7 +988,7 @@ create_issue '[FE-AUTH-004] Convite, ativação e seleção de contexto' 'type:s
 - `/selecionar-contexto` quando necessário
 
 ## Responsabilidade
-Ativar acesso de PARTNER/OPERATOR e permitir escolher contexto somente quando o usuário possuir mais de um.
+Ativar acesso de PARTNER/ADMIN e permitir escolher contexto somente quando o usuário possuir mais de um.
 
 ## Fora de escopo
 - definir permissões;
@@ -1431,9 +1429,9 @@ Modelar documento e pendência sem acoplar ao storage provider.
 ISSUE_BODY
 
 # [FE-OPS-001] Dashboard Operacional
-create_issue '[FE-OPS-001] Dashboard Operacional' 'type:screen,layer:frontend,surface:operator,domain:dashboard,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
+create_issue '[FE-OPS-001] Dashboard Operacional' 'type:screen,layer:frontend,surface:admin,domain:dashboard,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
 ## Rota
-`/ops`
+`/admin`
 
 ## Responsabilidade
 Implementar a visão do trabalho que precisa ser resolvido agora.
@@ -1448,10 +1446,10 @@ Implementar a visão do trabalho que precisa ser resolvido agora.
 ISSUE_BODY
 
 # [FE-OPS-002] Solicitações da Operação
-create_issue '[FE-OPS-002] Solicitações da Operação' 'type:screen,layer:frontend,surface:operator,domain:service-request,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
+create_issue '[FE-OPS-002] Solicitações da Operação' 'type:screen,layer:frontend,surface:admin,domain:service-request,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
 ## Rotas
-- `/ops/solicitacoes`
-- `/ops/solicitacoes/:id`
+- `/admin/solicitacoes`
+- `/admin/solicitacoes/:id`
 
 ## Responsabilidade
 Implementar lista e detalhe do trabalho normal.
@@ -1468,10 +1466,10 @@ Implementar lista e detalhe do trabalho normal.
 ISSUE_BODY
 
 # [FE-OPS-003] Cases da Operação
-create_issue '[FE-OPS-003] Cases da Operação' 'type:screen,layer:frontend,surface:operator,domain:cases,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
+create_issue '[FE-OPS-003] Cases da Operação' 'type:screen,layer:frontend,surface:admin,domain:cases,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
 ## Rotas
-- `/ops/casos`
-- `/ops/casos/:id`
+- `/admin/casos`
+- `/admin/casos/:id`
 
 ## Responsabilidade
 Implementar fila de exceções e detalhe para resolução.
@@ -1488,10 +1486,10 @@ Implementar fila de exceções e detalhe para resolução.
 ISSUE_BODY
 
 # [FE-OPS-004] Clientes da Operação
-create_issue '[FE-OPS-004] Clientes da Operação' 'type:screen,layer:frontend,surface:operator,domain:customers,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
+create_issue '[FE-OPS-004] Clientes da Operação' 'type:screen,layer:frontend,surface:admin,domain:customers,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
 ## Rotas
-- `/ops/clientes`
-- `/ops/clientes/:id`
+- `/admin/clientes`
+- `/admin/clientes/:id`
 
 ## Responsabilidade
 Implementar lista e visão 360 operacional do cliente.
@@ -1501,10 +1499,10 @@ Visão geral, Veículos, Solicitações/Pedidos, Pagamentos, Cases, Documentos, 
 ISSUE_BODY
 
 # [FE-OPS-005] Veículos da Operação
-create_issue '[FE-OPS-005] Veículos da Operação' 'type:screen,layer:frontend,surface:operator,domain:vehicles,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
+create_issue '[FE-OPS-005] Veículos da Operação' 'type:screen,layer:frontend,surface:admin,domain:vehicles,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
 ## Rotas
-- `/ops/veiculos`
-- `/ops/veiculos/:id`
+- `/admin/veiculos`
+- `/admin/veiculos/:id`
 
 ## Responsabilidade
 Implementar busca/lista e detalhe operacional.
@@ -1514,10 +1512,10 @@ situação, stale, multas, licenciamento, solicitações, pagamentos, documentos
 ISSUE_BODY
 
 # [FE-OPS-006] Pedidos da Operação
-create_issue '[FE-OPS-006] Pedidos da Operação' 'type:screen,layer:frontend,surface:operator,domain:orders,priority:P1' 'M4 — Operations' <<'ISSUE_BODY'
+create_issue '[FE-OPS-006] Pedidos da Operação' 'type:screen,layer:frontend,surface:admin,domain:orders,priority:P1' 'M4 — Operations' <<'ISSUE_BODY'
 ## Rotas
-- `/ops/pedidos`
-- `/ops/pedidos/:id`
+- `/admin/pedidos`
+- `/admin/pedidos/:id`
 
 ## Responsabilidade
 Implementar leitura comercial do pedido.
@@ -1527,10 +1525,10 @@ Order é transação comercial; não substituir ServiceRequest.
 ISSUE_BODY
 
 # [FE-OPS-007] Pagamentos da Operação
-create_issue '[FE-OPS-007] Pagamentos da Operação' 'type:screen,layer:frontend,surface:operator,domain:payments,priority:P1' 'M4 — Operations' <<'ISSUE_BODY'
+create_issue '[FE-OPS-007] Pagamentos da Operação' 'type:screen,layer:frontend,surface:admin,domain:payments,priority:P1' 'M4 — Operations' <<'ISSUE_BODY'
 ## Rotas
-- `/ops/pagamentos`
-- `/ops/pagamentos/:id`
+- `/admin/pagamentos`
+- `/admin/pagamentos/:id`
 
 ## Responsabilidade
 Implementar leitura operacional do Payment.
@@ -1540,7 +1538,7 @@ local status, provider status, amount, timestamps, order/service request, diverg
 ISSUE_BODY
 
 # [BE-OPS-001] Read models da Operação
-create_issue '[BE-OPS-001] Read models da Operação' 'type:capability,layer:backend,surface:operator,domain:operations,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
+create_issue '[BE-OPS-001] Read models da Operação' 'type:capability,layer:backend,surface:admin,domain:operations,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
 ## Responsabilidade
 Alimentar dashboard/listas sem N+1 e com scope correto.
 
@@ -1560,7 +1558,7 @@ Alimentar dashboard/listas sem N+1 e com scope correto.
 ISSUE_BODY
 
 # [BE-CASE-001] Case lifecycle, claim concorrente e notas
-create_issue '[BE-CASE-001] Case lifecycle, claim concorrente e notas' 'type:capability,layer:backend,surface:operator,domain:cases,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
+create_issue '[BE-CASE-001] Case lifecycle, claim concorrente e notas' 'type:capability,layer:backend,surface:admin,domain:cases,priority:P0' 'M4 — Operations' <<'ISSUE_BODY'
 ## Responsabilidade
 Ser fonte da verdade para exceções operacionais.
 
@@ -1667,11 +1665,11 @@ Implementar gestão visual do catálogo e preço padrão.
 Alterar preço não reescreve histórico.
 ISSUE_BODY
 
-# [FE-ADM-007] Gestão de Operadoras
-create_issue '[FE-ADM-007] Gestão de Operadoras' 'type:screen,layer:frontend,surface:admin,domain:operators,priority:P1' 'M5 — Admin & Finance' <<'ISSUE_BODY'
+# [FE-ADM-007] Gestão de usuários internos
+create_issue '[FE-ADM-007] Gestão de usuários internos' 'type:screen,layer:frontend,surface:admin,domain:internal-users,priority:P1' 'M5 — Admin & Finance' <<'ISSUE_BODY'
 ## Rotas
-- `/admin/operadoras`
-- `/admin/operadoras/:id`
+- `/admin/usuarios`
+- `/admin/usuarios/:id`
 
 ## Responsabilidade
 Implementar lista, convite, detalhe, suspensão e reativação.
@@ -1761,8 +1759,8 @@ provider webhook;
 UI.
 ISSUE_BODY
 
-# [BE-ADM-002] Gestão administrativa de parceiros, catálogo e operadores
-create_issue '[BE-ADM-002] Gestão administrativa de parceiros, catálogo e operadores' 'type:capability,layer:backend,surface:admin,domain:admin,priority:P1' 'M5 — Admin & Finance' <<'ISSUE_BODY'
+# [BE-ADM-002] Gestão administrativa de parceiros, catálogo e usuários internos
+create_issue '[BE-ADM-002] Gestão administrativa de parceiros, catálogo e usuários internos' 'type:capability,layer:backend,surface:admin,domain:admin,priority:P1' 'M5 — Admin & Finance' <<'ISSUE_BODY'
 ## Responsabilidade
 Implementar mutations administrativas não financeiras.
 
@@ -1771,7 +1769,7 @@ Implementar mutations administrativas não financeiras.
 - partner users;
 - catalog enable/disable;
 - price snapshots;
-- operator invite/suspend/reactivate;
+- admin provisioning/suspend/reactivate;
 - admin settings autorizadas.
 
 ## Fora de escopo

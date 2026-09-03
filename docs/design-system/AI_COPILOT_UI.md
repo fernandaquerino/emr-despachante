@@ -16,7 +16,7 @@
 
 ## 2. Trigger e entrada
 
-### Operação (`/ops`, `/admin`)
+### Operação (`/admin`, `/admin`)
 
 - Botão no header: `<Sparkles />` (ícone Lucide, tamanho 20, cor `--text-primary`) + label "Copilot".
 - Cor: usa `Button variant="secondary"` do sistema. **Nunca gradient roxo, nunca dourado, nunca "shimmer".**
@@ -29,7 +29,7 @@ Botão discreto secondary em cards/painéis específicos. Label sempre em verbo 
 
 | Local | Label | Escopo |
 |---|---|---|
-| Dashboard Operacional (topo direito) | ✨ Resumir minha fila | resume casos da operadora atual |
+| Dashboard Operacional (topo direito) | ✨ Resumir minha fila | resume casos da admin atual |
 | Dashboard Admin (topo direito) | ✨ Resumir operação | resume período atual do filtro |
 | Detalhe do caso | ✨ Resumir caso | usa case + timeline + payment relacionado |
 | Detalhe do caso | ✨ Sugerir próxima ação | usa case + histórico + procedimentos (RAG) |

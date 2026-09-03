@@ -403,7 +403,7 @@ Base 4px.
 
 Uso por contexto:
 
-- Dense (dashboards `/ops`, `/admin`): gap 8, card padding 12–16, section gap 24.
+- Dense (dashboards `/admin`, `/admin`): gap 8, card padding 12–16, section gap 24.
 - Confortável (proprietário `/app`): gap 16, card padding 20–24, section gap 32.
 
 ## 6. Radius

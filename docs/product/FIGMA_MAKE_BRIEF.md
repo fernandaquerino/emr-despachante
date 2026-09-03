@@ -5,7 +5,7 @@
 Criar um protótipo navegável de uma plataforma de despachante online com quatro perfis:
 - proprietário;
 - parceiro;
-- operadora;
+- admin;
 - admin.
 
 O foco principal visual deve ser a operação interna e o Partner Portal como canal estruturado para solicitações B2B/B2B2C.
@@ -15,7 +15,7 @@ O foco principal visual deve ser a operação interna e o Partner Portal como ca
 ### P0
 1. Login
 2. Dashboard Operacional
-3. Solicitações da Operadora
+3. Solicitações da Admin
 4. Detalhe da Solicitação Operacional
 5. Casos
 6. Detalhe do Caso
@@ -40,8 +40,8 @@ O foco principal visual deve ser a operação interna e o Partner Portal como ca
 23. Documentos/Pendências do Parceiro
 24. Equipe do Parceiro
 25. Serviços e Preços
-26. Operadoras
-27. Detalhe da Operadora
+26. Usuários internos
+27. Detalhe da Admin
 28. Histórico
 29. Auditoria
 
@@ -123,8 +123,8 @@ Clientes
 → Cliente
 → Veículo
 
-Operadoras
-→ Operadora
+Usuários internos
+→ Admin
 
 Proprietário
 → Veículo
@@ -142,7 +142,7 @@ Parceiro
 → ServiceRequest criado
 → Acompanhamento
 
-Operadora
+Admin
 → Solicitações
 → Detalhe da solicitação
 → Case apenas se houver exceção
@@ -163,7 +163,7 @@ Adicionar aos fluxos P1:
 
 ### Exemplos de conversa
 
-**Operadora**
+**Admin**
 “Quais casos preciso priorizar hoje?”
 
 “Quais solicitações de parceiro estão aguardando ação?”

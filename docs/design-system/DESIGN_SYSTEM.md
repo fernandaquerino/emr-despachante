@@ -12,7 +12,7 @@ O EMR Despachante é um **CRM operacional + fila de exceções + fintech leve + 
 | Perfil | Volume de uso | Densidade ideal | Modo padrão | Objetivo dominante |
 |---|---|---|---|---|
 | PROPRIETÁRIO | Curto e pontual | Confortável (6/10) | Light | "Meu carro está regular? O que devo pagar?" |
-| OPERADORA | Jornada longa diária | Dense (8/10) | Light c/ dark opt-in | "O que preciso resolver agora?" |
+| ADMIN | Jornada longa diária | Dense (8/10) | Light c/ dark opt-in | "O que preciso resolver agora?" |
 | ADMIN | Análise + intervenção | Dense (8/10) | Light c/ dark opt-in | "Como está a operação e onde está o gargalo?" |
 
 Restrições que moldaram todas as decisões:
@@ -180,7 +180,7 @@ Perfil **Subtle** (3/10). Motion serve significado, nunca decoração.
 
 ## 14. Grid / Layout
 
-### Área interna (`/ops`, `/admin`)
+### Área interna (`/admin`, `/admin`)
 
 - Sidebar fixa: `240px` desktop; `72px` colapsada.
 - Header: `56px` fixo.
@@ -350,7 +350,7 @@ Além dos anti-patterns gerais, vetados neste produto:
 5. **Erro genérico "algo deu errado"** — todo erro carrega contexto (qual integração falhou, quando, próxima ação sugerida).
 6. **Esconder dado stale** — sempre mostrar timestamp da última atualização; nunca renderizar dado velho como fresco.
 7. **KPI sem link** — todo card de KPI é clicável para lista filtrada correspondente.
-8. **Ranking público entre operadoras** — vetado no MVP (SCREEN_SPECS §11).
+8. **Ranking público entre usuários internos** — vetado no MVP (SCREEN_SPECS §11).
 9. **Vermelho como cor de marca** — proibido.
 10. **Verde como primary** — proibido (queima semântica de sucesso).
 11. **"AI purple gradient"** — Copilot usa navy/cobalt como qualquer outra feature; roxo é reservado a status `PROCESSING`.

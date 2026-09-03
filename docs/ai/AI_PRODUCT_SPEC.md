@@ -6,7 +6,7 @@
 
 ## 2. Problema
 
-A operação já possui dados suficientes para resolver muitos casos, mas uma operadora precisa navegar entre cliente, veículo, pagamento, caso e histórico para formar contexto.
+A operação já possui dados suficientes para resolver muitos casos, mas uma admin precisa navegar entre cliente, veículo, pagamento, caso e histórico para formar contexto.
 
 A IA deve reduzir esse tempo.
 
@@ -91,7 +91,7 @@ Não adicionar chat com acesso amplo sem requisito explícito. Qualquer evoluç�
 
 ## 6. Métricas
 
-- AI weekly active operators;
+- AI weekly active internal-users;
 - case summary usage;
 - recommendation acceptance;
 - time-to-understand-case;
