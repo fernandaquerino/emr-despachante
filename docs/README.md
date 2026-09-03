@@ -40,6 +40,7 @@ Conceitos importantes:
 
 ## Engenharia
 
+- [Guia de contribuição e convenção de commits](engineering/CONTRIBUTING.md)
 - [Arquitetura](engineering/ARCHITECTURE.md)
 - [Modelo de dados](engineering/DATA_MODEL.md)
 - [API](engineering/API_SPEC.md)

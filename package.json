@@ -7,14 +7,21 @@
     "node": ">=20.0.0"
   },
   "scripts": {
+    "prepare": "husky",
     "dev": "pnpm -r --parallel --filter=\"./apps/*\" run dev",
     "build": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run build",
     "typecheck": "pnpm -r run typecheck",
     "lint": "pnpm -r run lint",
+    "lint:staged": "lint-staged",
+    "commitlint": "commitlint",
     "format:check": "prettier --check .",
     "start": "pnpm -r --parallel --filter=\"./apps/*\" run start"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
     "prettier": "^3.3.0",
     "typescript": "^5.6.0"
   }

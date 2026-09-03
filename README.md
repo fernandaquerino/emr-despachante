@@ -180,6 +180,10 @@ pnpm typecheck  # cobre todo o workspace
 pnpm build
 ```
 
+O `pnpm install` também configura o pre-commit, que formata e executa lint somente nos arquivos
+adicionados ao stage. Consulte o [guia de contribuição](docs/engineering/CONTRIBUTING.md) para detalhes e
+para a convenção de commits.
+
 ## Documentação
 
 Consulte o [índice da documentação](docs/README.md).
