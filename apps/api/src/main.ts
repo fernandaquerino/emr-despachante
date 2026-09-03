@@ -1,10 +1,13 @@
+import "dotenv/config";
 import "reflect-metadata";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
+import { validateApiEnv } from "./config/env";
 
 async function bootstrap() {
+  const env = validateApiEnv(process.env);
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3001);
+  await app.listen(env.port);
 }
 
 bootstrap();

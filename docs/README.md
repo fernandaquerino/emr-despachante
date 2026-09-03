@@ -47,6 +47,7 @@ Conceitos importantes:
 - [Decisões de arquitetura](engineering/ADRS.md)
 - [Segurança e LGPD](engineering/SECURITY_AND_LGPD.md)
 - [Observabilidade](engineering/OBSERVABILITY.md)
+- [Configuração de ambiente e secrets](engineering/ENVIRONMENT_CONFIGURATION.md)
 
 ## Inteligência artificial
 
