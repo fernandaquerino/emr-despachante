@@ -1,0 +1,6 @@
+@import "@emr/ui/styles/tokens.css";
+@import "@emr/ui/styles/base.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

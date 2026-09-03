@@ -1,0 +1,27 @@
+/**
+ * EMR Despachante — Base styles
+ *
+ * Regras globais que protegem invariantes de acessibilidade definidos em
+ * docs/design-system/TOKENS.md §8 e AGENTS.md (foco visível, motion).
+ * Não é um reset — apenas o que está documentado explicitamente.
+ */
+
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-normal: 0ms;
+    --motion-slow: 0ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

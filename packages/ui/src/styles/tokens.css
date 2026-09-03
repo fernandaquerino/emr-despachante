@@ -1,0 +1,433 @@
+/**
+ * EMR Despachante — Design Tokens
+ *
+ * Fonte da verdade: docs/design-system/TOKENS.md
+ * Arquitetura em 3 camadas: primitive → semantic → component.
+ *
+ * Os primitivos abaixo (§1) são valores hex crus e NÃO devem ser usados
+ * diretamente em componentes — ver AGENTS.md §14.1. Componentes devem
+ * sempre referenciar os tokens semânticos (§2-3) via var(--...).
+ */
+
+/* ============================================================
+ * §1 — Primitive color tokens (escalas 50→950)
+ * ============================================================ */
+
+:root {
+  /* Navy (marca) */
+  --navy-50: #f1f5f9;
+  --navy-100: #e2e8f0;
+  --navy-200: #cbd5e1;
+  --navy-300: #94a3b8;
+  --navy-400: #64748b;
+  --navy-500: #475569;
+  --navy-600: #334155;
+  --navy-700: #1e293b;
+  --navy-800: #172033;
+  --navy-900: #0f172a; /* primary */
+  --navy-950: #020617;
+
+  /* Slate (neutros) */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --slate-950: #020617;
+
+  /* Blue (info / accent secundário) */
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+
+  /* Cobalt (accent CTA) */
+  --cobalt-50: #f0f7fe;
+  --cobalt-100: #dbeafe;
+  --cobalt-200: #bad8f5;
+  --cobalt-300: #7bbae9;
+  --cobalt-400: #3b94d9;
+  --cobalt-500: #0f76be;
+  --cobalt-600: #0369a1; /* accent */
+  --cobalt-700: #075985;
+  --cobalt-800: #0c4a6e;
+  --cobalt-900: #082f49;
+
+  /* Emerald (success + Regular + Pago) */
+  --emerald-50: #ecfdf5;
+  --emerald-100: #d1fae5;
+  --emerald-200: #a7f3d0;
+  --emerald-300: #6ee7b7;
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #16a34a; /* success */
+  --emerald-700: #047857;
+  --emerald-800: #065f46;
+  --emerald-900: #064e3b;
+
+  /* Amber (warning + Atenção + Aguardando) */
+  --amber-50: #fffbeb;
+  --amber-100: #fef3c7;
+  --amber-200: #fde68a;
+  --amber-300: #fcd34d;
+  --amber-400: #fbbf24;
+  --amber-500: #f59e0b;
+  --amber-600: #d97706; /* warning */
+  --amber-700: #b45309;
+  --amber-800: #92400e;
+  --amber-900: #78350f;
+
+  /* Red (destructive + Irregular + Failed) */
+  --red-50: #fef2f2;
+  --red-100: #fee2e2;
+  --red-200: #fecaca;
+  --red-300: #fca5a5;
+  --red-400: #f87171;
+  --red-500: #ef4444;
+  --red-600: #dc2626; /* destructive */
+  --red-700: #b91c1c;
+  --red-800: #991b1b;
+  --red-900: #7f1d1d;
+
+  /* Purple (Processing / aguardando externo) */
+  --purple-50: #f5f3ff;
+  --purple-100: #ede9fe;
+  --purple-200: #ddd6fe;
+  --purple-300: #c4b5fd;
+  --purple-400: #a78bfa;
+  --purple-500: #8b5cf6;
+  --purple-600: #7c3aed; /* processing */
+  --purple-700: #6d28d9;
+  --purple-800: #5b21b6;
+  --purple-900: #4c1d95;
+}
+
+/* ============================================================
+ * §2 — Semantic tokens — Light (default)
+ * ============================================================ */
+
+:root {
+  /* Surfaces */
+  --bg-default: #f8fafc; /* slate-50 */
+  --bg-subtle: #f1f5f9; /* slate-100 */
+  --bg-emphasis: #e2e8f0; /* slate-200 */
+
+  --surface-default: #ffffff;
+  --surface-raised: #ffffff; /* + elev-1 */
+  --surface-selected: #f0f7fe; /* cobalt-50 */
+  --surface-inverse: #0f172a; /* navy-900 */
+
+  /* Text */
+  --text-primary: #0f172a; /* navy-900 */
+  --text-secondary: #475569; /* slate-600 */
+  --text-muted: #64748b; /* slate-500 */
+  --text-disabled: #94a3b8; /* slate-400 */
+  --text-inverse: #ffffff;
+  --text-link: #0369a1; /* cobalt-600 */
+  --text-on-primary: #ffffff;
+  --text-on-accent: #ffffff;
+
+  /* Borders */
+  --border-default: #e2e8f0; /* slate-200 */
+  --border-subtle: #f1f5f9; /* slate-100 */
+  --border-strong: #cbd5e1; /* slate-300 */
+  --border-focus: #0369a1; /* cobalt-600 */
+
+  /* Actions */
+  --action-primary: #0f172a; /* navy-900 */
+  --action-primary-hover: #1e293b; /* navy-800 */
+  --action-primary-active: #172033;
+  --action-primary-disabled: #cbd5e1; /* slate-300 */
+
+  --action-secondary: #ffffff;
+  --action-secondary-hover: #f8fafc;
+  --action-secondary-border: #cbd5e1;
+
+  --action-accent: #0369a1; /* cobalt-600 */
+  --action-accent-hover: #075985;
+  --action-accent-active: #0c4a6e;
+
+  --action-destructive: #dc2626; /* red-600 */
+  --action-destructive-hover: #b91c1c;
+  --action-destructive-active: #991b1b;
+
+  /* Semantic status */
+  --status-success: #16a34a; /* emerald-600 */
+  --status-success-bg: #ecfdf5; /* emerald-50 */
+  --status-success-fg: #065f46; /* emerald-800 */
+  --status-success-border: #a7f3d0;
+
+  --status-warning: #d97706; /* amber-600 */
+  --status-warning-bg: #fffbeb;
+  --status-warning-fg: #92400e;
+  --status-warning-border: #fde68a;
+
+  --status-error: #dc2626; /* red-600 */
+  --status-error-bg: #fef2f2;
+  --status-error-fg: #991b1b;
+  --status-error-border: #fecaca;
+
+  --status-info: #2563eb; /* blue-600 */
+  --status-info-bg: #eff6ff;
+  --status-info-fg: #1e40af;
+  --status-info-border: #bfdbfe;
+
+  --status-processing: #7c3aed; /* purple-600 */
+  --status-processing-bg: #f5f3ff;
+  --status-processing-fg: #5b21b6;
+  --status-processing-border: #ddd6fe;
+
+  --status-neutral: #64748b; /* slate-500 */
+  --status-neutral-bg: #f1f5f9;
+  --status-neutral-fg: #334155;
+  --status-neutral-border: #e2e8f0;
+
+  /* Priority (CasePriority) */
+  --priority-critical: #dc2626; /* red-600 */
+  --priority-high: #d97706; /* amber-600 */
+  --priority-medium: #2563eb; /* blue-600 */
+  --priority-low: #94a3b8; /* slate-400 */
+
+  /* Data viz — 6 categorical, colorblind-aware order */
+  --data-1: #0369a1; /* cobalt */
+  --data-2: #16a34a; /* emerald */
+  --data-3: #d97706; /* amber */
+  --data-4: #7c3aed; /* purple */
+  --data-5: #dc2626; /* red */
+  --data-6: #64748b; /* slate */
+}
+
+/* ============================================================
+ * §3 — Semantic tokens — Dark (opt-in)
+ *
+ * Ativa via [data-theme="dark"] na raiz, ou
+ * @media (prefers-color-scheme: dark) quando o usuário não escolheu.
+ * ============================================================ */
+
+[data-theme="dark"] {
+  --bg-default: #0b1220;
+  --bg-subtle: #111827;
+  --bg-emphasis: #1a2335;
+
+  --surface-default: #111827;
+  --surface-raised: #1a2335;
+  --surface-selected: #172554;
+  --surface-inverse: #f8fafc;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-disabled: #64748b;
+  --text-inverse: #0f172a;
+  --text-link: #7bbae9; /* cobalt-300 */
+  --text-on-primary: #0f172a;
+  --text-on-accent: #ffffff;
+
+  --border-default: #334155;
+  --border-subtle: #1e293b;
+  --border-strong: #475569;
+  --border-focus: #7bbae9;
+
+  --action-primary: #f8fafc;
+  --action-primary-hover: #e2e8f0;
+  --action-primary-active: #cbd5e1;
+  --action-primary-disabled: #334155;
+
+  --action-secondary: #1a2335;
+  --action-secondary-hover: #22304a;
+  --action-secondary-border: #334155;
+
+  --action-accent: #3b94d9; /* cobalt-400 */
+  --action-accent-hover: #7bbae9;
+  --action-accent-active: #bad8f5;
+
+  --action-destructive: #ef4444;
+  --action-destructive-hover: #f87171;
+  --action-destructive-active: #fca5a5;
+
+  --status-success: #22c55e;
+  --status-success-bg: #052e16;
+  --status-success-fg: #86efac;
+  --status-success-border: #14532d;
+
+  --status-warning: #f59e0b;
+  --status-warning-bg: #451a03;
+  --status-warning-fg: #fde68a;
+  --status-warning-border: #78350f;
+
+  --status-error: #ef4444;
+  --status-error-bg: #450a0a;
+  --status-error-fg: #fecaca;
+  --status-error-border: #7f1d1d;
+
+  --status-info: #3b82f6;
+  --status-info-bg: #172554;
+  --status-info-fg: #bfdbfe;
+  --status-info-border: #1e40af;
+
+  --status-processing: #a78bfa;
+  --status-processing-bg: #2e1065;
+  --status-processing-fg: #ddd6fe;
+  --status-processing-border: #5b21b6;
+
+  --status-neutral: #94a3b8;
+  --status-neutral-bg: #1e293b;
+  --status-neutral-fg: #cbd5e1;
+  --status-neutral-border: #334155;
+
+  --priority-critical: #ef4444;
+  --priority-high: #f59e0b;
+  --priority-medium: #3b82f6;
+  --priority-low: #64748b;
+
+  --data-1: #3b94d9;
+  --data-2: #22c55e;
+  --data-3: #f59e0b;
+  --data-4: #a78bfa;
+  --data-5: #ef4444;
+  --data-6: #94a3b8;
+}
+
+/* ============================================================
+ * §4 — Typography
+ * ============================================================ */
+
+:root {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* Size scale (rem base 16px) */
+  --font-size-display: 2.25rem; /* 36px */
+  --font-size-h1: 1.5rem; /* 24px */
+  --font-size-h2: 1.25rem; /* 20px */
+  --font-size-h3: 1.125rem; /* 18px */
+  --font-size-h4: 1rem; /* 16px */
+  --font-size-body-lg: 1rem; /* 16px */
+  --font-size-body: 0.875rem; /* 14px */
+  --font-size-body-sm: 0.8125rem; /* 13px */
+  --font-size-label: 0.75rem; /* 12px */
+  --font-size-caption: 0.6875rem; /* 11px */
+  --font-size-kpi: 1.75rem; /* 28px */
+
+  /* Weight */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line-height */
+  --lh-tight: 1.2;
+  --lh-snug: 1.35;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.65;
+
+  /* Tracking */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+
+  /* Numeric variant for KPIs, tables, prices */
+  --numeric-tabular: tabular-nums lining-nums;
+}
+
+/* ============================================================
+ * §5 — Spacing (base 4px)
+ * ============================================================ */
+
+:root {
+  --space-0: 0;
+  --space-1: 0.25rem; /* 4  */
+  --space-2: 0.5rem; /* 8  */
+  --space-3: 0.75rem; /* 12 */
+  --space-4: 1rem; /* 16 */
+  --space-5: 1.25rem; /* 20 */
+  --space-6: 1.5rem; /* 24 */
+  --space-8: 2rem; /* 32 */
+  --space-10: 2.5rem; /* 40 */
+  --space-12: 3rem; /* 48 */
+  --space-16: 4rem; /* 64 */
+  --space-20: 5rem; /* 80 */
+  --space-24: 6rem; /* 96 */
+}
+
+/* ============================================================
+ * §6 — Radius
+ * ============================================================ */
+
+:root {
+  --radius-none: 0;
+  --radius-xs: 4px; /* checkbox */
+  --radius-sm: 6px; /* input, button, tooltip */
+  --radius-md: 8px; /* select, popover */
+  --radius-lg: 10px; /* card, KPI */
+  --radius-xl: 12px; /* modal, drawer */
+  --radius-full: 9999px; /* badge, avatar */
+}
+
+/* ============================================================
+ * §7 — Elevation
+ * ============================================================ */
+
+:root {
+  --elev-0: none;
+  --elev-1: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --elev-2: 0 4px 12px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04);
+  --elev-3: 0 12px 32px rgba(15, 23, 42, 0.12), 0 4px 8px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="dark"] {
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --elev-2: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --elev-3: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================================
+ * §8 — Motion
+ * ============================================================ */
+
+:root {
+  --motion-fast: 120ms;
+  --motion-normal: 200ms;
+  --motion-slow: 320ms;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-decel: cubic-bezier(0, 0, 0, 1);
+  --ease-accel: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* ============================================================
+ * §9 — Breakpoints (referência — usados no Tailwind preset)
+ *
+ * --bp-sm:  375px   mobile floor
+ * --bp-md:  640px   larger phone
+ * --bp-lg:  768px   tablet
+ * --bp-xl:  1024px  laptop / desktop entry
+ * --bp-2xl: 1280px
+ * --bp-3xl: 1440px
+ * ============================================================ */
+
+/* ============================================================
+ * §10 — Z-index
+ * ============================================================ */
+
+:root {
+  --z-base: 0;
+  --z-sticky: 100; /* sticky headers */
+  --z-header: 200;
+  --z-dropdown: 300;
+  --z-drawer: 400;
+  --z-modal: 500;
+  --z-toast: 600;
+  --z-tooltip: 700;
+}
