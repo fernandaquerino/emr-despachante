@@ -1,0 +1,136 @@
+// Recorte mínimo para ambiente local repetível (FND-005).
+// Modelagem completa de todas as entidades do domínio fica para issue própria —
+// ver docs/engineering/DATA_MODEL.md. Enums abaixo replicam literalmente os valores
+// de docs/product/STATUS_MODEL.md.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  PARTNER
+  ADMIN
+}
+
+enum UserStatus {
+  INVITED
+  ACTIVE
+  SUSPENDED
+  DISABLED
+}
+
+enum VehicleOverallStatus {
+  REGULAR
+  ATTENTION
+  IRREGULAR
+  PROCESSING
+  MANUAL_REVIEW
+  UNKNOWN
+}
+
+enum FineStatus {
+  OPEN
+  PAYMENT_PENDING
+  PAID
+  CLEARANCE_PROCESSING
+  CLEARED
+  CANCELLED
+}
+
+enum LicensingStatus {
+  ELIGIBLE
+  BLOCKED
+  PAYMENT_PENDING
+  PAID
+  PROCESSING
+  DOCUMENT_READY
+  FAILED
+}
+
+enum GovernmentSubmissionStatus {
+  NOT_REQUESTED
+  QUEUED
+  PROCESSING
+  CONFIRMED
+  FAILED
+  MANUAL_REVIEW
+}
+
+model User {
+  id           String     @id @default(uuid())
+  name         String
+  email        String     @unique
+  passwordHash String     @map("password_hash")
+  role         Role
+  status       UserStatus @default(ACTIVE)
+  createdAt    DateTime   @default(now()) @map("created_at")
+
+  ownedVehicles      Vehicle[] @relation("VehicleOwner")
+  dispatchedVehicles Vehicle[] @relation("VehicleDispatcher")
+
+  @@map("users")
+}
+
+model Vehicle {
+  id               String               @id @default(uuid())
+  ownerId          String               @map("owner_id")
+  dispatcherId     String?              @map("dispatcher_id")
+  plateNormalized  String               @unique @map("plate_normalized")
+  renavamEncrypted String               @map("renavam_encrypted")
+  make             String
+  model            String
+  year             Int
+  overallStatus    VehicleOverallStatus @default(UNKNOWN) @map("overall_status")
+  lastCheckedAt    DateTime?            @map("last_checked_at")
+  active           Boolean              @default(true)
+  createdAt        DateTime             @default(now()) @map("created_at")
+
+  owner      User        @relation("VehicleOwner", fields: [ownerId], references: [id])
+  dispatcher User?       @relation("VehicleDispatcher", fields: [dispatcherId], references: [id])
+  fines      Fine[]
+  licensings Licensing[]
+
+  @@map("vehicles")
+}
+
+model Fine {
+  id                 String     @id @default(uuid())
+  vehicleId          String     @map("vehicle_id")
+  externalReference  String     @map("external_reference")
+  amount             Decimal    @db.Decimal(12, 2)
+  dueDate            DateTime   @map("due_date")
+  discountAmount     Decimal?   @db.Decimal(12, 2) @map("discount_amount")
+  agency             String
+  status             FineStatus @default(OPEN)
+  detectedAt         DateTime   @default(now()) @map("detected_at")
+  updatedAt          DateTime   @updatedAt @map("updated_at")
+
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+
+  @@unique([vehicleId, externalReference])
+  @@map("fines")
+}
+
+model Licensing {
+  id                         String                     @id @default(uuid())
+  vehicleId                  String                     @map("vehicle_id")
+  year                       Int
+  amount                     Decimal                    @db.Decimal(12, 2)
+  dueDate                    DateTime                   @map("due_date")
+  status                     LicensingStatus            @default(ELIGIBLE)
+  governmentSubmissionStatus GovernmentSubmissionStatus @default(NOT_REQUESTED) @map("government_submission_status")
+  documentId                 String?                    @map("document_id")
+  createdAt                  DateTime                   @default(now()) @map("created_at")
+  updatedAt                  DateTime                   @updatedAt @map("updated_at")
+
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+
+  @@unique([vehicleId, year])
+  @@map("licensings")
+}

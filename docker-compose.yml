@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16.4-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-emr}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-emr}
+      POSTGRES_DB: ${POSTGRES_DB:-emr_despachante}
+    ports:
+      - "${POSTGRES_PORT:-5434}:5432"
+    volumes:
+      - emr_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-emr} -d ${POSTGRES_DB:-emr_despachante}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  emr_postgres_data:
+    name: emr_postgres_data
