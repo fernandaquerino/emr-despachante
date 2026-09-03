@@ -182,3 +182,41 @@ Tool calling é usado para estado transacional.
 
 ### Decisão
 Falha de provider de IA não afeta funções essenciais do EMR Despachante.
+
+---
+
+## ADR-015 — PostgreSQL, Prisma e Docker Compose para ambiente local
+
+### Contexto
+O projeto ainda não tinha banco de dados, ORM/migration tool nem forma repetível de subir um
+ambiente local. A issue FND-005 exige PostgreSQL, migrations, seed fictício, Docker Compose,
+healthcheck e comandos de reset/migrate/seed, sem modelar todas as entidades do domínio.
+
+### Decisão
+- PostgreSQL 16 (imagem `postgres:16.4-alpine`) via Docker Compose, versão pinada.
+- Prisma como ORM e ferramenta de migrations em `apps/api`.
+- `docker-compose.yml` na raiz define somente o serviço `postgres`, com volume nomeado e
+  healthcheck via `pg_isready`. Dockerização de `api`/`worker` fica para issue futura.
+- `prisma migrate dev` para desenvolvimento local (gera e aplica migrations); `prisma migrate
+  deploy` reservado para pipelines futuros (aplica migrations existentes, não interativo).
+- `schema.prisma` cobre um recorte mínimo (`User`, `Vehicle`, `Fine`, `Licensing`) suficiente
+  para exercitar os enums oficiais de `docs/product/STATUS_MODEL.md`. Modelagem completa do
+  domínio (`docs/engineering/DATA_MODEL.md`) permanece fora de escopo.
+- Seed (`prisma/seed.ts`) usa `upsert` por chave única para ser idempotente, com dados
+  claramente fictícios (prefixo "TESTE", domínio `example.com`).
+
+### Por que
+Prisma dá migrations versionadas, client tipado e integra bem com TypeScript/NestJS sem exigir
+SQL manual nesta fase. Docker Compose evita depender de instalação local de Postgres e garante
+ambiente reprodutível entre desenvolvedores. Volume nomeado (em vez de bind mount) evita
+acoplar dados do banco a um diretório do repositório.
+
+### Consequência
+- Só `apps/api` ganha dependência de Prisma; `apps/web` e `apps/worker` não são afetados.
+- Migrations em `apps/api/prisma/migrations` são versionadas em git.
+- Qualquer nova entidade de domínio, incluindo dados sensíveis (CPF/CNPJ, RENAVAM,
+  financeiro), deve seguir mascaramento/minimização de `docs/engineering/SECURITY_AND_LGPD.md`
+  já a partir da próxima issue que expandir o schema.
+- `prisma migrate reset` é destrutivo; o script `db:reset` não usa `--force` por padrão,
+  exigindo confirmação interativa como proteção contra execução acidental fora do ambiente
+  local.

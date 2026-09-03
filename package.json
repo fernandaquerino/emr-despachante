@@ -16,7 +16,14 @@
     "lint:staged": "lint-staged",
     "commitlint": "commitlint",
     "format:check": "prettier --check .",
-    "start": "pnpm -r --parallel --filter=\"./apps/*\" run start"
+    "start": "pnpm -r --parallel --filter=\"./apps/*\" run start",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:migrate": "pnpm --filter @emr/api run db:migrate",
+    "db:migrate:deploy": "pnpm --filter @emr/api run db:migrate:deploy",
+    "db:seed": "pnpm --filter @emr/api run db:seed",
+    "db:reset": "pnpm --filter @emr/api run db:reset",
+    "db:studio": "pnpm --filter @emr/api run db:studio"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
