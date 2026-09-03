@@ -46,4 +46,7 @@ docs(engineering): document local commit workflow
 ```
 
 Commits com mudança incompatível devem usar `!` após o tipo ou escopo e explicar a migração no corpo do
-commit. A convenção é documentada e revisada, mas não é bloqueada por commitlint neste momento.
+commit.
+
+O hook `commit-msg` usa commitlint para bloquear mensagens que não seguem a convenção. Por exemplo,
+`teste` é rejeitado, enquanto `feat: add vehicle search` é aceito.
