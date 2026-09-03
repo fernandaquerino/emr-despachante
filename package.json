@@ -12,6 +12,7 @@
     "build": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run build",
     "typecheck": "pnpm -r run typecheck",
     "lint": "pnpm -r run lint",
+    "test": "pnpm -r --if-present run test",
     "lint:staged": "lint-staged",
     "commitlint": "commitlint",
     "format:check": "prettier --check .",

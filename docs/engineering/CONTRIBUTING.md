@@ -19,6 +19,24 @@ Para validar manualmente os arquivos no stage, execute:
 pnpm lint:staged
 ```
 
+## Validações de Pull Request
+
+Pull Requests executam automaticamente os mesmos quality gates disponíveis localmente:
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
+```
+
+O pipeline instala as dependências com o lockfile, reutiliza o cache do pnpm e cancela uma execução
+anterior da mesma branch quando um novo commit é enviado. Cada workspace que possuir testes unitários
+deve expor um script `test`; o comando raiz executa todos os scripts de teste disponíveis.
+
+Ao abrir um Pull Request, preencha o template com o contexto, a issue relacionada, os passos de
+validação, as evidências visuais aplicáveis e os possíveis impactos da mudança.
+
 ## Convenção de commits
 
 Use Conventional Commits no formato:
