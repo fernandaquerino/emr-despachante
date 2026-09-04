@@ -1,0 +1,115 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+Tokens semânticos de cor. Fonte da verdade: `docs/design-system/TOKENS.md`. Os swatches abaixo lêem
+os CSS custom properties reais definidos em `src/styles/tokens.css` — não há valor hex duplicado
+aqui, então esta página nunca dessincroniza dos tokens.
+
+export function Swatch({ cssVar, label }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "6px 0" }}>
+      <div
+        style={{
+          width: 40,
+          height: 40,
+          borderRadius: 8,
+          border: "1px solid var(--border-default)",
+          background: `var(${cssVar})`,
+          flexShrink: 0,
+        }}
+      />
+      <div>
+        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.8125rem" }}>{cssVar}</div>
+        {label ? (
+          <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>{label}</div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+export function Group({ title, children }) {
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <h3 style={{ marginBottom: 8 }}>{title}</h3>
+      {children}
+    </div>
+  );
+}
+
+<Group title="Surface & Background">
+  <Swatch cssVar="--bg-default" />
+  <Swatch cssVar="--bg-subtle" />
+  <Swatch cssVar="--bg-emphasis" />
+  <Swatch cssVar="--surface-default" />
+  <Swatch cssVar="--surface-raised" label="+ elev-1" />
+  <Swatch cssVar="--surface-selected" />
+  <Swatch cssVar="--surface-inverse" />
+</Group>
+
+<Group title="Text">
+  <Swatch cssVar="--text-primary" />
+  <Swatch cssVar="--text-secondary" />
+  <Swatch cssVar="--text-muted" />
+  <Swatch cssVar="--text-disabled" />
+  <Swatch cssVar="--text-link" />
+</Group>
+
+<Group title="Border">
+  <Swatch cssVar="--border-default" />
+  <Swatch cssVar="--border-subtle" />
+  <Swatch cssVar="--border-strong" />
+  <Swatch cssVar="--border-focus" />
+</Group>
+
+<Group title="Actions">
+  <Swatch cssVar="--action-primary" />
+  <Swatch cssVar="--action-primary-hover" />
+  <Swatch cssVar="--action-accent" />
+  <Swatch cssVar="--action-destructive" />
+</Group>
+
+<Group title="Status — success">
+  <Swatch cssVar="--status-success" />
+  <Swatch cssVar="--status-success-bg" />
+  <Swatch cssVar="--status-success-fg" />
+  <Swatch cssVar="--status-success-border" />
+</Group>
+
+<Group title="Status — warning">
+  <Swatch cssVar="--status-warning" />
+  <Swatch cssVar="--status-warning-bg" />
+  <Swatch cssVar="--status-warning-fg" />
+  <Swatch cssVar="--status-warning-border" />
+</Group>
+
+<Group title="Status — error">
+  <Swatch cssVar="--status-error" />
+  <Swatch cssVar="--status-error-bg" />
+  <Swatch cssVar="--status-error-fg" />
+  <Swatch cssVar="--status-error-border" />
+</Group>
+
+<Group title="Status — info">
+  <Swatch cssVar="--status-info" />
+  <Swatch cssVar="--status-info-bg" />
+  <Swatch cssVar="--status-info-fg" />
+  <Swatch cssVar="--status-info-border" />
+</Group>
+
+<Group title="Status — processing">
+  <Swatch cssVar="--status-processing" />
+  <Swatch cssVar="--status-processing-bg" />
+  <Swatch cssVar="--status-processing-fg" />
+  <Swatch cssVar="--status-processing-border" />
+</Group>
+
+<Group title="Status — neutral">
+  <Swatch cssVar="--status-neutral" />
+  <Swatch cssVar="--status-neutral-bg" />
+  <Swatch cssVar="--status-neutral-fg" />
+  <Swatch cssVar="--status-neutral-border" />
+</Group>

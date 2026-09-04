@@ -1,0 +1,30 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+Escala tipográfica do Tailwind preset (`docs/design-system/TOKENS.md` §Typography). As amostras
+abaixo usam as classes reais (`text-h1`, `text-body`, …) — o que está na tela é exatamente o que os
+componentes usam, não uma cópia dos valores.
+
+<div className="flex flex-col gap-4">
+  <p className="text-display">Display · 2.25rem / 700</p>
+  <p className="text-h1">H1 · 1.5rem / 600</p>
+  <p className="text-h2">H2 · 1.25rem / 600</p>
+  <p className="text-h3">H3 · 1.125rem / 600</p>
+  <p className="text-h4">H4 · 1rem / 600</p>
+  <p className="text-body-lg">Body LG · 1rem / 400</p>
+  <p className="text-body">Body · 0.875rem / 400</p>
+  <p className="text-body-sm">Body SM · 0.8125rem / 400</p>
+  <p className="text-label font-medium">Label · 0.75rem / 500 / uppercase-friendly</p>
+  <p className="text-caption">Caption · 0.6875rem</p>
+  <p className="text-kpi tabular-nums">KPI · R$ 1.284,50</p>
+</div>
+
+## Font families
+
+<div className="flex flex-col gap-2">
+  <p className="font-sans text-body">font-sans — usado no texto corrido.</p>
+  <p className="font-mono text-body">font-mono — usado em placas, valores monetários, IDs.</p>
+</div>
