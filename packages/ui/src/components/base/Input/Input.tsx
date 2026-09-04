@@ -37,10 +37,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           aria-describedby={cn(hintId, errorId) || undefined}
           className={cn(
             "h-10 rounded-sm border border-border bg-surface px-3 text-body text-text",
+            "transition-colors duration-fast ease-standard",
             "placeholder:text-text-disabled",
-            "focus-visible:outline-none focus-visible:border-border-focus focus-visible:ring-2 focus-visible:ring-border-focus/20",
-            "disabled:bg-bg-subtle disabled:text-text-disabled",
-            error && "border-status-error",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1",
+            "disabled:bg-bg-subtle disabled:text-text-disabled disabled:hover:border-border",
+            error
+              ? "border-status-error focus-visible:border-status-error focus-visible:ring-status-error"
+              : "hover:border-border-strong focus-visible:border-border-focus focus-visible:ring-border-focus",
             className,
           )}
           {...props}

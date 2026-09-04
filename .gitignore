@@ -9,3 +9,7 @@ storybook-static/
 !.env.example
 !**/.env.example
 .DS_Store
+
+# Skills do Claude Code instaladas localmente (ex.: uipro init) — tooling
+# pessoal do ambiente, não faz parte do código do produto.
+.claude/

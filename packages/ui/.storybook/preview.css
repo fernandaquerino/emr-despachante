@@ -11,3 +11,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Só no preview (não faz parte de base.css, que é consumido por apps/*):
+   sem isso o iframe do Storybook fica com fundo branco do navegador mesmo
+   no tema dark, já que nada aqui pinta o body por padrão. */
+body {
+  background-color: var(--bg-default);
+  color: var(--text-primary);
+}

@@ -21,7 +21,7 @@ export function Table({ className, ...props }: TableHTMLAttributes<HTMLTableElem
 }
 
 export function TableHeader(props: HTMLAttributes<HTMLTableSectionElement>) {
-  return <thead className="border-b border-border bg-surface" {...props} />;
+  return <thead className="border-b border-border-strong bg-bg-subtle" {...props} />;
 }
 
 export function TableBody(props: HTMLAttributes<HTMLTableSectionElement>) {
@@ -36,7 +36,7 @@ export function TableRow({ className, selected, ...props }: TableRowProps) {
   return (
     <tr
       className={cn(
-        "border-b border-border-subtle last:border-b-0 hover:bg-bg-subtle",
+        "border-b border-border-subtle last:border-b-0 hover:bg-bg-subtle transition-colors duration-fast ease-standard",
         selected && "border-l-2 border-l-action-accent bg-surface-selected",
         className,
       )}

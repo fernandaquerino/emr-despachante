@@ -49,7 +49,7 @@ export function DialogContent({
             aria-label="Fechar"
             className="text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus"
           >
-            <X aria-hidden="true" className="h-4 w-4" />
+            <X aria-hidden="true" strokeWidth={1.5} className="h-4 w-4" />
           </RadixDialog.Close>
         </div>
         <div className="max-h-[70vh] overflow-y-auto p-4">{children}</div>

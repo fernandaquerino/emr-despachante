@@ -6,7 +6,11 @@ import type { StorybookConfig } from "@storybook/react-vite";
  * evita adicionar uma cadeia webpack só para o Storybook.
  */
 const config: StorybookConfig = {
-  stories: ["../src/foundations/*.mdx", "../src/components/**/*.stories.tsx"],
+  stories: [
+    "../src/foundations/*.mdx",
+    "../src/components/**/*.stories.tsx",
+    "../src/compositions/**/*.stories.tsx",
+  ],
   addons: ["@storybook/addon-a11y", "@storybook/addon-docs"],
   framework: {
     name: "@storybook/react-vite",
