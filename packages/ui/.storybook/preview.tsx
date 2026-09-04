@@ -1,7 +1,6 @@
 import type { Preview } from "@storybook/react-vite";
 
-import "../src/styles/tokens.css";
-import "../src/styles/base.css";
+import "./preview.css";
 
 /**
  * Breakpoints reais do design system (docs/design-system/TOKENS.md §Breakpoints)

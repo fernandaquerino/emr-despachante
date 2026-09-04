@@ -1,0 +1,13 @@
+/**
+ * Entry CSS do preview do Storybook — mesmo padrão de
+ * apps/web/src/app/globals.css: tokens + base primeiro, depois as
+ * diretivas do Tailwind (que geram as utility classes a partir do
+ * `content` de tailwind.config.ts). Sem isso, as classes usadas nas
+ * stories (ex.: `bg-action-primary`) não existem no CSS final.
+ */
+@import "../src/styles/tokens.css";
+@import "../src/styles/base.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
