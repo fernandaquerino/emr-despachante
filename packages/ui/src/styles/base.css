@@ -11,6 +11,17 @@
   outline-offset: 2px;
 }
 
+/**
+ * Números tabulares para valores monetários, KPIs e colunas numéricas de
+ * tabela — docs/design-system/UX_RULES.md §8 e §6. Usa o token
+ * `--numeric-tabular` (tokens.css §4) em vez da utility crua `tabular-nums`
+ * do Tailwind para incluir também `lining-nums` (algarismos de altura
+ * uniforme), como o token documenta.
+ */
+.numeric-tabular {
+  font-variant-numeric: var(--numeric-tabular);
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root {
     --motion-fast: 0ms;

@@ -1,5 +1,6 @@
 node_modules/
 dist/
+storybook-static/
 .next/
 .turbo/
 *.tsbuildinfo
@@ -8,3 +9,7 @@ dist/
 !.env.example
 !**/.env.example
 .DS_Store
+
+# Skills do Claude Code instaladas localmente (ex.: uipro init) — tooling
+# pessoal do ambiente, não faz parte do código do produto.
+.claude/

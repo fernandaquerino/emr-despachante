@@ -10,7 +10,7 @@ import { cn } from "../../../lib/cn";
  * o componente não impõe isso.
  */
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-1.5 rounded-sm font-medium transition-colors " +
+  "inline-flex items-center justify-center gap-1.5 rounded-sm font-medium transition-colors duration-fast ease-standard " +
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2 " +
     "disabled:cursor-not-allowed disabled:opacity-100",
   {
@@ -59,7 +59,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         aria-busy={loading || undefined}
         {...props}
       >
-        {loading ? <Loader2 aria-hidden="true" className="h-3.5 w-3.5 animate-spin" /> : null}
+        {loading ? (
+          <Loader2 aria-hidden="true" strokeWidth={1.5} className="h-4 w-4 animate-spin" />
+        ) : null}
         {children}
       </button>
     );

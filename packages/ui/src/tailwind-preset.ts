@@ -177,6 +177,11 @@ const uiPreset = {
         normal: "200ms",
         slow: "320ms",
       },
+      transitionTimingFunction: {
+        standard: "var(--ease-standard)",
+        decel: "var(--ease-decel)",
+        accel: "var(--ease-accel)",
+      },
       zIndex: {
         base: "var(--z-base)",
         sticky: "var(--z-sticky)",

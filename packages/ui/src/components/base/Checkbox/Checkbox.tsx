@@ -28,10 +28,12 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
           id={checkboxId}
           className={cn(
             "flex h-[18px] w-[18px] items-center justify-center rounded-xs border border-border-strong",
+            "transition-colors duration-fast ease-standard",
+            "data-[state=unchecked]:hover:border-action-accent",
             "data-[state=checked]:border-action-accent data-[state=checked]:bg-action-accent",
             "data-[state=indeterminate]:border-action-accent data-[state=indeterminate]:bg-action-accent",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2",
-            "disabled:cursor-not-allowed disabled:opacity-50",
+            "disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-border-strong",
             className,
           )}
           {...props}

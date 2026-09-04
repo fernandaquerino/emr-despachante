@@ -11,4 +11,9 @@ export default [
       },
     },
   },
+  {
+    // Build estático do Storybook (`pnpm build-storybook`) — gerado, não é
+    // código-fonte. `dist/**` do baseConfig não cobre esse diretório.
+    ignores: ["storybook-static/**"],
+  },
 ];

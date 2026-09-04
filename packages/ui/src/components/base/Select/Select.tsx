@@ -54,13 +54,15 @@ export function Select({
           id={triggerId}
           className={cn(
             "flex h-10 items-center justify-between gap-2 rounded-sm border border-border bg-surface px-3 text-body text-text",
-            "focus-visible:outline-none focus-visible:border-border-focus focus-visible:ring-2 focus-visible:ring-border-focus/20",
-            "disabled:bg-bg-subtle disabled:text-text-disabled",
+            "transition-colors duration-fast ease-standard",
+            "hover:border-border-strong",
+            "focus-visible:outline-none focus-visible:border-border-focus focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-1",
+            "disabled:bg-bg-subtle disabled:text-text-disabled disabled:hover:border-border",
           )}
         >
           <RadixSelect.Value placeholder={placeholder} />
           <RadixSelect.Icon>
-            <ChevronDown aria-hidden="true" className="h-3.5 w-3.5 text-text-muted" />
+            <ChevronDown aria-hidden="true" strokeWidth={1.5} className="h-4 w-4 text-text-muted" />
           </RadixSelect.Icon>
         </RadixSelect.Trigger>
         <RadixSelect.Portal>
@@ -80,7 +82,11 @@ export function Select({
                   )}
                 >
                   <RadixSelect.ItemIndicator>
-                    <Check aria-hidden="true" className="h-3.5 w-3.5 text-action-accent" />
+                    <Check
+                      aria-hidden="true"
+                      strokeWidth={1.5}
+                      className="h-4 w-4 text-action-accent"
+                    />
                   </RadixSelect.ItemIndicator>
                   <RadixSelect.ItemText>{option.label}</RadixSelect.ItemText>
                 </RadixSelect.Item>

@@ -18,7 +18,8 @@ export function TabsTrigger({ className, ...props }: RadixTabs.TabsTriggerProps)
     <RadixTabs.Trigger
       className={cn(
         "border-b-2 border-transparent px-0 py-3 text-body font-medium text-text-secondary",
-        "data-[state=active]:border-action-accent data-[state=active]:text-text",
+        "transition-colors duration-fast ease-standard",
+        "hover:text-text data-[state=active]:border-action-accent data-[state=active]:text-text",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2",
         className,
       )}
