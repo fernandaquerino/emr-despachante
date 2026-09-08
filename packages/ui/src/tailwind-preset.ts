@@ -192,6 +192,13 @@ const uiPreset = {
         toast: "var(--z-toast)",
         tooltip: "var(--z-tooltip)",
       },
+      width: {
+        "sidebar-expanded": "var(--sidebar-width-expanded)",
+        "sidebar-collapsed": "var(--sidebar-width-collapsed)",
+      },
+      height: {
+        header: "var(--header-height)",
+      },
     },
   },
 } satisfies Partial<Config>;
