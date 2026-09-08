@@ -11,6 +11,9 @@ export * from "./components/base/Pagination";
 export * from "./components/base/Badge";
 export * from "./components/base/Tooltip";
 
+// Layout components — docs/design-system/COMPONENTS.md
+export * from "./components/layout/Logo";
+
 // Domain components — docs/design-system/DOMAIN_COMPONENTS.md
 export * from "./components/domain/StatusBadge";
 export * from "./components/domain/VehicleSummary";
