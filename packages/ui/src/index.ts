@@ -13,6 +13,8 @@ export * from "./components/base/Tooltip";
 
 // Layout components — docs/design-system/COMPONENTS.md
 export * from "./components/layout/Logo";
+export * from "./components/layout/Breadcrumb";
+export * from "./components/layout/NavItem";
 
 // Domain components — docs/design-system/DOMAIN_COMPONENTS.md
 export * from "./components/domain/StatusBadge";
