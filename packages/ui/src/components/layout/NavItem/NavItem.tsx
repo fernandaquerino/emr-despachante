@@ -30,7 +30,7 @@ export function NavItem({
       aria-label={collapsed ? label : undefined}
       title={collapsed ? label : undefined}
       className={cn(
-        "flex items-center gap-3 rounded-md border-l-transparent px-3 py-2",
+        "flex items-center gap-3 rounded-md border-l-[3px] border-l-transparent px-3 py-2",
         "text-body text-text-secondary transition-colors duration-fast ease-standard",
         "hover:bg-bg-subtle",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2",
