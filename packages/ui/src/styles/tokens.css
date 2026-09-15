@@ -127,6 +127,15 @@
   --surface-raised: #ffffff; /* + elev-1 */
   --surface-selected: #f0f7fe; /* cobalt-50 */
   --surface-inverse: #0f172a; /* navy-900 */
+  /* Superfície da Sidebar — um tom entre --bg-default e --surface-default,
+     usada para diferenciar sidebar/header/conteúdo sem depender de borda
+     pesada (DESIGN_SYSTEM.md §Sidebar). */
+  --surface-sidebar: #fbfcfd;
+
+  /* Filtro aplicado ao lockup de marca (Logo, tone="brand") — mantém a arte
+     original intacta e só inverte para branco quando o tema é escuro, já
+     que a marca em cor sobre a Sidebar escura fica com contraste fraco. */
+  --logo-filter: none;
 
   /* Text */
   --text-primary: #0f172a; /* navy-900 */
@@ -224,6 +233,8 @@
   --surface-raised: #1a2335;
   --surface-selected: #172554;
   --surface-inverse: #f8fafc;
+  --surface-sidebar: #0d1421;
+  --logo-filter: brightness(0) invert(1);
 
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
@@ -437,7 +448,10 @@
  * ============================================================ */
 
 :root {
-  --sidebar-width-expanded: 240px;
-  --sidebar-width-collapsed: 72px;
+  --sidebar-width-expanded: 224px;
+  --sidebar-width-collapsed: 64px;
   --header-height: 56px;
+  /* Espessura do indicador lateral do item de navegação ativo — fino e
+     discreto, não um preenchimento de bloco (DESIGN_SYSTEM.md §Sidebar). */
+  --nav-active-indicator-width: 2px;
 }

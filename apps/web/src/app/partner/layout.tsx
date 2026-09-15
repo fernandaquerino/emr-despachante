@@ -32,7 +32,7 @@ export default function PartnerLayout({ children }: { children: React.ReactNode 
       headerLeft={<Breadcrumb items={[{ label: "Painel do parceiro" }]} />}
       headerSearch={
         <SearchPlaceholder
-          placeholder="Buscar (Ctrl+K)"
+          placeholder="Buscar"
           onClick={() => console.log("busca: fora de escopo desta issue")}
         />
       }

@@ -46,9 +46,9 @@ export function NavGroup({
   );
 
   return (
-    <div className={cn("flex flex-col gap-1", className)}>
+    <div className={cn("flex flex-col gap-0.5", className)}>
       {title && !collapsed ? (
-        <span className="px-3 pb-1 text-caption font-medium uppercase tracking-wide text-text-muted">
+        <span className="px-3.5 pb-1.5 text-caption font-semibold uppercase tracking-wide text-text-disabled">
           {title}
         </span>
       ) : null}

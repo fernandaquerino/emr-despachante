@@ -1,5 +1,5 @@
 import { PlaceholderPage } from "../../components/PlaceholderPage";
 
 export default function PartnerHomePage() {
-  return <PlaceholderPage title="Visão geral" breadcrumb={[{ label: "Visão geral" }]} />;
+  return <PlaceholderPage title="Visão geral" />;
 }

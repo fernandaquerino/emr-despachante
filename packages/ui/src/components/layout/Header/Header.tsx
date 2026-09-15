@@ -29,7 +29,7 @@ export function Header({
   return (
     <header
       className={cn(
-        "sticky top-0 z-header flex shrink-0 items-center gap-4 border-b border-border bg-surface-default px-4",
+        "sticky top-0 z-header flex shrink-0 items-center gap-4 border-b border-border-subtle bg-surface-default px-5",
         height === "tall" ? "h-16" : "h-header",
         className,
       )}
@@ -40,8 +40,9 @@ export function Header({
 
       {searchSlot ? <div className="hidden flex-1 justify-center md:flex">{searchSlot}</div> : null}
 
-      <div className="flex shrink-0 items-center gap-1">
+      <div className="flex shrink-0 items-center gap-2">
         {actionsSlot}
+        {actionsSlot ? <div className="mx-1 h-5 w-px bg-border-subtle" aria-hidden="true" /> : null}
         {userMenu}
       </div>
     </header>

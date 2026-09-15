@@ -310,11 +310,17 @@ Anatomia:
 
 Fixa desktop, drawer mobile.
 
-- 240px desktop expandida, 72px colapsada.
+- 224px desktop expandida, 64px colapsada.
+- Superfície própria `--surface-sidebar` (distinta de `--surface-default` do
+  header/conteúdo, sem depender de borda pesada como único recurso de
+  separação).
 - Logo no topo (48px).
-- Grupos com título 11px caps `--text-muted`.
-- Item: ícone 20px + label 14px + optional badge à direita.
-- Estado ativo: bg `--surface-selected`, border-left 3px cobalt, ícone e texto cor `--text-link`.
+- Grupos com título 11px caps `--text-disabled`.
+- Item: ícone 20px + label 13px + optional badge à direita.
+- Estado ativo: indicador lateral fino (2px, `--action-accent`), ícone
+  `--action-accent`, texto `--text-primary` peso `medium`. Sem preenchimento
+  de bloco (`--surface-selected`) — o indicador deve ler como sutil, não como
+  um botão.
 - Hover: bg `--bg-subtle`.
 - Bottom: perfil compacto + toggle de tema.
 

@@ -50,13 +50,15 @@ export function Sidebar({
       className={cn(
         // O breakpoint de 1024px no preset do DS é `xl` (screens custom em
         // tailwind-preset.ts), não o `lg` padrão do Tailwind — abaixo disso
-        // a navegação vira drawer via `MobileNav`.
-        "hidden shrink-0 flex-col border-r border-border bg-surface-default xl:flex",
+        // a navegação vira drawer via `MobileNav`. Superfície própria
+        // (--surface-sidebar) distingue a sidebar do header/conteúdo sem
+        // depender de uma borda pesada como único recurso.
+        "hidden shrink-0 flex-col border-r border-border-subtle bg-surface-sidebar xl:flex",
         collapsed ? "w-sidebar-collapsed" : "w-sidebar-expanded",
         className,
       )}
     >
-      <div className="flex h-12 shrink-0 items-center px-3">
+      <div className="flex h-12 shrink-0 items-center px-3.5">
         {collapsed && logoCollapsed ? logoCollapsed : logo}
       </div>
 
@@ -64,7 +66,7 @@ export function Sidebar({
         aria-label="Navegação principal"
         className={cn(
           "flex flex-1 flex-col overflow-y-auto",
-          density === "dense" ? "gap-3 px-2 py-2" : "gap-5 px-3 py-3",
+          density === "dense" ? "gap-3 px-2 py-2" : "gap-6 px-2.5 py-3",
         )}
       >
         {groups.map((group, index) => (
@@ -86,8 +88,8 @@ export function Sidebar({
           aria-label={collapsed ? "Expandir menu" : "Recolher menu"}
           title={collapsed ? "Expandir menu" : "Recolher menu"}
           className={cn(
-            "mx-3 mb-1 flex items-center gap-2 rounded-md px-3 py-2 text-body-sm text-text-muted",
-            "hover:bg-bg-subtle",
+            "mx-2.5 mb-1 flex items-center gap-2 rounded-md px-2.5 py-1.5 text-body-sm text-text-muted transition-colors duration-fast ease-standard",
+            "hover:bg-bg-subtle hover:text-text-secondary",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus",
             collapsed && "justify-center px-2",
           )}
@@ -106,7 +108,7 @@ export function Sidebar({
       {resolvedFooter ? (
         <div
           className={cn(
-            "flex flex-col gap-1 border-t border-border p-2",
+            "flex flex-col gap-1 border-t border-border-subtle p-2",
             collapsed && "items-center",
           )}
         >

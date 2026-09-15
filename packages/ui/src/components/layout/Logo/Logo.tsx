@@ -41,7 +41,11 @@ export function Logo({
         aria-hidden="true"
         className={cn(
           "block h-full w-auto object-contain",
-          tone === "inverse" && "brightness-0 invert",
+          // "brand" segue `--logo-filter` (tokens.css) e vira branco sozinho
+          // no tema escuro — a marca em cor perde contraste sobre a Sidebar
+          // escura. "inverse" força branco sempre, independente do tema
+          // (uso em superfícies permanentemente escuras).
+          tone === "inverse" ? "brightness-0 invert" : "[filter:var(--logo-filter)]",
         )}
       />
     </span>

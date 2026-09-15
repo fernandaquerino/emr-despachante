@@ -24,6 +24,7 @@ export default function OwnerLayout({ children }: { children: React.ReactNode })
       headerSearch={
         <SearchPlaceholder
           placeholder="Consultar veículo"
+          shortcut={undefined}
           onClick={() => console.log("busca: fora de escopo desta issue")}
         />
       }

@@ -32,7 +32,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       headerLeft={<Breadcrumb items={[{ label: "Painel administrativo" }]} />}
       headerSearch={
         <SearchPlaceholder
-          placeholder="Buscar (Ctrl+K)"
+          placeholder="Buscar"
           onClick={() => console.log("busca: fora de escopo desta issue")}
         />
       }

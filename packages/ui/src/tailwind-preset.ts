@@ -24,6 +24,7 @@ const uiPreset = {
           raised: "var(--surface-raised)",
           selected: "var(--surface-selected)",
           inverse: "var(--surface-inverse)",
+          sidebar: "var(--surface-sidebar)",
         },
         text: {
           DEFAULT: "var(--text-primary)",

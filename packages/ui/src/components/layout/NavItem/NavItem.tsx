@@ -30,20 +30,34 @@ export function NavItem({
       aria-label={collapsed ? label : undefined}
       title={collapsed ? label : undefined}
       className={cn(
-        "flex items-center gap-3 rounded-md border-l-[3px] border-l-transparent px-3 py-2",
-        "text-body text-text-secondary transition-colors duration-fast ease-standard",
-        "hover:bg-bg-subtle",
+        "group relative flex items-center gap-2.5 rounded-md px-2.5 py-[7px] pl-3.5",
+        "text-body-sm text-text-secondary transition-colors duration-fast ease-standard",
+        "hover:bg-bg-subtle hover:text-text",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2",
-        isActive &&
-          "border-l-action-accent bg-surface-selected text-text-link hover:bg-surface-selected",
+        isActive && "text-text font-medium",
         collapsed && "justify-center px-2",
         className,
       )}
     >
-      <Icon aria-hidden="true" className="w-5 h-5 shrink-0" />
+      {/* Indicador de ativo: barra fina de 2px, não um preenchimento de
+          bloco — DESIGN_SYSTEM.md §Sidebar. */}
+      <span
+        aria-hidden="true"
+        className={cn(
+          "absolute inset-y-1.5 left-0 w-[2px] rounded-full bg-action-accent transition-opacity duration-fast ease-standard",
+          isActive ? "opacity-100" : "opacity-0",
+        )}
+      />
+      <Icon
+        aria-hidden="true"
+        className={cn(
+          "h-5 w-5 shrink-0 text-text-muted transition-colors duration-fast ease-standard",
+          isActive ? "text-action-accent" : "group-hover:text-text-secondary",
+        )}
+      />
       {!collapsed && <span className="truncate">{label}</span>}
       {!collapsed && badge ? (
-        <span className="flex items-center ml-auto shrink-0">{badge}</span>
+        <span className="ml-auto flex shrink-0 items-center">{badge}</span>
       ) : null}
     </Link>
   );

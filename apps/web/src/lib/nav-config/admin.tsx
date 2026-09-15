@@ -34,7 +34,7 @@ export function getAdminNavGroups(): SidebarGroup[] {
           label: "Casos",
           href: "/admin/casos",
           icon: ShieldCheck,
-          badge: <Badge tone="error">3</Badge>,
+          badge: <Badge tone="neutral">3</Badge>,
         },
         { label: "Clientes", href: "/admin/clientes", icon: Users },
         { label: "Veículos", href: "/admin/veiculos", icon: FileText },

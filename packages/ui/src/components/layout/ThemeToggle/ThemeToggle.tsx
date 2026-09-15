@@ -54,14 +54,18 @@ export interface ThemeToggleProps {
 }
 
 export function ThemeToggle({ className, collapsed = false }: ThemeToggleProps) {
-  const [theme, setTheme] = useState<Theme>(() => readStoredTheme() ?? getSystemTheme());
+  // Inicializa sempre com "light": `localStorage`/`matchMedia` só existem no
+  // cliente, então ler o valor real aqui (via lazy initializer) faria o
+  // primeiro render do cliente divergir do HTML gerado no servidor —
+  // hydration mismatch. O valor real é resolvido uma única vez no efeito
+  // abaixo, que roda só depois da hidratação (mudança de estado normal, não
+  // comparada ao HTML do servidor).
+  const [theme, setTheme] = useState<Theme>("light");
 
-  // Sincroniza, uma única vez, o estado inicial (lido de localStorage ou do
-  // sistema) com o DOM — troca subsequentes são feitas direto em `toggle`.
-  // Deliberadamente `[]`: só espelha o valor computado na inicialização do
-  // `useState`, não deve re-rodar quando `theme` muda por `toggle`.
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
+    const resolved = readStoredTheme() ?? getSystemTheme();
+    setTheme(resolved);
+    document.documentElement.setAttribute("data-theme", resolved);
   }, []);
 
   function toggle() {

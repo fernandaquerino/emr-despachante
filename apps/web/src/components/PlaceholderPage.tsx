@@ -9,7 +9,8 @@ import { EmptyState, PageHeader, type BreadcrumbItem } from "@emr/ui";
  */
 export interface PlaceholderPageProps {
   title: string;
-  breadcrumb: BreadcrumbItem[];
+  /** Omitir em rotas raiz (ex.: "Visão geral"), onde o único item duplicaria o título. */
+  breadcrumb?: BreadcrumbItem[];
   description?: string;
 }
 
@@ -17,10 +18,15 @@ export function PlaceholderPage({ title, breadcrumb, description }: PlaceholderP
   return (
     <>
       <PageHeader title={title} breadcrumb={breadcrumb} linkAs={Link} description={description} />
-      <EmptyState
-        title="Tela em construção"
-        description="O conteúdo desta tela será implementado em uma issue futura."
-      />
+      {/* Contido em uma faixa compacta e alinhado à mesma grade do
+          PageHeader — evita o empty state genérico solto no centro de uma
+          área vazia enorme (SCREEN_SPECS.md §Estados vazios). */}
+      <div className="max-w-md rounded-lg border border-dashed border-border px-6">
+        <EmptyState
+          title="Tela em construção"
+          description="O conteúdo desta tela será implementado em uma issue futura."
+        />
+      </div>
     </>
   );
 }

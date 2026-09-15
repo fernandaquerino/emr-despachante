@@ -25,14 +25,14 @@ export function PageHeader({
   className,
 }: PageHeaderProps) {
   return (
-    <div className={cn("flex flex-col gap-3 pb-6", className)}>
+    <div className={cn("flex flex-col gap-2 pb-6", className)}>
       {breadcrumb && breadcrumb.length > 0 ? (
         <Breadcrumb items={breadcrumb} linkAs={linkAs} />
       ) : null}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex min-w-0 flex-col gap-1">
-          <h1 className="text-h1 text-text">{title}</h1>
-          {description ? <p className="text-body text-text-secondary">{description}</p> : null}
+          <h1 className="text-h1 tracking-tight text-text">{title}</h1>
+          {description ? <p className="text-body-sm text-text-secondary">{description}</p> : null}
         </div>
         {actions ? <div className="flex shrink-0 items-center gap-2">{actions}</div> : null}
       </div>

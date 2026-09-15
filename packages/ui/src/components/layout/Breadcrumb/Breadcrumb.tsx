@@ -22,13 +22,15 @@ export function Breadcrumb({ items, linkAs: Link = "a", className }: BreadcrumbP
 
           return (
             <li key={`${item.label}-${index}`} className="flex items-center gap-1">
-              {index > 0 && <ChevronRight aria-hidden="true" className="w-3 h-3 text-text-muted" />}
+              {index > 0 && (
+                <ChevronRight aria-hidden="true" className="h-3 w-3 shrink-0 text-text-disabled" />
+              )}
 
               {isLast || !item.href ? (
                 <span
                   aria-current={isLast ? "page" : undefined}
                   title={item.label}
-                  className="min-w-0 max-w-[160px] truncate text-body-sm text-text"
+                  className="min-w-0 max-w-[160px] truncate text-body-sm text-text-secondary"
                 >
                   {item.label}
                 </span>
@@ -36,7 +38,7 @@ export function Breadcrumb({ items, linkAs: Link = "a", className }: BreadcrumbP
                 <Link
                   href={item.href}
                   title={item.label}
-                  className="min-w-0 max-w-[160px] truncate text-body-sm text-text-muted hover:text-text-link"
+                  className="min-w-0 max-w-[160px] truncate text-body-sm text-text-muted transition-colors duration-fast ease-standard hover:text-text-link"
                 >
                   {item.label}
                 </Link>

@@ -28,8 +28,8 @@ export function HeaderIconButton({
       title={label}
       onClick={onClick}
       className={cn(
-        "relative flex h-10 w-10 items-center justify-center rounded-full text-text-secondary",
-        "hover:bg-bg-subtle",
+        "relative flex h-8 w-8 items-center justify-center rounded-md text-text-muted transition-colors duration-fast ease-standard",
+        "hover:bg-bg-subtle hover:text-text-secondary",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2",
         className,
       )}
@@ -38,7 +38,7 @@ export function HeaderIconButton({
       {badge ? (
         <span
           aria-hidden="true"
-          className="absolute right-2 top-2 h-2 w-2 rounded-full bg-status-error"
+          className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-status-error ring-2 ring-surface-default"
         />
       ) : null}
     </button>

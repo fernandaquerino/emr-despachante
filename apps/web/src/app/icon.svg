@@ -1,4 +1,6 @@
-<svg width="1254" height="701" viewBox="0 0 1254 701" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1254" height="1254" viewBox="0 0 1254 1254" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0 276.5)">
+
 <path d="M132.118 0H130.998V1.11981H132.118V0Z" fill="#012471" fill-opacity="0.13"/>
 <path d="M160.109 0L141.075 1.11981H158.989H160.109V0Z" fill="#012471" fill-opacity="0.13"/>
 <path d="M1128.6 0V1.11981H1130.84H1131.96L1128.6 0Z" fill="#012471" fill-opacity="0.13"/>
@@ -3431,4 +3433,6 @@
 <path d="M182.502 571.102H181.382V572.222H182.502V571.102Z" fill="#012370" fill-opacity="0.9"/>
 <path d="M185.861 581.181H184.741V582.3H185.861V581.181Z" fill="#012370" fill-opacity="0.9"/>
 <path d="M396.354 563.264L385.157 558.784L369.482 569.982V574.462H373.961L375.08 583.42L377.32 581.181L386.277 584.54V581.181L391.875 580.061L392.995 574.462H396.354V563.264Z" fill="#002370" fill-opacity="0.99"/>
+
+</g>
 </svg>

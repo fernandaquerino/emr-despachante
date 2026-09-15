@@ -89,7 +89,20 @@ export function AppShell({
       <div className="flex min-w-0 flex-1 flex-col">
         <Header
           height={variant === "minimal" ? "tall" : "default"}
-          left={headerLeft}
+          left={
+            hasSidebar ? (
+              headerLeft
+            ) : (
+              // `variant="minimal"` não renderiza Sidebar, então a marca
+              // não tem onde aparecer — sem isso o `logo` recebido fica
+              // sem uso e a área OWNER perde toda identidade visual.
+              <div className="flex min-w-0 items-center gap-3">
+                {logo}
+                <div className="h-5 w-px shrink-0 bg-border-subtle" aria-hidden="true" />
+                {headerLeft}
+              </div>
+            )
+          }
           searchSlot={headerSearch}
           actionsSlot={headerActions}
           userMenu={userMenu}
@@ -103,7 +116,7 @@ export function AppShell({
             ) : undefined
           }
         />
-        <main className="flex-1 px-4 py-6 md:px-6">
+        <main className="flex-1 px-5 py-7 md:px-8">
           <div className={cn("mx-auto w-full", maxWidthClasses[resolvedMaxWidth])}>{children}</div>
         </main>
       </div>
