@@ -11,14 +11,16 @@ export default defineConfig({
     // quando encontra `afterEach` global — necessário mesmo importando
     // describe/it/expect explicitamente nos arquivos de teste.
     globals: true,
-    // Componentes que montam @radix-ui/react-popper (Tooltip, Select) sob
-    // jsdom são consistentemente lentos (8-20s observados localmente) para
-    // completar o primeiro posicionamento dentro de um act() — investigado
-    // e confirmado que não é um loop infinito (sempre resolve, contagens de
-    // rAF/setTimeout/getComputedStyle são baixas), e sim uma característica
-    // de performance da combinação Radix Popper + jsdom. O default de 5s do
-    // vitest não é suficiente; usamos uma margem generosa para não flakar
-    // em runners mais lentos/compartilhados.
-    testTimeout: 45000,
+    // Componentes que montam @radix-ui/react-popper (Tooltip, Select,
+    // DropdownMenu) sob jsdom são consistentemente lentos (13-20s
+    // observados localmente) para completar o primeiro posicionamento
+    // dentro de um act() — investigado e confirmado que não é um loop
+    // infinito (sempre resolve, contagens de rAF/setTimeout/
+    // getComputedStyle são baixas), e sim uma característica de
+    // performance da combinação Radix Popper + jsdom. No runner
+    // compartilhado do CI (menos CPU disponível, ~36 arquivos de teste
+    // concorrentes) o mesmo teste passou de 45000ms (ver histórico do CI),
+    // então ampliamos a margem para não flakar por contenção de recursos.
+    testTimeout: 90000,
   },
 });

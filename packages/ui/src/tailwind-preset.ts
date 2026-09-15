@@ -24,6 +24,7 @@ const uiPreset = {
           raised: "var(--surface-raised)",
           selected: "var(--surface-selected)",
           inverse: "var(--surface-inverse)",
+          sidebar: "var(--surface-sidebar)",
         },
         text: {
           DEFAULT: "var(--text-primary)",
@@ -191,6 +192,13 @@ const uiPreset = {
         modal: "var(--z-modal)",
         toast: "var(--z-toast)",
         tooltip: "var(--z-tooltip)",
+      },
+      width: {
+        "sidebar-expanded": "var(--sidebar-width-expanded)",
+        "sidebar-collapsed": "var(--sidebar-width-collapsed)",
+      },
+      height: {
+        header: "var(--header-height)",
       },
     },
   },

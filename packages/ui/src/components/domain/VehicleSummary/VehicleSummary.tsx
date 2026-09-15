@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { StatusBadge } from "../StatusBadge";
 import { StaleDataBanner } from "../StaleDataBanner";

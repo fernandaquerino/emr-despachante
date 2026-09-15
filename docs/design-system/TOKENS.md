@@ -144,6 +144,8 @@ purple-900  #4C1D95
   --surface-raised:    #FFFFFF;   /* + elev-1 */
   --surface-selected:  #F0F7FE;   /* cobalt-50 */
   --surface-inverse:   #0F172A;   /* navy-900 */
+  --surface-sidebar:   #FBFCFD;   /* tom entre bg-default e surface-default */
+  --logo-filter:       none;      /* Logo tone="brand" — vira branco no dark (ver dark tokens) */
 
   /* Text */
   --text-primary:      #0F172A;   /* navy-900 */
@@ -240,6 +242,8 @@ Ativa via `[data-theme="dark"]` na raiz, ou `@media (prefers-color-scheme: dark)
   --surface-raised:    #1A2335;
   --surface-selected:  #172554;   /* blue-950-ish */
   --surface-inverse:   #F8FAFC;
+  --surface-sidebar:   #0D1421;   /* tom entre bg-default e surface-raised */
+  --logo-filter:       brightness(0) invert(1);
 
   --text-primary:      #F8FAFC;
   --text-secondary:    #CBD5E1;
@@ -507,7 +511,7 @@ export default {
       colors: {
         // semantic
         bg:      { DEFAULT: 'var(--bg-default)', subtle: 'var(--bg-subtle)', emphasis: 'var(--bg-emphasis)' },
-        surface: { DEFAULT: 'var(--surface-default)', raised: 'var(--surface-raised)', selected: 'var(--surface-selected)' },
+        surface: { DEFAULT: 'var(--surface-default)', raised: 'var(--surface-raised)', selected: 'var(--surface-selected)', sidebar: 'var(--surface-sidebar)' },
         text:    { DEFAULT: 'var(--text-primary)', secondary: 'var(--text-secondary)', muted: 'var(--text-muted)', disabled: 'var(--text-disabled)', inverse: 'var(--text-inverse)', link: 'var(--text-link)' },
         border:  { DEFAULT: 'var(--border-default)', subtle: 'var(--border-subtle)', strong: 'var(--border-strong)', focus: 'var(--border-focus)' },
         action: {
