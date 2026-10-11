@@ -14,7 +14,7 @@ import {
   isStale,
 } from "@emr/ui";
 import { AlertSubscription } from "./AlertSubscription";
-import type { LookupOutcome, LookupVehicle, PendingItem } from "./lib/vehicle-lookup";
+import type { ConsultOutcome, ConsultVehicle, PendingItem } from "../../../lib/consult";
 
 /**
  * Resultado da consulta por placa, renderizado **no lugar** do formulário,
@@ -31,28 +31,12 @@ export function ConsultResult({
   outcome,
   onReset,
 }: {
-  outcome: LookupOutcome;
+  outcome: Extract<ConsultOutcome, { status: "completed" }>;
   onReset: () => void;
 }) {
-  if (outcome.kind === "error") {
-    // O estado de erro é tratado pelo widget (que detém o retry), não aqui.
-    return null;
-  }
-
-  if (outcome.kind === "prototype_pending") {
-    return (
-      <div className="flex flex-col gap-4">
-        <Alert
-          tone="info"
-          title={`Placa ${outcome.plate} em formato válido.`}
-          description="A consulta completa junto aos órgãos entra no ar na próxima etapa do produto. Enquanto isso, fale com a gente e resolvemos pelo atendimento."
-        />
-        <ResetLink onReset={onReset} />
-      </div>
-    );
-  }
-
-  if (outcome.kind === "regular") {
+  // Ausência de pendência é resultado, não estado separado — e nunca é
+  // atestado de regularidade: o texto fala desta consulta, não do veículo.
+  if (outcome.pendings.length === 0) {
     return (
       <div className="flex flex-col gap-5">
         <VehicleHeader
@@ -73,7 +57,7 @@ export function ConsultResult({
     );
   }
 
-  const billableItems = outcome.items.filter((item) => item.amountCents !== undefined);
+  const billableItems = outcome.pendings.filter((item) => item.amountCents !== undefined);
 
   return (
     <div className="flex flex-col gap-5">
@@ -97,7 +81,7 @@ export function ConsultResult({
       ) : null}
 
       <ul className="flex flex-col divide-y divide-border-subtle border-y border-border-subtle">
-        {outcome.items.map((item) => (
+        {outcome.pendings.map((item) => (
           <PendingRow key={item.id} item={item} />
         ))}
       </ul>
@@ -151,7 +135,7 @@ function VehicleHeader({
   plate: string;
   model: string;
   year: number;
-  overallStatus: LookupVehicle["overallStatus"];
+  overallStatus: ConsultVehicle["overallStatus"];
 }) {
   return (
     <div className="flex flex-wrap items-center justify-between gap-2">

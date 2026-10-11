@@ -2,16 +2,17 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { PlateConsultWidget } from "./PlateConsultWidget";
-import type { LookupOutcome } from "./lib/vehicle-lookup";
+import type { ConsultOutcome } from "../../../lib/consult";
 
 const lookupVehicle = vi.hoisted(() => vi.fn());
 
-vi.mock("./lib/vehicle-lookup", () => ({ lookupVehicle }));
+vi.mock("../../../lib/consult", () => ({ lookupVehicle }));
 
-const pendingOutcome: LookupOutcome = {
-  kind: "pending",
+const completedOutcome: ConsultOutcome = {
+  status: "completed",
+  consultationId: "lookup-1",
   vehicle: { plate: "ABC1D23", model: "Honda HR-V", year: 2022, overallStatus: "IRREGULAR" },
-  items: [
+  pendings: [
     {
       id: "fine-1",
       kind: "fine",
@@ -38,10 +39,11 @@ describe("PlateConsultWidget", () => {
     lookupVehicle.mockReset();
   });
 
-  it("asks only for the plate — no contact field before the result", () => {
+  it("asks only for the plate — no contact and no RENAVAM field before the result", () => {
     render(<PlateConsultWidget />);
 
     expect(screen.getByLabelText("Placa do veículo")).toBeInTheDocument();
+    expect(screen.queryByLabelText("RENAVAM")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("WhatsApp ou e-mail")).not.toBeInTheDocument();
   });
 
@@ -57,7 +59,7 @@ describe("PlateConsultWidget", () => {
   });
 
   it("shows the pending items, the total and the alert opt-in after a successful lookup", async () => {
-    lookupVehicle.mockResolvedValue(pendingOutcome);
+    lookupVehicle.mockResolvedValue(completedOutcome);
     const user = userEvent.setup();
     render(<PlateConsultWidget />);
 
@@ -79,16 +81,63 @@ describe("PlateConsultWidget", () => {
     ).not.toBeChecked();
   });
 
+  it("renders the landing result in place, without navigating away", async () => {
+    lookupVehicle.mockResolvedValue(completedOutcome);
+    const user = userEvent.setup();
+    render(<PlateConsultWidget />);
+
+    await user.type(screen.getByLabelText("Placa do veículo"), "ABC1D23");
+    await user.click(screen.getByRole("button", { name: "Consultar débitos grátis" }));
+
+    // LANDING_PAGE_SPEC.md §Nota S2: na landing o resultado é estado expandido
+    // do widget, não um redirect para /consultar/:id.
+    expect(await screen.findByText("Multa — avanço de sinal")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Consultar outra placa" })).toBeInTheDocument();
+  });
+
   it("never claims 'not found' for a plate it could not actually look up", async () => {
-    lookupVehicle.mockResolvedValue({ kind: "prototype_pending", plate: "XYZ9W87" });
+    lookupVehicle.mockResolvedValue({ status: "unavailable" });
     const user = userEvent.setup();
     render(<PlateConsultWidget />);
 
     await user.type(screen.getByLabelText("Placa do veículo"), "XYZ9W87");
     await user.click(screen.getByRole("button", { name: "Consultar débitos grátis" }));
 
-    expect(await screen.findByText("Placa XYZ9W87 em formato válido.")).toBeInTheDocument();
+    expect(
+      await screen.findByRole("heading", {
+        name: "Não conseguimos carregar a situação deste veículo",
+      }),
+    ).toBeInTheDocument();
     expect(screen.queryByText(/não encontramos/i)).not.toBeInTheDocument();
+  });
+
+  it("distinguishes 'not found' from 'could not consult'", async () => {
+    lookupVehicle.mockResolvedValue({ status: "not_found" });
+    const user = userEvent.setup();
+    render(<PlateConsultWidget />);
+
+    await user.type(screen.getByLabelText("Placa do veículo"), "PQR8S90");
+    await user.click(screen.getByRole("button", { name: "Consultar débitos grátis" }));
+
+    expect(
+      await screen.findByText("Não encontramos um veículo com os dados informados."),
+    ).toBeInTheDocument();
+    // A placa fica no campo para ser corrigida.
+    expect(screen.getByLabelText("Placa do veículo")).toHaveValue("PQR8S90");
+  });
+
+  it("asks for the RENAVAM only when the lookup demands it, keeping the plate", async () => {
+    lookupVehicle.mockResolvedValue({ status: "renavam_required" });
+    const user = userEvent.setup();
+    render(<PlateConsultWidget />);
+
+    await user.type(screen.getByLabelText("Placa do veículo"), "MNO5P67");
+    await user.click(screen.getByRole("button", { name: "Consultar débitos grátis" }));
+
+    expect(await screen.findByLabelText("RENAVAM")).toBeInTheDocument();
+    expect(screen.getByLabelText("Placa do veículo")).toHaveValue("MNO5P67");
+    // Pedir um dado a mais não é falha: nenhuma copy de erro aqui.
+    expect(screen.queryByText(/não encontramos|não foi possível/i)).not.toBeInTheDocument();
   });
 
   it("offers a retry when the lookup fails", async () => {

@@ -376,3 +376,92 @@ ação genérica.
   token. Fica registrado como decisão consciente de marca sobre contraste.
 - `brand` é um grupo novo no preset. Toda cor de terceiro futura entra lá, nunca na escala
   semântica.
+
+---
+
+## ADR-019 — Contrato da consulta pública de veículo e fonte por ambiente
+
+### Contexto
+
+`FE-PUB-002` (#151) exige a rota `/consultar` com os estados `validação`,
+`loading`, `não encontrado`, `indisponível` e `RENAVAM solicitado quando
+necessário`. A dependência declarada, `BE-VEH-001` (#159), está **aberta e sem
+critérios de aceite**: não define endpoint, método, payload, response, error
+codes, limites de rate limit nem como o backend sinaliza que precisa do
+RENAVAM. Ela depende de `INT-GOV-001` (#203), que está em M6 — cinco
+milestones à frente de M1, onde as duas primeiras vivem.
+
+Além disso, `docs/engineering/API_SPEC.md` §Vehicles só lista rotas
+autenticadas: não havia nenhuma rota pública de consulta especificada em
+lugar algum do repositório.
+
+Seguir `CLAUDE.md` §3 ("não inventar requisitos") não podia significar não
+entregar: significava propor o contrato explicitamente, em vez de decidir
+silenciosamente dentro de um componente.
+
+### Decisão
+
+**1. O contrato é proposta do frontend, marcada como pendente.**
+`POST /public/vehicle-lookups`, documentado em `API_SPEC.md` §Public Vehicle
+Lookup e tipado em `apps/web/src/lib/consult/contract.ts`. Confirmar ou
+corrigir ao implementar `BE-VEH-001`.
+
+**2. POST com o RENAVAM no corpo, nunca em query string.**
+RENAVAM é dado sensível (`SECURITY_AND_LGPD.md` §Dados sensíveis) e
+`SECURITY_ARCHITECTURE.md` proíbe logá-lo. Query string vaza em access log,
+header `Referer` e histórico do navegador. É o mesmo raciocínio que já proíbe
+PII no deep link de WhatsApp (`LANDING_PAGE_SPEC.md`).
+
+**3. `renavam_required` é `200` com status discriminado, não erro.**
+É etapa do fluxo (`USER_FLOWS.md` §Fluxo 1: "RENAVAM quando necessário").
+Modelá-lo como `4xx` levaria a UI a tratá-lo como falha genérica, que é
+exatamente o que #151 proíbe.
+
+**4. Error codes de domínio estáveis** (`CLAUDE.md` §21):
+`VEHICLE_NOT_FOUND`, `VEHICLE_LOOKUP_INVALID_PLATE`,
+`VEHICLE_LOOKUP_RATE_LIMITED`, `VEHICLE_LOOKUP_UNAVAILABLE`. O frontend trata
+código, nunca texto de mensagem.
+
+**5. A UI depende de `ConsultOutcome`, não de HTTP.** Toda a tradução
+HTTP → domínio fica em `client.ts`. Rede, timeout, 5xx e corpo fora do
+contrato convergem para `unavailable` — nunca um `throw` que a UI traduziria
+em "algo deu errado", e nunca dado fabricado.
+
+**6. Não existe variante "regular" no resultado.** Ausência de pendência é
+`completed` com `pendings` vazio. Consulta bem-sucedida **não** é atestado de
+regularidade: é o que os órgãos responderam nesta consulta.
+
+**7. Fonte da consulta por ambiente:** `NEXT_PUBLIC_CONSULT_SOURCE`
+(`mock` | `api`, default `mock`). Enquanto #159 não estiver no ar, a consulta
+resolve pelo dataset de `docs/product/PROTOTYPE_DATA.md`, seguindo ADR-004
+(mock com latência e falha controladas) — no nível do frontend, porque o
+adapter real ainda não existe. Virar `api` não toca em componente nenhum.
+
+**8. Placa desconhecida pelo mock retorna `unavailable`, não `not_found`.**
+Dizer "não encontramos este veículo" afirmaria que consultamos a base do
+órgão, o que não aconteceu. `not_found` só sai para a placa designada em
+`MOCK_PLATES`, para o estado ser alcançável em teste e demonstração.
+
+**9. RENAVAM validado só por formato no cliente** (9 a 11 dígitos, normalizado
+para 11 com zeros à esquerda). **Sem dígito verificador mod-11.** Nenhum
+documento do projeto define regra de RENAVAM além do comprimento
+(`UX_RULES.md` §5: "RENAVAM 11 dígitos"), e rejeitar no cliente um RENAVAM que
+o órgão aceita deixaria o usuário travado numa tela sem saída. A conferência
+real é de quem tem a base.
+
+### Consequência
+
+- Divergência entre o contrato proposto e o real custa **um arquivo**
+  (`client.ts`), não uma refatoração de UI.
+- A mesma máquina de estados (`useVehicleConsult`) serve duas apresentações: o
+  widget da landing renderiza o resultado in-place (`LANDING_PAGE_SPEC.md`
+  §Nota S2) e `/consultar` encaminha para `/consultar/:id`
+  (`EMR-SCREEN-MAP.md` §2.3). **Isso é inconsistência de UX assumida**, não
+  acidente: as duas superfícies têm especificações diferentes e ambas são
+  documentadas. Vale reavaliar quando `FE-PUB-003` entrar.
+- `/consultar/:id` tem hoje apenas uma casca pública; o conteúdo é escopo de
+  `FE-PUB-003` (#152).
+- `GET /public/vehicle-lookups/:id` existe no contrato para que o resultado
+  seja recuperável sem reenviar o RENAVAM, mas ainda não é consumido.
+- `NEXT_PUBLIC_API_BASE_URL`, antes validado e nunca usado, passa a ser
+  consumido de fato.

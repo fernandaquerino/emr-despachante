@@ -14,6 +14,50 @@ GET /customers/:id
 GET /customers/:id/history
 POST /customers/:id/notes
 
+## Public Vehicle Lookup
+
+> ⚠️ **PENDENTE DE CONFIRMAÇÃO.** Proposta do frontend (`FE-PUB-002`/#151),
+> registrada em `ADR-019`, para a capability `BE-VEH-001`/#159 — que está
+> aberta e não define contrato. Confirmar ou corrigir ao implementar o backend.
+> Implementação do cliente: `apps/web/src/lib/consult/`.
+
+```text
+POST /public/vehicle-lookups
+GET  /public/vehicle-lookups/:id
+```
+
+Não autenticada (`EMR-SCREEN-MAP.md` §2.2: "não obrigatória para a consulta
+inicial segura"), com rate limit próprio.
+
+`POST` — e não `GET` com query string — porque o RENAVAM é dado sensível e não
+pode aparecer em access log, Referer ou histórico do navegador
+(`SECURITY_ARCHITECTURE.md`: não logar RENAVAM).
+
+Request:
+
+```ts
+{ plate: string;      // normalizada: uppercase, sem hífen
+  renavam?: string }  // somente quando o servidor sinalizou precisar
+```
+
+Respostas:
+
+| HTTP | Corpo | Significado |
+|---|---|---|
+| `200` | `{ status: "completed", consultationId, vehicle, pendings[], lastUpdatedAt, unavailableSources? }` | Consulta concluída. `pendings` vazio = sem pendência **nesta consulta**, nunca atestado de regularidade. |
+| `200` | `{ status: "renavam_required" }` | Etapa do fluxo, não erro. |
+| `404` | `{ code: "VEHICLE_NOT_FOUND" }` | |
+| `422` | `{ code: "VEHICLE_LOOKUP_INVALID_PLATE" }` | |
+| `429` | `{ code: "VEHICLE_LOOKUP_RATE_LIMITED" }` | |
+| `502/503/504` | `{ code: "VEHICLE_LOOKUP_UNAVAILABLE" }` | |
+
+`lastUpdatedAt` é obrigatório no corpo (ADR-009: staleness explícita).
+A resposta nunca inclui CPF, RENAVAM completo ou dados do proprietário.
+
+`GET /public/vehicle-lookups/:id` serve `/consultar/:id` (`FE-PUB-003`/#152) —
+é o que permite ao resultado ser recuperado sem reenviar o RENAVAM. Ainda não
+consumido pelo frontend.
+
 ## Vehicles
 POST /vehicles
 GET /vehicles
