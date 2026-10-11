@@ -1,17 +1,15 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { Car, Lock } from "lucide-react";
-import { Badge, Button, ErrorState, Input, LoadingState } from "@emr/ui";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { Alert, Badge, Button, LoadingState } from "@emr/ui";
 import { ConsultResult } from "./ConsultResult";
-import { formatPlateForDisplay, isValidPlate, normalizePlate } from "../../../lib/plate";
-import { lookupVehicle, type LookupOutcome } from "./lib/vehicle-lookup";
-
-type WidgetState =
-  | { status: "idle" }
-  | { status: "loading" }
-  | { status: "done"; outcome: LookupOutcome }
-  | { status: "error" };
+import { ConsultErrorSummary } from "./consult/ConsultErrorSummary";
+import { ConsultFeedback } from "./consult/ConsultFeedback";
+import { PlateField } from "./consult/PlateField";
+import { RenavamField } from "./consult/RenavamField";
+import { useVehicleConsult } from "./consult/use-vehicle-consult";
+import { formatPlateForDisplay } from "../../../lib/plate";
+import { Car, Lock } from "lucide-react";
 
 /**
  * Widget de consulta por placa — o ponto de conversão da página. Vive na
@@ -23,39 +21,54 @@ type WidgetState =
  * hierarquia de fato, em vez de decorar.
  *
  * Um campo obrigatório só (placa). O contato vem depois do resultado, nunca
- * antes (ver `AlertSubscription`).
+ * antes (ver `AlertSubscription`). O RENAVAM aparece só se o órgão pedir.
+ *
+ * A máquina de estados é a mesma de `/consultar` (`useVehicleConsult`), mas a
+ * apresentação é diferente de propósito: aqui o resultado é renderizado
+ * **in-place**, dentro deste cartão, conforme a decisão registrada em
+ * `LANDING_PAGE_SPEC.md` §Nota S2. Em `/consultar` ele encaminha para
+ * `/consultar/:id`.
  */
 export function PlateConsultWidget() {
-  const [rawValue, setRawValue] = useState("");
-  const [touched, setTouched] = useState(false);
-  const [state, setState] = useState<WidgetState>({ status: "idle" });
+  const {
+    plate,
+    renavam,
+    state,
+    errors,
+    renavamRequired,
+    setPlate,
+    setRenavam,
+    submit,
+    retry,
+    reset,
+  } = useVehicleConsult();
 
-  const valid = isValidPlate(rawValue);
-  const showFormatError = touched && rawValue.length > 0 && !valid;
+  const summaryRef = useRef<HTMLDivElement>(null);
+  const renavamRef = useRef<HTMLInputElement>(null);
+  const loading = state.status === "loading";
+  const showForm = state.status !== "completed";
 
-  async function runLookup(plate: string) {
-    setState({ status: "loading" });
-    try {
-      const outcome = await lookupVehicle(plate);
-      setState(outcome.kind === "error" ? { status: "error" } : { status: "done", outcome });
-    } catch {
-      setState({ status: "error" });
-    }
-  }
+  // Ver `ConsultarForm`: o resumo só está no DOM depois do render dos erros.
+  const [invalidAttempts, setInvalidAttempts] = useState(0);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setTouched(true);
-    if (valid) {
-      void runLookup(rawValue);
+    if (!submit()) {
+      setInvalidAttempts((count) => count + 1);
     }
   }
 
-  function reset() {
-    setRawValue("");
-    setTouched(false);
-    setState({ status: "idle" });
-  }
+  useEffect(() => {
+    if (invalidAttempts > 0) {
+      summaryRef.current?.focus();
+    }
+  }, [invalidAttempts]);
+
+  useEffect(() => {
+    if (renavamRequired && renavam.length === 0) {
+      renavamRef.current?.focus();
+    }
+  }, [renavamRequired, renavam.length]);
 
   return (
     <div className="rounded-2xl border border-border bg-surface p-6 shadow-elev3 sm:p-8">
@@ -67,55 +80,74 @@ export function PlateConsultWidget() {
       </div>
 
       {/* Uma live region por área, não por skeleton (UX_RULES.md §4). */}
-      <div aria-live="polite" aria-busy={state.status === "loading"}>
-        {state.status === "error" ? (
-          <ErrorState
-            context="a situação deste veículo"
-            description="A consulta ao órgão não respondeu. Seus dados não foram perdidos."
-            onRetry={() => void runLookup(rawValue)}
-          />
-        ) : null}
+      <div aria-live="polite" aria-busy={loading} className="flex flex-col gap-4">
+        <ConsultFeedback state={state} onRetry={retry} />
 
-        {state.status === "loading" ? (
+        {loading ? (
           <div className="flex flex-col gap-4">
             <p className="text-body-public text-text-secondary-strong">
               Consultando a situação de{" "}
-              <span className="font-mono uppercase">{formatPlateForDisplay(rawValue)}</span>…
+              <span className="font-mono uppercase">{formatPlateForDisplay(plate)}</span>…
             </p>
             <LoadingState variant="list" count={3} />
           </div>
         ) : null}
 
-        {state.status === "done" ? <ConsultResult outcome={state.outcome} onReset={reset} /> : null}
+        {state.status === "completed" ? (
+          <ConsultResult outcome={state.result} onReset={reset} />
+        ) : null}
       </div>
 
-      {state.status === "idle" ? (
-        <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
+      {showForm ? (
+        <form
+          onSubmit={handleSubmit}
+          noValidate
+          className={loading ? "mt-5 flex flex-col gap-5" : "flex flex-col gap-5"}
+        >
+          <ConsultErrorSummary ref={summaryRef} errors={errors} />
+
           {/* Campo com cara de placa: alto, monoespaçado e centralizado. O
               ícone saiu de dentro do campo — estava posicionado com um
               `top-[2.1rem]` mágico que quebra assim que a altura muda. */}
-          <Input
-            label="Placa do veículo"
-            hint="Placa antiga (ABC-1234) ou Mercosul (ABC1D23)"
-            error={showFormatError ? "Placa inválida. Use ABC-1234 ou ABC1D23." : undefined}
-            value={formatPlateForDisplay(rawValue)}
-            onChange={(event) => setRawValue(normalizePlate(event.target.value))}
-            onBlur={() => setTouched(true)}
-            inputMode="text"
-            autoCapitalize="characters"
-            autoComplete="off"
-            spellCheck={false}
-            maxLength={8}
-            placeholder="ABC-1234"
+          <PlateField
+            value={plate}
+            onValueChange={setPlate}
+            error={errors.plate}
+            disabled={loading}
             className="h-16 border-2 border-border-strong text-center font-mono text-display uppercase tracking-[0.12em] placeholder:font-sans placeholder:text-body-public placeholder:normal-case placeholder:tracking-normal placeholder:text-text-muted"
           />
+
+          {renavamRequired ? (
+            <div className="flex flex-col gap-3">
+              {/* O motivo antes do campo: pedir um documento sem explicar por
+                  quê é onde a consulta é abandonada. */}
+              <Alert
+                tone="info"
+                title="Precisamos do RENAVAM para concluir esta consulta."
+                description="A base do órgão não identificou o veículo apenas pela placa. O RENAVAM está no documento do veículo (CRLV) e é usado somente nesta consulta."
+              />
+              <RenavamField
+                ref={renavamRef}
+                value={renavam}
+                onValueChange={setRenavam}
+                error={errors.renavam}
+                disabled={loading}
+              />
+            </div>
+          ) : null}
 
           {/* Botão nunca nasce desabilitado: valida no submit e explica o erro.
               Botão cinza sem explicação é o maior ponto de abandono aqui.
               `variant="cta"` é o único da dobra — ver ADR-016. */}
-          <Button type="submit" variant="cta" size="xl" className="w-full">
-            <Car aria-hidden="true" className="h-5 w-5" />
-            Consultar débitos grátis
+          <Button type="submit" variant="cta" size="xl" loading={loading} className="w-full">
+            {loading ? (
+              "Consultando veículo…"
+            ) : (
+              <>
+                <Car aria-hidden="true" className="h-5 w-5" />
+                Consultar débitos grátis
+              </>
+            )}
           </Button>
 
           <p className="flex items-center justify-center gap-2 text-body-public font-medium text-text-secondary-strong">
