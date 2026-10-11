@@ -725,3 +725,15 @@ testável,
 compreensível
 e consistente com o sistema.
 ```
+
+---
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues for `fernandaquerino/emr-despachante`, via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` (created lazily) at the repo root; ADRs already live in `docs/engineering/ADRS.md`. See `docs/agents/domain.md`.

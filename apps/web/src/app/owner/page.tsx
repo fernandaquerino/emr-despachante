@@ -54,7 +54,7 @@ export default function OwnerHomePage() {
       <section className="relative mb-8 overflow-hidden rounded-xl border border-border bg-surface-selected px-6 py-5">
         <Car
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-4 -right-4 h-28 w-28 text-action-accent/10"
+          className="pointer-events-none absolute -bottom-4 -right-4 h-28 w-28 text-surface-accent-subtle"
           strokeWidth={1.25}
         />
         <p className="relative max-w-md text-body text-text-secondary">
@@ -71,7 +71,7 @@ export default function OwnerHomePage() {
             href={href}
             className="group flex flex-col gap-3 rounded-lg border border-border bg-surface p-4 shadow-elev1 transition-colors duration-normal ease-standard hover:border-action-accent hover:bg-surface-selected focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-md bg-action-accent/10 text-action-accent">
+            <span className="flex h-10 w-10 items-center justify-center rounded-md bg-surface-accent-subtle text-action-accent">
               <Icon aria-hidden="true" className="h-5 w-5" />
             </span>
             <span className="flex flex-col gap-1">

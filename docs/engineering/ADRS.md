@@ -220,3 +220,159 @@ acoplar dados do banco a um diretório do repositório.
 - `prisma migrate reset` é destrutivo; o script `db:reset` não usa `--force` por padrão,
   exigindo confirmação interativa como proteção contra execução acidental fora do ambiente
   local.
+
+---
+
+## ADR-016 — Âmbar como cor de CTA na área pública
+
+### Contexto
+A landing pública usava `Button variant="primary"` (navy `#0F172A`) como chamada principal,
+dentro de um cartão branco sobre a dobra navy. O botão não se separava do resto: mesma cor da
+marca, mesma cor do texto, nenhum contraste de ação. Não existia variant de accent preenchido
+— `accent` é outline (fundo branco + texto cobalt), então não havia nenhuma opção "cheia" no
+Design System além de navy e vermelho destrutivo.
+
+Duas regras do DS apontam para o lado oposto desta decisão e precisam ser citadas:
+
+- `docs/design-system/DESIGN_SYSTEM.md` §anti-patterns: *"Verde como primary — proibido (queima
+  semântica de sucesso)"*.
+- `docs/product/LANDING_PAGE_SPEC.md` §0.5: *"Acento único: `--action-accent` (cobalt
+  `#0369A1`)"*.
+
+O argumento do anti-pattern é sobre **queimar semântica de status**, e vale igualmente para o
+âmbar, que hoje significa `warning` / "Atenção" / "Aguardando".
+
+### Decisão
+Criar `--action-cta` (+ `-hover`, `-active`) e `--text-on-cta` como tokens semânticos, e um
+variant `cta` no `Button`, **restritos à área pública** (`apps/web/src/app/(public)`).
+
+- Light: `--action-cta: #f59e0b` (amber-500) com `--text-on-cta: #0f172a` (navy-900).
+- Dark: `--action-cta: #fbbf24` (amber-400), mesmo texto navy.
+
+O ponto da escala não é arbitrário: âmbar escuro (amber-600/700) com texto **branco** entrega
+3.4:1 e **reprova** WCAG AA para texto normal. Amber-500 com texto **navy** entrega 9.4:1 e
+passa AAA — mais contraste e mais pop ao mesmo tempo.
+
+### Por que
+A decisão foi tomada pelo negócio com o conflito documental explicitado. O ganho pretendido é
+de conversão na dobra; o custo é duplicar o significado do âmbar no sistema.
+
+### Consequência
+- Âmbar passa a ter dois significados: `warning`/`aguardando` no app autenticado, ação na
+  landing. Isso é dívida de design assumida, não descuido.
+- Mitigações obrigatórias, documentadas em `COMPONENTS.md §Button` e no próprio componente:
+  - `variant="cta"` é **proibido** em telas autenticadas;
+  - `variant="cta"` é **proibido** no mesmo bloco visível de um `StatusBadge` âmbar;
+  - no máximo 1 `cta` por viewport (hoje: dobra e CTA final, que não coexistem em tela).
+- Se o produto ganhar um segundo CTA de conversão em tela autenticada, esta ADR precisa ser
+  revista antes — e não contornada com um `className`.
+
+### Nota de implementação relacionada
+Ao implementar esta ADR descobriu-se que o preset mapeia cores para `var(--token)` cru, e o
+Tailwind v3 **não emite regra alguma** quando se aplica modificador de opacidade sobre isso
+(`bg-surface/95`, `text-text-inverse/75`). Havia 14 ocorrências em produção: o header sticky
+estava totalmente transparente (conteúdo do FAQ vazava por cima da navegação) e o texto de
+apoio da dobra renderizava preto puro sobre navy (contraste 1.2:1). A correção foi criar tokens
+para as camadas translúcidas (`--surface-header`, `--surface-on-inverse`, `--border-inverse`,
+`--surface-watermark`, `--surface-accent-subtle`) e proibir o padrão via teste
+(`apps/web/src/lib/token-opacity.test.ts`).
+
+---
+
+## ADR-017 — Fotografia na área pública
+
+### Contexto
+A landing não tinha nenhuma imagem: só tipografia, ícones e mockups de painel. Para um serviço
+de despachante vendido a público amplo, isso lê como ferramenta técnica, não como serviço
+prestado por gente. Ao mesmo tempo, `LANDING_PAGE_SPEC.md` §S8 proíbe depoimento fictício
+(CDC art. 37), e foto de pessoa desconhecida ao lado de uma citação é exatamente isso.
+
+### Decisão
+- Fotografia da área pública é **versionada** em `apps/web/public/images/` e servida por
+  `next/image`. Sem `remotePatterns`: nada de hotlink para banco de imagem.
+- A fotografia é **ilustrativa**. Nunca aparece ao lado de citação, nome próprio ou afirmação
+  de que a pessoa retratada é cliente da EMR.
+- Em bloco de depoimento, o avatar é **iniciais**. Foto só se for a pessoa real, com
+  autorização de uso arquivada.
+- Enquanto um arquivo não existe, `_components/Photo.tsx` renderiza um bloco provisório
+  **visivelmente marcado** com o briefing da foto que falta — nunca uma ilustração vetorial
+  improvisada nem uma imagem quebrada.
+
+### Por que
+Separa dois problemas que costumam ser confundidos: "a página precisa de calor humano"
+(resolve-se com fotografia ilustrativa) e "a página precisa de prova social" (só se resolve com
+conteúdo real e autorizado). Misturar os dois é o caminho curto para publicidade enganosa.
+
+### Consequência
+- `apps/web/next.config.mjs` ganha bloco `images` (apenas `formats`).
+- A foto da dobra usa `priority` por ser o provável LCP.
+- Substituir um placeholder por foto real é uma mudança de uma linha
+  (`available: false → true`) em `_components/lib/photos.ts`.
+
+### Nota de implementação (2026-10-08)
+
+As duas fotos em uso foram **geradas por IA** (Higgsfield, modelo `z_image`) a partir dos
+briefings do manifesto, e estão versionadas em `apps/web/public/images/`. Decisões de
+produção que vale registrar:
+
+- **JPEG, não WebP.** A máquina de build não tem encoder WebP (`cwebp` ausente, `sips` do
+  macOS não exporta WebP). Isso não custa nada ao usuário final: `next/image` converte para
+  AVIF/WebP no servidor via `images.formats`. Trocar a fonte para WebP depois é indiferente
+  para o resultado entregue.
+- **Duas imagens foram descartadas antes destas**, e o motivo importa para quem for
+  regerar: um fundo abstrato em azul saturado (virou "blob de gradiente de IA", fora do navy
+  da marca) e uma foto de mulher exausta diante de uma pilha de papéis (comunicava o
+  problema, não o alívio que a seção promete). Prompt bonito não basta: a imagem precisa
+  dizer a mesma coisa que o texto ao lado dela.
+- **O fundo da dobra não virou imagem.** A profundidade vem de duas luzes difusas em CSS
+  (`--surface-inverse-glow`), não de um arquivo: pesa zero, escala em qualquer viewport e
+  não corre o risco de virar decoração genérica. Primeira tentativa usou alpha 0.22, que
+  **desaparece** sobre o navy e devolve a sensação de cor chapada — o que resolve é a faixa
+  entre o ponto mais escuro (`--surface-inverse-deep`, quase preto) e o mais claro.
+- **A foto da dobra sangra pela direita e é dissolvida por MÁSCARA, não por véu colorido.**
+  Um véu por cima precisaria começar exatamente na cor do fundo naquele ponto; como o fundo
+  ali é um gradiente com luz, sobra uma emenda vertical visível (testado e descartado).
+  Mascarando (`mask-image` + `mask-composite: intersect`), a própria foto perde opacidade e
+  o gradiente aparece através dela — sem emenda, seja qual for a cor atrás.
+
+---
+
+## ADR-018 — Verde de marca no FAB de WhatsApp
+
+### Contexto
+`LANDING_PAGE_SPEC.md` §S10 especificava o FAB de WhatsApp como `variant="secondary"` com
+ícone, e proibia explicitamente o fundo verde: *"**Não** verde WhatsApp saturado — quebra o
+acento único (§0.5). Ícone da marca é aceitável; fundo verde não."*
+
+O negócio pediu o botão redondo, com o glifo da marca e o fundo verde do WhatsApp — o
+affordance que o usuário brasileiro reconhece sem ler rótulo.
+
+### Decisão
+Adotar o botão verde, modelando a cor como **cor de marca de terceiro**, não como cor
+semântica:
+
+- Token `--brand-whatsapp: #25D366` (+ `-hover`), em um grupo `brand` separado no preset.
+- Valor **idêntico em light e dark**: cor de logotipo não responde a tema.
+- Uso restrito ao FAB da área pública.
+- Glifo copiado do SVG oficial (Simple Icons, CC0), não redesenhado à mão.
+
+### Por que
+Separar "verde de marca" de "verde semântico" resolve o conflito real. O anti-pattern do DS
+(*"Verde como primary — queima semântica de sucesso"*) existe para impedir que o usuário leia
+verde como "deu certo". Num logotipo do WhatsApp isso não acontece: o verde ali significa
+"WhatsApp", do mesmo jeito que o azul do logo do Facebook não significa "informação".
+`--status-success` segue sendo o único verde semântico, e verde continua proibido como cor de
+ação genérica.
+
+### Consequência
+- O "acento único" da landing passa a ter duas exceções documentadas: âmbar para conversão
+  (ADR-016) e verde de marca para o canal WhatsApp (esta). Uma terceira exceção deve ser
+  tratada como sinal de que o princípio precisa ser reescrito, não estendido de novo.
+- **Pendência de acessibilidade conhecida:** glifo branco sobre `#25D366` dá **1.98:1**, abaixo
+  do mínimo de 3:1 da WCAG 1.4.11 para objeto gráfico. Mitigações aplicadas: alvo de 56px
+  (acima dos 44px recomendados), `aria-label` explícito, e anel interno para destacar a aresta
+  do círculo sobre fundo claro. Para conformidade plena, trocar `--brand-whatsapp` por
+  `#128C7E` (verde escuro oficial do WhatsApp, 4.1:1 com glifo branco) — é mudança de um
+  token. Fica registrado como decisão consciente de marca sobre contraste.
+- `brand` é um grupo novo no preset. Toda cor de terceiro futura entra lá, nunca na escala
+  semântica.

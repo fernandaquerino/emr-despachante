@@ -19,3 +19,22 @@ test("rejects missing, malformed, or non-HTTP public API URLs", () => {
     /must use the http or https protocol/,
   );
 });
+
+test("accepts an optional WhatsApp number and rejects a malformed one", () => {
+  assert.deepEqual(
+    validateWebEnv({
+      NEXT_PUBLIC_API_BASE_URL: "https://api.example.test",
+      NEXT_PUBLIC_WHATSAPP_NUMBER: "5511987654321",
+    }),
+    { apiBaseUrl: "https://api.example.test", whatsappNumber: "5511987654321" },
+  );
+
+  assert.throws(
+    () =>
+      validateWebEnv({
+        NEXT_PUBLIC_API_BASE_URL: "https://api.example.test",
+        NEXT_PUBLIC_WHATSAPP_NUMBER: "+55 (11) 98765-4321",
+      }),
+    /must be digits only/,
+  );
+});

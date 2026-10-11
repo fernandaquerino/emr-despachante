@@ -1,4 +1,6 @@
 // Base components — docs/design-system/COMPONENTS.md
+export * from "./components/base/Accordion";
+export * from "./components/base/Alert";
 export * from "./components/base/Button";
 export * from "./components/base/Input";
 export * from "./components/base/Select";

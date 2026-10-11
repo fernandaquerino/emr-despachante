@@ -352,7 +352,7 @@ Além dos anti-patterns gerais, vetados neste produto:
 7. **KPI sem link** — todo card de KPI é clicável para lista filtrada correspondente.
 8. **Ranking público entre usuários internos** — vetado no MVP (SCREEN_SPECS §11).
 9. **Vermelho como cor de marca** — proibido.
-10. **Verde como primary** — proibido (queima semântica de sucesso).
+10. **Verde como primary** — proibido (queima semântica de sucesso). O mesmo raciocínio vale para âmbar, que significa `warning`/`aguardando`. **Exceção única e documentada:** `Button variant="cta"` (âmbar) na área pública — ver **ADR-016**, que lista as restrições de uso. Não estender a exceção sem nova ADR.
 11. **"AI purple gradient"** — Copilot usa navy/cobalt como qualquer outra feature; roxo é reservado a status `PROCESSING`.
 12. **Cor "Regular verde" em fundo grande** — verde só em badge/label/ícone, nunca preencher hero, card grande ou linha inteira de tabela.
 13. **Sidebar com item "Copilot"** — Copilot é transversal, acessado pelo header.

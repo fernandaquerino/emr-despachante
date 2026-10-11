@@ -24,23 +24,36 @@ const uiPreset = {
           raised: "var(--surface-raised)",
           selected: "var(--surface-selected)",
           inverse: "var(--surface-inverse)",
+          "inverse-to": "var(--surface-inverse-to)",
+          "inverse-tint": "var(--surface-inverse-tint)",
+          header: "var(--surface-header)",
+          "on-inverse": "var(--surface-on-inverse)",
+          watermark: "var(--surface-watermark)",
+          "accent-subtle": "var(--surface-accent-subtle)",
           sidebar: "var(--surface-sidebar)",
         },
         text: {
           DEFAULT: "var(--text-primary)",
           secondary: "var(--text-secondary)",
+          "secondary-strong": "var(--text-secondary-strong)",
           muted: "var(--text-muted)",
           disabled: "var(--text-disabled)",
           inverse: "var(--text-inverse)",
+          "inverse-secondary": "var(--text-inverse-secondary)",
+          "inverse-muted": "var(--text-inverse-muted)",
+          "inverse-highlight": "var(--text-inverse-highlight)",
           link: "var(--text-link)",
           "on-primary": "var(--text-on-primary)",
           "on-accent": "var(--text-on-accent)",
+          "on-cta": "var(--text-on-cta)",
         },
         border: {
           DEFAULT: "var(--border-default)",
           subtle: "var(--border-subtle)",
           strong: "var(--border-strong)",
           focus: "var(--border-focus)",
+          inverse: "var(--border-inverse)",
+          "inverse-strong": "var(--border-inverse-strong)",
         },
         action: {
           primary: {
@@ -63,6 +76,12 @@ const uiPreset = {
             DEFAULT: "var(--action-destructive)",
             hover: "var(--action-destructive-hover)",
             active: "var(--action-destructive-active)",
+          },
+          /* Exclusivo da área pública — ver ADR-016 e tokens.css. */
+          cta: {
+            DEFAULT: "var(--action-cta)",
+            hover: "var(--action-cta-hover)",
+            active: "var(--action-cta-active)",
           },
         },
         status: {
@@ -103,6 +122,14 @@ const uiPreset = {
             border: "var(--status-neutral-border)",
           },
         },
+        /* Cores de marca de terceiros. Não são tokens semânticos: não
+           respondem a tema e não significam estado. Ver ADR-018. */
+        brand: {
+          whatsapp: {
+            DEFAULT: "var(--brand-whatsapp)",
+            hover: "var(--brand-whatsapp-hover)",
+          },
+        },
         priority: {
           critical: "var(--priority-critical)",
           high: "var(--priority-high)",
@@ -118,11 +145,29 @@ const uiPreset = {
           6: "var(--data-6)",
         },
       },
+      backgroundImage: {
+        /* Fundo da dobra da área pública: gradiente da marca + duas luzes
+           difusas. Vive aqui, e não no componente, para não espalhar valor
+           cru de cor pela app (AGENTS.md §14.1). */
+        "hero-public": [
+          // Luz principal, alta e à direita — atrás da coluna da foto/cartão.
+          "radial-gradient(72rem 52rem at 76% 2%, var(--surface-inverse-glow), transparent 62%)",
+          // Luz de apoio, baixa e à esquerda, para a base não fechar em bloco.
+          "radial-gradient(56rem 40rem at 2% 104%, var(--surface-inverse-glow-soft), transparent 66%)",
+          // Base com faixa real: navy no topo, quase preto no canto inferior.
+          "linear-gradient(152deg, var(--surface-inverse-to) 0%, var(--surface-inverse) 42%, var(--surface-inverse-deep) 100%)",
+        ].join(", "),
+      },
       fontFamily: {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
       fontSize: {
+        // Só para a área pública (ver tokens.css). Responsivo via `lg:` no uso.
+        "display-marketing": [
+          "3rem",
+          { lineHeight: "1.05", letterSpacing: "-0.02em", fontWeight: "700" },
+        ],
         display: ["2.25rem", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" }],
         h1: ["1.5rem", { lineHeight: "1.3", letterSpacing: "-0.005em", fontWeight: "600" }],
         h2: ["1.25rem", { lineHeight: "1.35", fontWeight: "600" }],
@@ -130,6 +175,9 @@ const uiPreset = {
         h4: ["1rem", { lineHeight: "1.4", fontWeight: "600" }],
         body: ["0.875rem", { lineHeight: "1.5" }],
         "body-lg": ["1rem", { lineHeight: "1.5" }],
+        // Steps restritos à área pública (ver tokens.css §4).
+        lead: ["1.125rem", { lineHeight: "1.6" }],
+        "body-public": ["1rem", { lineHeight: "1.6" }],
         "body-sm": ["0.8125rem", { lineHeight: "1.5" }],
         label: ["0.75rem", { lineHeight: "1.35", letterSpacing: "0.01em", fontWeight: "500" }],
         caption: ["0.6875rem", { lineHeight: "1.35", letterSpacing: "0.01em" }],

@@ -9,9 +9,18 @@ import { cn } from "../../../lib/cn";
  * Máximo 1 `primary` por bloco visível é responsabilidade de quem consome —
  * o componente não impõe isso.
  */
-const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-1.5 rounded-sm font-medium transition-colors duration-fast ease-standard " +
+/**
+ * Exportado para estilizar um `<a>`/`Link` externo como botão (ex.: CTA de
+ * navegação) sem aninhar `<button>` dentro de `<a>` — HTML inválido e
+ * inacessível. Ver COMPONENTS.md §Guidelines de composição.
+ */
+export const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-sm font-medium " +
+    "transition-[color,background-color,border-color,transform] duration-fast ease-standard " +
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus focus-visible:ring-offset-2 " +
+    // Feedback tátil: o botão afunda 1px no clique. Só transform — nada de
+    // top/left — para não sair da composite layer.
+    "active:translate-y-px disabled:active:translate-y-0 " +
     "disabled:cursor-not-allowed disabled:opacity-100",
   {
     variants: {
@@ -22,6 +31,16 @@ const buttonVariants = cva(
           "bg-surface text-text border border-action-secondary-border hover:bg-action-secondary-hover disabled:text-text-disabled",
         accent:
           "bg-surface text-action-accent border border-action-accent hover:bg-action-secondary-hover",
+        /**
+         * CTA de conversão — **exclusivo da área pública** (`app/(public)`).
+         * Proibido em tela autenticada e proibido no mesmo bloco visível de um
+         * `StatusBadge` âmbar: âmbar já significa warning/aguardando no app, e
+         * este variant abre exceção consciente ao "acento único" da landing.
+         * Contexto completo e restrições: ADR-016.
+         */
+        cta:
+          "bg-action-cta text-text-on-cta font-semibold hover:bg-action-cta-hover " +
+          "active:bg-action-cta-active disabled:bg-action-primary-disabled disabled:text-text-disabled",
         destructive:
           "bg-action-destructive text-text-on-primary hover:bg-action-destructive-hover active:bg-action-destructive-active",
         ghost: "bg-transparent text-text hover:bg-bg-subtle",
@@ -31,6 +50,8 @@ const buttonVariants = cva(
         sm: "h-8 px-3 text-body-sm",
         md: "h-10 px-4 text-body",
         lg: "h-12 px-5 text-body",
+        /** Só para CTA de dobra na área pública — alvo de toque generoso. */
+        xl: "h-14 px-8 text-lead",
       },
     },
     defaultVariants: {
