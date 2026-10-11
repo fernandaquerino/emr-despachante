@@ -60,3 +60,11 @@ export const Loading: Story = {
 export const Disabled: Story = {
   args: { disabled: true },
 };
+
+/**
+ * CTA de conversão da área pública. Fora de `app/(public)` não deve ser usado
+ * — ver ADR-016.
+ */
+export const PublicCta: Story = {
+  args: { variant: "cta", size: "xl", children: "Consultar débitos grátis" },
+};

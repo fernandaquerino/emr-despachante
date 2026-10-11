@@ -30,8 +30,23 @@ Ver `TOKENS.md` §5 e `DESIGN_SYSTEM.md` §14.
 
 ### Button
 
-Variants: `primary`, `secondary`, `accent`, `destructive`, `ghost`, `link`.
-Sizes: `sm` (h 32px, padding 8/12), `md` (h 40px, padding 10/16), `lg` (h 48px, padding 12/20).
+Variants: `primary`, `secondary`, `accent`, `destructive`, `ghost`, `link`, `cta`.
+Sizes: `sm` (h 32px, padding 8/12), `md` (h 40px, padding 10/16), `lg` (h 48px, padding 12/20),
+`xl` (h 56px, padding 14/32).
+
+Todo variant tem feedback tátil no `:active` (`translate-y: 1px`) e nunca quebra o rótulo em
+duas linhas (`white-space: nowrap`) — rótulo de CTA quebrado em desktop é defeito, não layout.
+
+**`cta` — exclusivo da área pública.** Fundo `--action-cta` (âmbar) + texto `--text-on-cta`
+(navy). Restrições, não recomendações:
+
+- proibido em tela autenticada;
+- proibido no mesmo bloco visível de um `StatusBadge` âmbar — âmbar já significa
+  `warning`/`aguardando` no app;
+- no máximo 1 por viewport.
+
+O porquê, o conflito com os anti-patterns do DS e o custo assumido estão em **ADR-016**.
+`size="xl"` existe para o CTA de dobra e segue a mesma restrição.
 
 | State | Primary | Secondary | Destructive |
 |---|---|---|---|
@@ -106,6 +121,13 @@ Focus ring 2px `--border-focus` offset 2px.
 Variants: `info`, `success`, `warning`, `error`.
 Estrutura: ícone + título curto + descrição opcional + ação opcional. Border-left 4px na cor semântica + bg da variante `-bg`.
 Nunca fechável em erros críticos.
+
+**Nota informativa estática (área pública):** orientações permanentes, como a
+confirmação de pagamento, usam uma composição com `aside`, título e parágrafos,
+sem live region. Reutilizar a superfície neutra do resumo: `bg-surface`,
+`border border-border`, `rounded-xl` e `p-6`. Título `text-base font-semibold`,
+corpo `text-body-public text-text-secondary-strong` e ícone informativo decorativo de 20px.
+Sem faixa lateral, sombra ou cor que sugira um estado transacional atual.
 
 ### Toast
 
@@ -336,6 +358,10 @@ Conteúdo (ops/admin):
 ### Tabs
 
 Underline style. Padding 12/16, gap 24, border-bottom 2px em ativo. Focus ring padrão.
+
+### Accordion
+
+Padrão disclosure (WAI-ARIA): trigger com `aria-expanded`/`aria-controls`, painel com `role="region"`/`aria-labelledby`. Um item aberto por vez (uso principal: FAQ). Altura anima via `grid-template-rows` (0fr → 1fr), `--motion-normal`/`--ease-standard`; ícone `ChevronDown` gira 180°. Sob `prefers-reduced-motion`, a transição é zerada globalmente (`base.css`).
 
 ### Breadcrumb
 

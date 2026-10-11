@@ -4,3 +4,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/**
+ * Scroll suave para os links âncora do header/footer/CTAs públicos
+ * (issue de refinamento FE-PUB-001). Só sob `no-preference` — sob
+ * `prefers-reduced-motion: reduce` o navegador já usa o salto instantâneo
+ * padrão, sem necessidade de override adicional.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/**
+ * Reserva a altura do header fixo em QUALQUER rolagem programática, não só
+ * nos links âncora.
+ *
+ * O `scroll-mt-20` das seções cobre apenas o caso do link `#ancora`. Ao
+ * navegar por Tab, o browser rola o elemento focado para a borda do
+ * viewport — e o header fixo fica por cima dele. É a falha
+ * "Focus Not Obscured" (WCAG 2.2 AA, 2.4.11): o foco do teclado não pode
+ * ficar escondido atrás de UI persistente.
+ */
+html {
+  scroll-padding-top: calc(var(--header-height-public) + var(--space-4));
+}

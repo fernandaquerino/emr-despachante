@@ -592,3 +592,65 @@ const plexMono = IBM_Plex_Mono({
   display: 'swap',
 });
 ```
+
+---
+
+## Tokens da área pública (`app/(public)`)
+
+Adicionados para a landing e **restritos a ela**. O app autenticado não deve usá-los: a
+densidade e a semântica de lá são outras.
+
+### Camadas translúcidas — obrigatórias, não opcionais
+
+O preset mapeia cor para `var(--token)` cru. O **Tailwind v3 não consegue** aplicar
+modificador de opacidade sobre isso: `bg-surface/95` e `text-text-inverse/75` não geram
+regra nenhuma, e o elemento fica sem fundo ou herdando a cor do pai. Isso já causou em
+produção um header sticky transparente (conteúdo vazando por cima da navegação) e texto
+preto puro sobre navy (contraste 1.2:1). Use token, nunca modificador:
+
+| Token | Light | Dark | Para |
+|---|---|---|---|
+| `--surface-header` | `rgba(255,255,255,.95)` | `rgba(17,24,39,.95)` | fundo do header sticky |
+| `--surface-on-inverse` | `rgba(255,255,255,.10)` | `rgba(15,23,42,.08)` | chip/hover sobre `surface-inverse` |
+| `--surface-watermark` | `rgba(255,255,255,.06)` | `rgba(15,23,42,.06)` | ícone decorativo sobre navy |
+| `--surface-accent-subtle` | `rgba(3,105,161,.10)` | `rgba(59,148,217,.16)` | fundo sutil de ícone de accent |
+| `--border-inverse` | `rgba(255,255,255,.22)` | `rgba(15,23,42,.18)` | borda sobre `surface-inverse` |
+| `--border-inverse-strong` | `rgba(255,255,255,.38)` | `rgba(15,23,42,.32)` | borda de botão sobre navy |
+
+A regra é checada por teste: `apps/web/src/lib/token-opacity.test.ts`.
+
+### Texto e superfície
+
+| Token | Light | Contraste | Para |
+|---|---|---|---|
+| `--text-inverse-secondary` | `#E2E8F0` | 12.6:1 sobre navy-900 | corpo sobre `surface-inverse` |
+| `--text-inverse-muted` | `#CBD5E1` | 9.3:1 | terciário sobre `surface-inverse` |
+| `--text-inverse-highlight` | `#FCD34D` | 10.4:1 | palavra-chave destacada sobre navy |
+| `--text-secondary-strong` | `#334155` | 10.8:1 sobre branco | secundário da área pública |
+| `--surface-inverse-to` | `#1E293B` | — | fim do gradiente da dobra |
+
+`--text-secondary` (`#475569`) **não** foi alterado: ele é o secundário do app, e mexer nele
+mudaria toda tela autenticada sem requisito.
+
+### Ação de conversão
+
+| Token | Light | Dark | Nota |
+|---|---|---|---|
+| `--action-cta` | `#F59E0B` | `#FBBF24` | âmbar — exceção ao acento único |
+| `--action-cta-hover` | `#FBBF24` | `#FCD34D` | |
+| `--action-cta-active` | `#D97706` | `#F59E0B` | |
+| `--text-on-cta` | `#0F172A` | `#0F172A` | 9.4:1 sobre amber-500 (AAA) |
+
+Âmbar **escuro com texto branco reprova AA** (3.4:1). Por isso o CTA é âmbar claro com texto
+navy. Restrições de uso e o conflito com `DESIGN_SYSTEM.md`: **ADR-016**.
+
+### Tipografia
+
+| Token | Valor | Para |
+|---|---|---|
+| `--font-size-display-marketing` | `3rem` (48px) | h1 da dobra |
+| `--font-size-lead` | `1.125rem` (18px) | subtítulo de seção |
+| `--font-size-body-public` | `1rem` (16px) | piso de corpo da área pública |
+
+O app continua em 14px de corpo (densidade de painel). Na landing, lida por público amplo,
+14px é piso ruim.
